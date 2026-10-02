@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>AKPOTIN Fresnel · Développeur web</title>
-<meta name="description" content="AKPOTIN Fresnel, développeur web : sites rapides sur mobile pour salons, cliniques, écoles, hôtels et agences.">
+<meta name="description" content="AKPOTIN Fresnel, développeur web : des sites rapides sur mobile, avec WhatsApp intégré, pour cliniques, salons, écoles, hôtels, restaurants et agences. Devis gratuit en 24h.">
 <meta property="og:title" content="AKPOTIN Fresnel · Développeur web">
-<meta property="og:description" content="Des sites qui font venir les clients.">
+<meta property="og:description" content="Des sites qui font appeler, réserver et acheter vos clients. Devis gratuit en 24h.">
 <meta property="og:image" content="img/dreads.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,500;9..40,700&display=swap">
@@ -214,6 +214,18 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
 .social a:hover{background:var(--main);color:#fff;border-color:var(--black)}
 .legal{margin-top:44px;padding-top:20px;border-top:2px solid var(--dark2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px}
 
+.t-touch{display:none}
+@media (hover:none){.t-touch{display:inline}.t-hover{display:none}}
+
+/* faq */
+.faq-list{display:grid;gap:16px;margin-top:48px;max-width:860px}
+.faq-list details{background:var(--white);border:2px solid var(--black);border-radius:14px;box-shadow:4px 4px 0 var(--black)}
+.faq-list summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font:800 clamp(18px,2vw,22px)/1.25 var(--f-display);letter-spacing:-.02em}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";flex:none;width:32px;height:32px;display:grid;place-items:center;border:2px solid var(--black);border-radius:8px;background:var(--tint);font:800 20px/1 var(--f-body);transition:transform .25s}
+.faq-list details[open] summary::after{transform:rotate(45deg)}
+.faq-list details p{padding:0 22px 20px;color:var(--muted);font-size:17px;max-width:68ch}
+
 .wa-fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:60px;height:60px;border-radius:16px;background:#25d366;border:2px solid var(--black);box-shadow:4px 4px 0 var(--black);display:grid;place-items:center;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
 .wa-fab:hover{transform:translate(4px,4px);box-shadow:0 0 0 var(--black)}
 
@@ -233,11 +245,11 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
       <span>AKPOTIN Fresnel</span>
     </a>
     <nav class="links" aria-label="Sections">
-      <a href="#realisations">Réalisations</a><a href="#methode">Méthode</a><a href="#pour-qui">Pour qui</a><a href="#contact">Contact</a>
+      <a href="#realisations">Réalisations</a><a href="#methode">Méthode</a><a href="#pour-qui">Pour qui</a><a href="#faq">Questions</a><a href="#contact">Contact</a>
     </nav>
-    <a class="btn btn-dark btn-sm" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20souhaite%20un%20site%20web%20pour%20mon%20entreprise." target="_blank" rel="noopener">
+    <a class="btn btn-dark btn-sm" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20suis%20%5Bnom%20de%20l%27entreprise%5D.%20J%27aimerais%20un%20devis%20pour%20un%20site%20web." target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3Z"/></svg>
-      <span>Écrivez-moi</span>
+      <span>Devis gratuit</span>
     </a>
   </div>
   <div class="progress" id="progress"></div>
@@ -247,18 +259,18 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
   <section class="hero dots">
     <div class="in">
       <div>
-        <span class="pill"><span class="live"></span>Disponible pour vos projets</span>
+        <span class="pill"><span class="live"></span>Disponible · devis gratuit en 24h</span>
         <h1>
           <span class="ln"><span>Des sites qui</span></span>
           <span class="ln"><span>font <span class="swap" id="swap"><b class="cur">appeler</b><b>réserver</b><b>acheter</b><b>revenir</b></span></span></span>
           <span class="ln"><span>vos clients.</span></span>
         </h1>
-        <p class="lead">Je suis AKPOTIN Fresnel, développeur web. Je crée des sites rapides sur mobile pour les salons, cliniques, écoles, hôtels et agences, avec un bouton WhatsApp qui transforme les visites en demandes.</p>
+        <p class="lead">Un site clair, rapide sur téléphone, avec un bouton WhatsApp qui transforme chaque visiteur en demande de rendez-vous, de réservation ou de commande. Pour les cliniques, salons, écoles, hôtels, restaurants et agences.</p>
         <div class="ctas">
           <a class="btn btn-dark" href="#realisations">Voir mes réalisations →</a>
-          <a class="btn btn-light" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20souhaite%20un%20site%20web%20pour%20mon%20entreprise." target="_blank" rel="noopener">Discuter sur WhatsApp</a>
+          <a class="btn btn-light" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20suis%20%5Bnom%20de%20l%27entreprise%5D.%20J%27aimerais%20un%20devis%20pour%20un%20site%20web." target="_blank" rel="noopener">Demander mon devis gratuit</a>
         </div>
-        <div class="trust"><span>📱 Pensé mobile</span><span>💬 WhatsApp intégré</span><span>🔎 Visible sur Google</span></div>
+        <div class="trust"><span>📱 Pensé mobile</span><span>💬 WhatsApp intégré</span><span>🔎 Trouvable sur Google</span><span>👀 Maquette validée par vous</span></div>
       </div>
 
       <div class="fan" id="fan" aria-label="Aperçu de sites réalisés">
@@ -276,23 +288,23 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
 
   <div class="marquee" aria-hidden="true">
     <div class="track">
-      <span>SALONS DE COIFFURE</span><span>CLINIQUES</span><span>ÉCOLES</span><span>HÔTELS</span><span>IMMOBILIER</span><span>AGENCES DE VOYAGE</span><span>PRODUITS DIGITAUX</span>
-      <span>SALONS DE COIFFURE</span><span>CLINIQUES</span><span>ÉCOLES</span><span>HÔTELS</span><span>IMMOBILIER</span><span>AGENCES DE VOYAGE</span><span>PRODUITS DIGITAUX</span>
+      <span>SALONS DE COIFFURE</span><span>CLINIQUES</span><span>ÉCOLES</span><span>HÔTELS</span><span>IMMOBILIER</span><span>AGENCES DE VOYAGE</span><span>RESTAURANTS</span><span>PRODUITS DIGITAUX</span>
+      <span>SALONS DE COIFFURE</span><span>CLINIQUES</span><span>ÉCOLES</span><span>HÔTELS</span><span>IMMOBILIER</span><span>AGENCES DE VOYAGE</span><span>RESTAURANTS</span><span>PRODUITS DIGITAUX</span>
     </div>
   </div>
 
   <div class="stats">
-    <div><strong data-count="4">4</strong><span>sites en ligne</span></div>
-    <div><strong>100%</strong><span>adaptés au mobile</span></div>
-    <div><strong>1 clic</strong><span>pour vous écrire</span></div>
-    <div><strong>24h</strong><span>pour une première réponse</span></div>
+    <div><strong>24h</strong><span>pour recevoir votre devis gratuit</span></div>
+    <div><strong>100%</strong><span>pensé pour le téléphone</span></div>
+    <div><strong>1 clic</strong><span>pour que vos clients vous écrivent</span></div>
+    <div><strong>3</strong><span>étapes jusqu'à la mise en ligne</span></div>
   </div>
 
   <section class="work" id="realisations">
     <div class="in">
       <div class="head rv">
         <h2 class="h2">Réalisations</h2>
-        <p>Passez la souris sur une capture pour faire défiler le site entier. Chaque site est en ligne : cliquez pour le visiter.</p>
+        <p>Un site client, un produit à moi et trois démos complètes. Tout est en ligne : ouvrez, testez, cliquez. <span class="t-hover">Survolez une capture pour voir la page entière.</span><span class="t-touch">Les captures défilent toutes seules quand vous arrivez dessus.</span></p>
       </div>
       <div class="projects">
 
@@ -300,13 +312,13 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
           <a class="shot" href="https://dreadsetcrepus.com/" target="_blank" rel="noopener" aria-label="Visiter dreadsetcrepus.com">
             <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">dreadsetcrepus.com</span></div><div class="screen" style="background-image:url(img/dreads-full.jpg)"></div></div>
             <div class="mob"><img src="img/dreads-m.jpg" alt="" loading="lazy"></div>
-            <span class="hint">↕ Survolez pour défiler</span>
+            <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
           </a>
           <div class="info">
             <span class="num">01</span>
             <span class="kind k-client">Client · Salon de coiffure</span>
             <h3>Dreads ET Crépus</h3>
-            <p>Site complet d'un salon de coiffure spécialisé dreadlocks et cheveux crépus : présentation de l'équipe, prestations et tarifs, galerie, avis clientes et prise de rendez-vous en ligne.</p>
+            <p>Le site d'un salon spécialisé dreadlocks et cheveux crépus. Les clientes voient les prestations et leurs tarifs, découvrent l'équipe et la galerie, lisent les avis, puis réservent en ligne sans passer un appel.</p>
             <div class="feats"><span>Prise de RDV</span><span>Tarifs</span><span>Galerie</span><span>Avis clients</span><span>Mode sombre</span></div>
             <a class="btn btn-dark" href="https://dreadsetcrepus.com/" target="_blank" rel="noopener">Visiter le site ↗</a>
           </div>
@@ -316,13 +328,13 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
           <a class="shot" href="https://fresnel849-debug.github.io/prompt-vault/" target="_blank" rel="noopener" aria-label="Visiter Prompt Vault">
             <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">prompt-vault</span></div><div class="screen" style="background-image:url(img/vault-full.jpg)"></div></div>
             <div class="mob"><img src="img/vault-m.jpg" alt="" loading="lazy"></div>
-            <span class="hint">↕ Survolez pour défiler</span>
+            <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
           </a>
           <div class="info">
             <span class="num">02</span>
             <span class="kind k-prod">Produit digital</span>
             <h3>Prompt Vault</h3>
-            <p>Page de vente d'un pack de 116 prompts IA : argumentaire, aperçu du contenu, exemples à copier et parcours d'achat en trois étapes.</p>
+            <p>Ma propre page de vente, pour un pack de 116 prompts IA. Elle présente l'offre, montre un aperçu du contenu, laisse copier des exemples et mène à l'achat en trois étapes. Une page construite pour vendre, pas seulement pour présenter.</p>
             <div class="feats"><span>Landing page</span><span>Vente en ligne</span><span>FAQ</span><span>Aperçu interactif</span></div>
             <a class="btn btn-dark" href="https://fresnel849-debug.github.io/prompt-vault/" target="_blank" rel="noopener">Visiter le site ↗</a>
           </div>
@@ -332,13 +344,13 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
           <a class="shot" href="demos/clinique/" target="_blank" rel="noopener" aria-label="Visiter la démo Clinique Les Palmiers">
             <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · clinique</span></div><div class="screen" style="background-image:url(img/clinique-full.jpg)"></div></div>
             <div class="mob"><img src="img/clinique-m.jpg" alt="" loading="lazy"></div>
-            <span class="hint">↕ Survolez pour défiler</span>
+            <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
           </a>
           <div class="info">
             <span class="num">03</span>
             <span class="kind k-demo">Démo · Santé</span>
             <h3>Clinique Les Palmiers</h3>
-            <p>Ce que j'apporte à une clinique : spécialités et tarifs, horaires et urgences, formulaire de rendez-vous et bouton WhatsApp toujours visible.</p>
+            <p>Ce qu'un patient cherche en premier, trouvé en quelques secondes : spécialités, tarifs, horaires et urgences. Il prend rendez-vous par formulaire ou sur WhatsApp, avec un bouton toujours à portée de pouce.</p>
             <div class="feats"><span>Rendez-vous en ligne</span><span>Spécialités</span><span>Assurances</span><span>WhatsApp</span></div>
             <a class="btn btn-dark" href="demos/clinique/" target="_blank" rel="noopener">Voir la démo ↗</a>
           </div>
@@ -348,15 +360,31 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
           <a class="shot" href="demos/hotel/" target="_blank" rel="noopener" aria-label="Visiter la démo Hôtel Lagune Bleue">
             <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · hôtel</span></div><div class="screen" style="background-image:url(img/hotel-full.jpg)"></div></div>
             <div class="mob"><img src="img/hotel-m.jpg" alt="" loading="lazy"></div>
-            <span class="hint">↕ Survolez pour défiler</span>
+            <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
           </a>
           <div class="info">
             <span class="num">04</span>
             <span class="kind k-demo">Démo · Hôtellerie</span>
             <h3>Hôtel Lagune Bleue</h3>
-            <p>Un site d'hôtel qui donne envie : grandes photos, chambres avec prix en FCFA, module de disponibilités et réservation directe sur WhatsApp, sans commission.</p>
+            <p>Un site d'hôtel qui donne envie de réserver : grandes photos, chambres avec leurs prix, disponibilités et réservation directe sur WhatsApp, sans commission de plateforme.</p>
             <div class="feats"><span>Réservation</span><span>Chambres &amp; tarifs</span><span>Galerie</span><span>Services</span></div>
             <a class="btn btn-dark" href="demos/hotel/" target="_blank" rel="noopener">Voir la démo ↗</a>
+          </div>
+        </article>
+
+        <article class="proj rv">
+          <a class="shot" href="demos/pizzeria/" target="_blank" rel="noopener" aria-label="Visiter la démo BRAISE 485">
+            <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · pizzeria</span></div><div class="screen" style="background-image:url(img/pizzeria-full.jpg)"></div></div>
+            <div class="mob"><img src="img/pizzeria-m.jpg" alt="" loading="lazy"></div>
+            <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
+          </a>
+          <div class="info">
+            <span class="num">05</span>
+            <span class="kind k-demo">Démo · Restauration</span>
+            <h3>BRAISE 485</h3>
+            <p>Une carte qui met en appétit : pizzas en photo, choix de la taille, panier, puis commande envoyée sur WhatsApp avec le récapitulatif. Livraison, retrait et heures d'ouverture affichés en direct.</p>
+            <div class="feats"><span>Carte en ligne</span><span>Panier</span><span>Commande WhatsApp</span><span>Livraison</span></div>
+            <a class="btn btn-dark" href="demos/pizzeria/" target="_blank" rel="noopener">Voir la démo ↗</a>
           </div>
         </article>
 
@@ -369,21 +397,21 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
       <h2 class="h2 rv">Vos clients vous cherchent sur leur téléphone.</h2>
       <div class="duo">
         <div class="pcard bad rv">
-          <h3>Sans site, ou avec un vieux site</h3>
+          <h3>Sans site, ou avec un site dépassé</h3>
           <ul class="ticks">
-            <li><span>✕</span>Le client tombe sur votre concurrent avant vous</li>
-            <li><span>✕</span>Une page Facebook seule fait moins sérieux</li>
-            <li><span>✕</span>Le site met du temps à charger sur un téléphone</li>
-            <li><span>✕</span>Les mêmes questions arrivent cent fois par téléphone</li>
+            <li><span>✕</span>Le client trouve votre concurrent avant vous</li>
+            <li><span>✕</span>Une simple page Facebook inspire moins confiance</li>
+            <li><span>✕</span>Le site rame sur téléphone : le visiteur part avant d'avoir vu vos services</li>
+            <li><span>✕</span>Vous répondez cent fois par jour aux mêmes questions</li>
           </ul>
         </div>
         <div class="pcard good rv">
           <h3>Avec un site bien fait</h3>
           <ul class="ticks">
-            <li><span>✓</span>Vous apparaissez quand on cherche votre service dans votre ville</li>
-            <li><span>✓</span>Une image professionnelle qui rassure avant le premier contact</li>
-            <li><span>✓</span>Un bouton WhatsApp qui ouvre la conversation en un geste</li>
-            <li><span>✓</span>Horaires, tarifs et services en ligne : moins d'appels répétitifs</li>
+            <li><span>✓</span>On vous trouve quand on cherche votre service près de chez soi</li>
+            <li><span>✓</span>Une image professionnelle qui rassure avant même le premier appel</li>
+            <li><span>✓</span>Un bouton WhatsApp : le client vous écrit en un geste</li>
+            <li><span>✓</span>Horaires, tarifs et services en ligne : moins d'appels pour rien, plus de vraies demandes</li>
           </ul>
         </div>
       </div>
@@ -393,22 +421,22 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
   <section class="how on-dark" id="methode">
     <div class="in">
       <h2 class="h2 rv">Trois étapes, sans jargon.</h2>
-      <p class="lead rv">Vous parlez de votre activité, je m'occupe de la technique. Vous validez chaque étape avant la suivante.</p>
+      <p class="lead rv">Vous me parlez de votre activité, je m'occupe de toute la technique. Rien ne part en ligne sans votre accord.</p>
       <div class="steps">
-        <div class="step rv"><div class="circle c1">1</div><h3>On en parle</h3><p>Un échange sur WhatsApp ou au téléphone : vos services, vos clients, ce que le site doit leur faire faire.</p></div>
-        <div class="step rv"><div class="circle c2">2</div><h3>Je vous montre la maquette</h3><p>Vous voyez votre futur site avant qu'il soit en ligne et demandez les changements que vous voulez.</p></div>
-        <div class="step rv"><div class="circle c3">3</div><h3>Votre site est en ligne</h3><p>Nom de domaine, mise en ligne, référencement Google et prise en main : je vous accompagne jusqu'au bout.</p></div>
+        <div class="step rv"><div class="circle c1">1</div><h3>On en parle</h3><p>Un échange sur WhatsApp ou au téléphone : vos services, vos clients, ce que le site doit leur faire faire. Votre devis gratuit arrive sous 24h.</p></div>
+        <div class="step rv"><div class="circle c2">2</div><h3>Je vous montre la maquette</h3><p>Vous voyez votre futur site avant sa mise en ligne et demandez les changements que vous voulez, jusqu'à ce qu'il vous ressemble.</p></div>
+        <div class="step rv"><div class="circle c3">3</div><h3>Votre site est en ligne</h3><p>Nom de domaine, mise en ligne, référencement Google : je m'occupe de tout, puis je vous montre comment vous en servir.</p></div>
       </div>
     </div>
   </section>
 
   <section id="pour-qui">
     <div class="in">
-      <h2 class="h2 rv">Pour qui je travaille</h2>
+      <h2 class="h2 rv">Pour les entreprises qui reçoivent du public</h2>
       <div class="bento">
         <div class="bcard b1 rv"><span class="tagw">Santé · Beauté</span><h3>Cliniques, cabinets et salons</h3><ul><li>Prestations et tarifs</li><li>Prise de rendez-vous</li><li>Horaires et accès</li></ul></div>
         <div class="bcard b2 rv"><span class="tagw">Éducation</span><h3>Écoles et instituts</h3><ul><li>Pré-inscriptions en ligne</li><li>Présentation des cycles</li><li>Actualités pour les parents</li></ul></div>
-        <div class="bcard b3 rv"><span class="tagw">Hôtels · Immobilier · Voyage</span><h3>Ceux qui vendent une expérience</h3><ul><li>Galeries photo soignées</li><li>Catalogue de biens ou d'offres</li><li>Réservation par WhatsApp</li></ul></div>
+        <div class="bcard b3 rv"><span class="tagw">Hôtels · Restos · Immo · Voyage</span><h3>Ceux qui vendent une expérience</h3><ul><li>Galeries photo qui donnent envie</li><li>Carte, chambres, biens ou offres en ligne</li><li>Réservation et commande par WhatsApp</li></ul></div>
       </div>
     </div>
   </section>
@@ -417,19 +445,34 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
     <div class="in">
       <h2 class="h2 rv">Ce que chaque site inclut</h2>
       <div class="pgrid">
-        <div class="pr rv"><div class="big">Mobile</div><h3>Rapide sur téléphone</h3><p>Conçu d'abord pour l'écran du téléphone, léger même avec une connexion 3G.</p></div>
-        <div class="pr rv"><div class="big">1 clic</div><h3>Contact WhatsApp direct</h3><p>Le visiteur vous écrit sans chercher votre numéro. Chaque demande arrive sur votre téléphone.</p></div>
-        <div class="pr rv"><div class="big">Google</div><h3>Visible localement</h3><p>Fiche Google et référencement de base pour apparaître sur « clinique + votre quartier » ou « salon + votre ville ».</p></div>
+        <div class="pr rv"><div class="big">Mobile</div><h3>Rapide sur téléphone</h3><p>Conçu d'abord pour l'écran du téléphone, là où vos clients vous cherchent. Léger, même avec une connexion 3G.</p></div>
+        <div class="pr rv"><div class="big">1 clic</div><h3>Contact WhatsApp direct</h3><p>Le visiteur vous écrit sans chercher votre numéro. Chaque demande arrive directement sur votre téléphone.</p></div>
+        <div class="pr rv"><div class="big">Google</div><h3>Visible localement</h3><p>Fiche Google et référencement de base, pour qu'on vous trouve quand on cherche « clinique », « salon » ou « hôtel » près de chez soi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="in">
+      <h2 class="h2 rv">Vos questions</h2>
+      <div class="faq-list">
+        <details class="rv"><summary>Combien coûte un site ?</summary><p>Ça dépend du nombre de pages et des fonctions dont vous avez besoin (rendez-vous, réservation, commande…). Écrivez-moi en deux lignes ce que vous faites : vous recevez un devis gratuit et détaillé sous 24h, sans engagement.</p></details>
+        <details class="rv"><summary>Je n'ai ni textes ni photos. C'est un problème ?</summary><p>Non. J'écris les textes à partir de notre échange, vous les relisez. En attendant vos propres photos, j'utilise des images libres de droits adaptées à votre activité.</p></details>
+        <details class="rv"><summary>En combien de temps mon site sera en ligne ?</summary><p>Le délai dépend du projet et il est indiqué noir sur blanc dans le devis. Vous voyez la maquette avant la mise en ligne, donc pas de mauvaise surprise.</p></details>
+        <details class="rv"><summary>Je dois m'occuper du nom de domaine ou de la technique ?</summary><p>Non. Je gère le nom de domaine, la mise en ligne et la fiche Google. Vous n'avez rien de technique à faire.</p></details>
+        <details class="rv"><summary>Et si je veux changer quelque chose après ?</summary><p>Je vous montre comment vous servir de votre site. Pour les mises à jour régulières, je peux aussi m'en charger avec une formule de maintenance.</p></details>
+        <details class="rv"><summary>J'ai déjà un site. Vous pouvez l'améliorer ?</summary><p>Oui, c'est une refonte : je garde ce qui fonctionne et je refais ce qui fait fuir les visiteurs, surtout sur téléphone.</p></details>
+        <details class="rv"><summary>On peut travailler à distance ?</summary><p>Oui. Tout se fait sur WhatsApp, par téléphone ou par email : échange, maquette, validation et mise en ligne.</p></details>
       </div>
     </div>
   </section>
 
   <section class="final dots" id="contact">
     <div class="in">
-      <span class="pill">Premier échange gratuit</span>
+      <span class="pill"><span class="live"></span>Devis gratuit en 24h</span>
       <h2 class="rv">Parlons de votre futur site.</h2>
-      <p class="lead">Écrivez-moi sur WhatsApp avec le nom de votre entreprise. Je vous réponds avec une proposition adaptée.</p>
-      <a class="btn btn-dark" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20souhaite%20un%20site%20web%20pour%20mon%20entreprise." target="_blank" rel="noopener">Démarrer sur WhatsApp →</a>
+      <p class="lead">Envoyez-moi le nom de votre entreprise et ce que vous faites. Sous 24h, vous recevez un devis gratuit, clair et sans engagement.</p>
+      <a class="btn btn-dark" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20suis%20%5Bnom%20de%20l%27entreprise%5D.%20J%27aimerais%20un%20devis%20pour%20un%20site%20web." target="_blank" rel="noopener">Recevoir mon devis gratuit →</a>
       <div class="contact">
         <div class="cbox"><div><small>WhatsApp / Téléphone</small><strong>01 53 82 99 90</strong></div><button class="copy" data-copy="+229 01 53 82 99 90">Copier</button></div>
         <div class="cbox"><div><small>Email</small><strong>fresnel849@gmail.com</strong></div><button class="copy" data-copy="fresnel849@gmail.com">Copier</button></div>
@@ -443,22 +486,22 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
     <div class="fgrid">
       <div>
         <a class="logo" href="#top" style="color:#fff"><i style="background:#e63946"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9 22l11-12.5h-6.8z"/></svg></i><span>AKPOTIN Fresnel</span></a>
-        <p style="margin-top:14px;max-width:32ch">Développeur web. Des sites rapides et efficaces pour les entreprises.</p>
+        <p style="margin-top:14px;max-width:32ch">Développeur web. Des sites rapides sur téléphone qui transforment vos visiteurs en clients, avec WhatsApp intégré.</p>
         <div class="social">
           <a href="https://wa.me/2290153829990" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg></a>
           <a href="mailto:fresnel849@gmail.com" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
           <a href="https://github.com/fresnel849-debug" target="_blank" rel="noopener" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
         </div>
       </div>
-      <div><h4>Réalisations</h4><ul><li><a href="https://dreadsetcrepus.com/" target="_blank" rel="noopener">Dreads ET Crépus</a></li><li><a href="https://fresnel849-debug.github.io/prompt-vault/" target="_blank" rel="noopener">Prompt Vault</a></li><li><a href="demos/clinique/">Démo clinique</a></li><li><a href="demos/hotel/">Démo hôtel</a></li></ul></div>
+      <div><h4>Réalisations</h4><ul><li><a href="https://dreadsetcrepus.com/" target="_blank" rel="noopener">Dreads ET Crépus</a></li><li><a href="https://fresnel849-debug.github.io/prompt-vault/" target="_blank" rel="noopener">Prompt Vault</a></li><li><a href="demos/clinique/">Démo clinique</a></li><li><a href="demos/hotel/">Démo hôtel</a></li><li><a href="demos/pizzeria/">Démo pizzeria</a></li></ul></div>
       <div><h4>Services</h4><ul><li>Site vitrine</li><li>Refonte de site</li><li>Fiche Google</li><li>Maintenance</li></ul></div>
-      <div><h4>Contact</h4><ul><li>01 53 82 99 90</li><li style="overflow-wrap:anywhere">fresnel849@gmail.com</li><li>Projets à distance</li></ul></div>
+      <div><h4>Contact</h4><ul><li>01 53 82 99 90</li><li style="overflow-wrap:anywhere">fresnel849@gmail.com</li><li>Devis gratuit en 24h</li><li>Projets à distance</li></ul></div>
     </div>
     <div class="legal"><span>© 2026 AKPOTIN Fresnel</span><span>Les projets marqués « Démo » sont des entreprises fictives.</span></div>
   </div>
 </footer>
 
-<a class="wa-fab" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20souhaite%20un%20site%20web%20pour%20mon%20entreprise." target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#000"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3Z"/></svg></a>
+<a class="wa-fab" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20suis%20%5Bnom%20de%20l%27entreprise%5D.%20J%27aimerais%20un%20devis%20pour%20un%20site%20web." target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#000"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3Z"/></svg></a>
 
 <script>
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
