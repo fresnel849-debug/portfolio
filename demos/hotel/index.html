@@ -2,175 +2,373 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Hôtel Lagune Bleue (démo)</title>
-<meta name="description" content="Site de démonstration réalisé par AKPOTIN Fresnel : hôtel fictif en bord de lagune.">
+<meta name="description" content="Site de démonstration réalisé par AKPOTIN Fresnel : hôtel fictif en bord de lagune avec calendrier de réservation et prix calculé en direct.">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap">
+<meta name="theme-color" content="#0b3142">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
-:root{--sand:#f3ebde;--sand2:#e8dcc7;--ocean:#0d3b4c;--ocean2:#145a70;--gold:#c8954a;--ink:#1b2328;--muted:#6b6459;--white:#fff;
-  --serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",system-ui,sans-serif}
+:root{
+  --deep:#0b3142;
+  --lagoon:#1d6f80;
+  --foam:#e6f1f2;
+  --sand:#f4efe6;
+  --sun:#d9a441;
+  --text:#132a33;
+  --muted:#5b6e74;
+  --line:#dbe5e6;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Albert Sans",system-ui,sans-serif;
+}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--sand);color:var(--ink);font:400 16px/1.7 var(--sans)}
-img{display:block;max-width:100%}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;font:400 17px/1.65 var(--sans);color:var(--text);background:#fff}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
 .in{max-width:1220px;margin:0 auto;padding-inline:20px}
-.demo{background:var(--ocean);color:#cfe0e6;font-size:13px;text-align:center;padding:8px 16px}
+@media (min-width:760px){.in{padding-inline:32px}}
+section{padding-block:clamp(64px,8vw,112px)}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px}
+.demo{background:#061c26;color:#b9ccd1;font-size:13.5px;text-align:center;padding:8px 16px;line-height:1.45}
 .demo a{color:#fff;font-weight:600}
-.hero{position:relative;min-height:min(88vh,820px);display:grid;color:#fff;overflow:hidden}
-.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:zoom 14s ease-out forwards}
-@keyframes zoom{to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(13 59 76 / .55),rgb(13 59 76 / .1) 40%,rgb(13 59 76 / .75))}
-.hero .in{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding-block:24px 48px;width:100%}
-.top{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.logo{font-family:var(--serif);font-size:28px;letter-spacing:.02em}
-.logo small{display:block;font:500 11px var(--sans);letter-spacing:.3em;text-transform:uppercase;opacity:.8;margin-top:-4px}
-nav{display:flex;gap:28px;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
-nav a{text-decoration:none;opacity:.9}
-@media (max-width:860px){nav{display:none}}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;font:500 14px var(--sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid currentColor;cursor:pointer;background:none;color:inherit;transition:background .25s,color .25s}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
-.btn.gold:hover{background:#b07e37}
-.btn.line:hover{background:#fff;color:var(--ocean)}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.02;margin:0}
-h1{font-size:clamp(52px,8vw,112px);max-width:12ch;margin-top:18vh}
-h1 em,h2 em{color:var(--gold)}
-.hero p{font-size:19px;max-width:46ch;opacity:.92;margin:18px 0 28px}
-.book{position:relative;z-index:3;margin-top:-56px}
-.book form{background:#fff;box-shadow:0 30px 60px -30px rgb(13 59 76 / .5);display:grid;grid-template-columns:repeat(4,1fr) auto;gap:0}
-@media (max-width:900px){.book form{grid-template-columns:1fr 1fr}}
-.book label{display:block;padding:16px 20px;border-right:1px solid var(--sand2);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.book input,.book select{display:block;width:100%;border:0;font:500 16px var(--sans);color:var(--ink);background:none;padding:4px 0 0;letter-spacing:0;text-transform:none}
-.book button{border:0}
-.msg{display:none;background:var(--ocean);color:#fff;padding:12px 20px;font-size:14px}
-section{padding-block:100px}
-.eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600}
-h2{font-size:clamp(40px,5vw,68px);margin-top:10px;color:var(--ocean)}
-.intro{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-@media (max-width:900px){.intro{grid-template-columns:1fr}}
-.intro p{color:var(--muted);font-size:17px}
-.stack{position:relative;height:520px}
-.stack img{position:absolute;object-fit:cover;box-shadow:0 30px 50px -30px rgb(0 0 0 / .5)}
-.stack .a{width:72%;height:80%;top:0;left:0}
-.stack .b{width:52%;height:56%;bottom:0;right:0;border:10px solid var(--sand)}
-.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
-@media (max-width:900px){.rooms{grid-template-columns:1fr}}
-.room{background:#fff;overflow:hidden}
-.room .ph{overflow:hidden;aspect-ratio:4/3}
-.room img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
-.room:hover img{transform:scale(1.07)}
-.room .t{padding:22px 24px 26px;display:grid;gap:8px}
-.room h3{font-size:30px;color:var(--ocean)}
-.room .meta{font-size:14px;color:var(--muted)}
-.room .price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--sand2);padding-top:12px;margin-top:6px}
-.room .price b{font-family:var(--serif);font-size:28px;color:var(--ink);font-weight:600}
-.room .price a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-decoration:none;font-weight:600}
-.dark{background:var(--ocean);color:#e6eef1}
-.dark h2{color:#fff}
-.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:44px}
-@media (max-width:900px){.feat{grid-template-columns:1fr 1fr}}
-.feat div{border-top:1px solid rgb(255 255 255 / .25);padding-top:18px}
-.feat h3{font-size:26px;color:#fff}
-.feat p{margin:6px 0 0;font-size:15px;color:#b6ccd4}
-.quote{text-align:center;max-width:820px;margin:0 auto}
-.quote blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.4vw,42px);line-height:1.2;color:var(--ocean);margin:18px 0}
-.quote cite{font-style:normal;color:var(--muted);font-size:14px;letter-spacing:.14em;text-transform:uppercase}
-.night{position:relative;color:#fff;text-align:center;padding-block:140px}
-.night img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.night::after{content:"";position:absolute;inset:0;background:rgb(13 59 76 / .55)}
-.night .in{position:relative;z-index:2;display:grid;justify-items:center;gap:20px}
-.night h2{color:#fff;max-width:16ch}
-footer{background:#0a2c39;color:#9fb6be;padding-block:48px;font-size:14px}
-footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
-footer b{color:#fff;font-family:var(--serif);font-size:22px;font-weight:500}
-.rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}
-.rv.on{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero>img{animation:none;transform:none}html{scroll-behavior:auto}}
+
+header{position:absolute;left:0;right:0;z-index:20;color:#fff}
+header .in{height:80px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{text-decoration:none;display:grid;line-height:1}
+.logo b{font:500 28px var(--serif)}
+.logo small{font-size:11.5px;letter-spacing:.2em;opacity:.8;margin-top:4px}
+nav.main{display:flex;gap:30px;font-size:15.5px;font-weight:500}
+nav.main a{text-decoration:none;opacity:.85} nav.main a:hover{opacity:1}
+@media (max-width:900px){nav.main{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:4px;font:600 16px var(--sans);padding:14px 24px;cursor:pointer;text-decoration:none;transition:background .15s,transform .15s}
+.btn:active{transform:translateY(1px)}
+.b-sun{background:var(--sun);color:var(--deep)} .b-sun:hover{background:#e7b65a}
+.b-deep{background:var(--deep);color:#fff} .b-deep:hover{background:var(--lagoon)}
+.b-ghost{background:rgb(255 255 255 / .14);color:#fff;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .5)} .b-ghost:hover{background:rgb(255 255 255 / .24)}
+.b-sm{padding:10px 18px;font-size:15px}
+
+.hero{position:relative;min-height:min(92vh,860px);display:grid;align-content:end;color:#fff;padding:0}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(6 28 38 / .55) 0%,rgb(6 28 38 / .1) 35%,rgb(6 28 38 / .75) 100%)}
+.hero .in{position:relative;z-index:1;padding-block:140px 150px}
+.hero h1{font-size:clamp(48px,7.4vw,108px);max-width:12ch}
+.hero p{font-size:clamp(17px,1.6vw,20px);max-width:44ch;margin-top:18px;color:#e2edef}
+
+/* moteur de réservation */
+.engine-wrap{position:relative;z-index:5;margin-top:-90px}
+.engine{background:#fff;border-radius:6px;box-shadow:0 30px 60px -30px rgb(6 28 38 / .55);display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto}
+@media (max-width:900px){.engine{grid-template-columns:minmax(0,1fr)}}
+.cell{appearance:none;border:0;background:none;text-align:left;font:inherit;color:inherit;padding:18px 22px;border-right:1px solid var(--line);display:grid;gap:2px;cursor:pointer}
+.cell small{font-size:13px;font-weight:600;color:var(--muted)}
+.cell b{font:500 24px var(--serif)}
+.cell:hover{background:var(--foam)}
+@media (max-width:900px){.cell{border-right:0;border-bottom:1px solid var(--line)}}
+.engine .btn{border-radius:0 6px 6px 0;padding-inline:32px}
+@media (max-width:900px){.engine .btn{border-radius:0 0 6px 6px}}
+.pop{position:absolute;left:0;top:calc(100% + 10px);background:#fff;border-radius:8px;box-shadow:0 30px 60px -20px rgb(6 28 38 / .5);padding:20px;z-index:10;width:min(720px,100%)}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cal-head button{appearance:none;border:1px solid var(--line);background:#fff;border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:18px}
+.cal-head button:disabled{opacity:.3;cursor:default}
+.months{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+@media (max-width:640px){.months{grid-template-columns:minmax(0,1fr)}.months .m:nth-child(2){display:none}}
+.m h4{margin:0 0 8px;font:500 22px var(--serif);text-align:center;text-transform:capitalize}
+.grid7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;text-align:center}
+.grid7 span{font-size:12.5px;font-weight:600;color:var(--muted);padding:4px 0}
+.d{appearance:none;border:0;background:none;font:500 15px var(--sans);aspect-ratio:1;border-radius:6px;cursor:pointer;color:var(--text);position:relative}
+.d small{display:block;font-size:10.5px;color:var(--muted);line-height:1}
+.d:hover:not(:disabled){background:var(--foam)}
+.d:disabled{color:#c3cfd2;cursor:not-allowed}
+.d.in-range{background:var(--foam);border-radius:0}
+.d.start,.d.end{background:var(--deep);color:#fff}
+.d.start small,.d.end small{color:#bcd}
+.cal-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.guests{display:grid;gap:14px;width:min(360px,100%)}
+.g-row{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.g-row b{display:block;font-weight:600} .g-row span{font-size:14px;color:var(--muted)}
+.step{display:flex;align-items:center;gap:12px}
+.step button{appearance:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:18px;cursor:pointer}
+.step button:disabled{opacity:.35;cursor:default}
+.step output{min-width:18px;text-align:center;font-weight:700}
+
+/* hôtel */
+.story .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:center}
+@media (max-width:900px){.story .wrap{grid-template-columns:minmax(0,1fr)}}
+.story h2{font-size:clamp(38px,4.8vw,64px);color:var(--deep)}
+.story p{color:var(--muted);font-size:18px;margin-top:18px;max-width:52ch}
+.story .imgs{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;align-items:end}
+.story .imgs img{border-radius:4px;object-fit:cover;width:100%}
+.story .imgs img:first-child{aspect-ratio:3/4}
+.story .imgs img:last-child{aspect-ratio:1;margin-bottom:40px}
+.facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:30px}
+.facts div{display:grid}
+.facts b{font:500 34px/1 var(--serif);color:var(--lagoon)}
+.facts span{font-size:14.5px;color:var(--muted)}
+
+/* chambres */
+.rooms{background:var(--sand)}
+.sh{display:grid;gap:12px;max-width:60ch;margin-bottom:40px}
+.sh h2{font-size:clamp(36px,4.6vw,60px);color:var(--deep)}
+.sh p{color:var(--muted);font-size:18px}
+.rlist{display:grid;gap:28px}
+.room{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);background:#fff;border-radius:6px;overflow:hidden}
+.room:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.room:nth-child(even) img{order:2}
+@media (max-width:860px){.room,.room:nth-child(even){grid-template-columns:minmax(0,1fr)}.room:nth-child(even) img{order:0}}
+.room img{width:100%;height:100%;object-fit:cover;min-height:320px}
+.room .b{padding:clamp(22px,3vw,40px);display:grid;gap:14px;align-content:center}
+.room h3{font-size:clamp(30px,3vw,40px);color:var(--deep)}
+.room .tags{display:flex;flex-wrap:wrap;gap:8px}
+.room .tags span{background:var(--foam);color:var(--lagoon);border-radius:999px;padding:4px 12px;font-size:14px;font-weight:600}
+.room p{color:var(--muted)}
+.room .pr{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.room .pr b{font:500 34px var(--serif);color:var(--deep)}
+.room .pr span{color:var(--muted);font-size:15px}
+.room .avail{font-size:14.5px;font-weight:600;color:#b45309}
+.room .avail.ok{color:#15803d}
+
+/* services */
+.serv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+@media (max-width:900px){.serv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.serv{grid-template-columns:minmax(0,1fr)}}
+.serv div{background:#fff;padding:24px;display:grid;gap:8px;align-content:start}
+.serv svg{color:var(--lagoon)}
+.serv b{font:500 25px var(--serif);color:var(--deep)}
+.serv span{color:var(--muted);font-size:15.5px}
+.serv em{font-style:normal;font-weight:600;font-size:14px;color:var(--lagoon)}
+
+/* restaurant */
+.table{background:var(--deep);color:#e2edef}
+.table .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+@media (max-width:900px){.table .wrap{grid-template-columns:minmax(0,1fr)}}
+.table h2{font-size:clamp(36px,4.6vw,60px);color:#fff}
+.table img{border-radius:4px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.carte{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px}
+.carte li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 18px;padding-bottom:14px;border-bottom:1px solid rgb(255 255 255 / .14)}
+.carte b{font:500 22px var(--serif);color:#fff}
+.carte em{font-style:normal;font:500 22px var(--serif);color:var(--sun)}
+.carte span{grid-column:1/-1;color:#a9c0c6;font-size:15px}
+
+/* alentours */
+.around{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+@media (max-width:900px){.around{grid-template-columns:minmax(0,1fr)}}
+.around img{border-radius:4px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.near{list-style:none;margin:0;padding:0}
+.near li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.near b{font-weight:600}
+.near span{color:var(--muted);white-space:nowrap}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:16px 0;font:500 23px/1.25 var(--serif);color:var(--deep)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 24px/1 var(--sans);color:var(--lagoon);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 18px;color:var(--muted)}
+
+/* récapitulatif de réservation */
+.sum{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:40;width:min(980px,calc(100% - 24px));background:var(--deep);color:#fff;border-radius:8px;padding:14px 16px 14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 20px 50px -14px rgb(0 0 0 / .55)}
+.sum .t{display:grid;line-height:1.35}
+.sum .t small{color:#a9c0c6;font-size:14px}
+.sum .t b{font:500 24px var(--serif)}
+@media (max-width:620px){.sum .t small{font-size:12.5px}.sum .t b{font-size:20px}}
+
+footer{background:#061c26;color:#a9c0c6;padding-block:52px 110px;font-size:15.5px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+@media (max-width:760px){.fg{grid-template-columns:minmax(0,1fr)}}
+footer h4{font:500 24px var(--serif);color:#fff;margin:0 0 12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.legal{margin-top:36px;padding-top:18px;border-top:1px solid #14323e;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px}
+.legal a{color:#fff}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo">Site de démonstration · entreprise fictive · réalisé par <a href="../../">AKPOTIN Fresnel, développeur web</a></div>
+<div class="demo">Site de démonstration, hôtel fictif. Les réservations envoient un vrai message WhatsApp à <a href="../../">AKPOTIN Fresnel, développeur web</a>, pour que vous voyiez le résultat.</div>
 
-<header class="hero">
-  <img src="img/piscine.jpg" alt="Piscine et transats au bord de la lagune">
+<div style="position:relative">
+<header>
   <div class="in">
-    <div class="top">
-      <div class="logo">Lagune Bleue<small>Hôtel · Bord de lagune</small></div>
-      <nav><a href="#hotel">L'hôtel</a><a href="#chambres">Chambres</a><a href="#services">Services</a><a href="#contact">Contact</a></nav>
-      <a class="btn line" href="#chambres">Réserver</a>
-    </div>
-    <div>
-      <h1>Le calme de la <em>lagune</em>, à deux pas de la mer.</h1>
-      <p>Vingt-deux chambres face à l'eau, une piscine à débordement et la plage à quelques minutes à pied.</p>
-      <a class="btn gold" href="#chambres">Voir les chambres</a>
-    </div>
+    <a class="logo" href="#top" aria-label="Hôtel Lagune Bleue, accueil"><b>Lagune Bleue</b><small>HÔTEL EN BORD DE LAGUNE</small></a>
+    <nav class="main" aria-label="Sections"><a href="#hotel">L'hôtel</a><a href="#chambres">Chambres</a><a href="#services">Services</a><a href="#restaurant">Restaurant</a><a href="#infos">Infos pratiques</a></nav>
+    <a class="btn b-ghost b-sm" href="#reserver">Réserver</a>
   </div>
 </header>
 
-<div class="in book">
-  <form id="f">
-    <label for="a">Arrivée<input id="a" type="date" required></label>
-    <label for="d">Départ<input id="d" type="date" required></label>
-    <label for="p">Voyageurs<select id="p"><option>1 adulte</option><option selected>2 adultes</option><option>2 adultes, 1 enfant</option><option>Famille (4)</option></select></label>
-    <label for="c">Chambre<select id="c"><option>Classique lagune</option><option>Suite coloniale</option><option>Bungalow jardin</option></select></label>
-    <button class="btn gold">Vérifier</button>
-  </form>
-  <div class="msg" id="msg">Démonstration : sur un vrai site, l'hôtel recevrait cette demande et répondrait sur WhatsApp.</div>
+<main id="top">
+  <section class="hero">
+    <img src="img/nuit.jpg" alt="La piscine de l'hôtel illuminée à la tombée de la nuit" width="1600" height="1600" fetchpriority="high">
+    <div class="in">
+      <h1>Le calme de la lagune, à deux pas de la mer.</h1>
+      <p>Vingt-deux chambres face à l'eau, une piscine à débordement et la plage à huit minutes à pied. Réservez en direct : meilleur prix garanti, sans commission.</p>
+    </div>
+  </section>
+
+  <div class="in engine-wrap" id="reserver">
+    <div class="engine">
+      <button class="cell" type="button" id="cIn" aria-haspopup="dialog" aria-expanded="false"><small>Arrivée</small><b id="vIn">Choisir</b></button>
+      <button class="cell" type="button" id="cOut" aria-haspopup="dialog" aria-expanded="false"><small>Départ</small><b id="vOut">Choisir</b></button>
+      <button class="cell" type="button" id="cG" aria-haspopup="dialog" aria-expanded="false"><small>Voyageurs</small><b id="vG">2 adultes</b></button>
+      <a class="btn b-sun" href="#chambres" id="see">Voir les chambres</a>
+    </div>
+    <div class="pop" id="calPop" role="dialog" aria-label="Choisir les dates du séjour" hidden>
+      <div class="cal-head"><button type="button" id="prevM" aria-label="Mois précédent">‹</button><strong id="calHint" style="font-weight:600">Choisissez votre date d'arrivée</strong><button type="button" id="nextM" aria-label="Mois suivant">›</button></div>
+      <div class="months" id="months"></div>
+      <div class="cal-foot"><span>Prix indiqué : chambre Classique, par nuit. Le week-end est un peu plus cher.</span><button class="btn b-deep b-sm" type="button" id="calOk">Valider les dates</button></div>
+    </div>
+    <div class="pop" id="gPop" role="dialog" aria-label="Choisir les voyageurs" hidden style="width:auto">
+      <div class="guests">
+        <div class="g-row"><div><b>Adultes</b><span>13 ans et plus</span></div><div class="step"><button type="button" data-k="a" data-d="-1" aria-label="Retirer un adulte">−</button><output id="oA">2</output><button type="button" data-k="a" data-d="1" aria-label="Ajouter un adulte">+</button></div></div>
+        <div class="g-row"><div><b>Enfants</b><span>De 2 à 12 ans</span></div><div class="step"><button type="button" data-k="c" data-d="-1" aria-label="Retirer un enfant">−</button><output id="oC">0</output><button type="button" data-k="c" data-d="1" aria-label="Ajouter un enfant">+</button></div></div>
+        <button class="btn b-deep b-sm" type="button" id="gOk">Valider</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="story" id="hotel">
+    <div class="in wrap">
+      <div>
+        <h2>Une adresse tranquille entre lagune et vieille ville</h2>
+        <p>Lagune Bleue accueille couples, familles et voyageurs d'affaires qui veulent souffler le temps d'un week-end. Le matin, petit-déjeuner face à l'eau ; l'après-midi, piscine ou plage ; le soir, poisson grillé au restaurant.</p>
+        <div class="facts"><div><b>22</b><span>chambres et bungalows</span></div><div><b>8 min</b><span>à pied de la plage</span></div><div><b>24 h/24</b><span>réception et sécurité</span></div></div>
+      </div>
+      <div class="imgs"><img src="img/piscine.jpg" alt="Transats au bord de la piscine, face à l'hôtel" loading="lazy" width="1600" height="1067"><img src="img/jardin.jpg" alt="Jardin tropical et bungalows" loading="lazy" width="1600" height="1067"></div>
+    </div>
+  </section>
+
+  <section class="rooms" id="chambres">
+    <div class="in">
+      <div class="sh"><h2>Choisissez votre chambre</h2><p id="roomsIntro">Choisissez vos dates : le prix total du séjour s'affiche sous chaque chambre.</p></div>
+      <div class="rlist" id="rlist"></div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="in">
+      <div class="sh"><h2>Sur place</h2></div>
+      <div class="serv">
+        <div><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 18c2 0 2-1.5 4-1.5S8 18 10 18s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M2 14c2 0 2-1.5 4-1.5S8 14 10 14s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M8 12V5a2 2 0 0 1 4 0M16 12V5a2 2 0 0 0-4 0"/></svg><b>Piscine à débordement</b><span>Transats, serviettes et service de boissons au bord de l'eau.</span><em>7 h à 21 h</em></div>
+        <div><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3v8a3 3 0 0 0 6 0V3M8 3v18M17 3c-2 2-2 6 0 8v10"/></svg><b>Restaurant face à l'eau</b><span>Poisson du jour, cuisine locale et internationale.</span><em>12 h à 15 h, 19 h à 23 h</em></div>
+        <div><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 16V8a2 2 0 0 1 2-2h11l4 5v5h-2M3 16h2m4 0h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><b>Navette aéroport</b><span>Accueil à la sortie de l'aéroport avec une pancarte à votre nom.</span><em>Sur réservation, 25 €</em></div>
+        <div><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg><b>Wi-Fi par fibre</b><span>Dans les chambres, au restaurant et au bord de la piscine.</span><em>Gratuit</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="table" id="restaurant">
+    <div class="in wrap">
+      <img src="img/restaurant.jpg" alt="Plat servi au restaurant de l'hôtel" loading="lazy" width="1200" height="800">
+      <div>
+        <h2>Le restaurant La Pirogue</h2>
+        <p style="margin-top:14px;color:#a9c0c6;max-width:48ch">Ouvert aux clients de l'hôtel comme aux visiteurs. Les pêcheurs livrent le poisson chaque matin.</p>
+        <ul class="carte">
+          <li><b>Capitaine grillé, sauce citronnée</b><em>18 €</em><span>attiéké ou alloco, salade de crudités</span></li>
+          <li><b>Crevettes sautées à l'ail</b><em>16 €</em><span>riz parfumé au coco</span></li>
+          <li><b>Poulet braisé du chef</b><em>13 €</em><span>oignons confits, frites maison</span></li>
+          <li><b>Ananas rôti, glace vanille</b><em>6 €</em><span>dessert du jour</span></li>
+        </ul>
+        <a class="btn b-sun" style="margin-top:24px" target="_blank" rel="noopener" href="https://wa.me/2290153829990?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20table%20au%20restaurant%20La%20Pirogue%20(d%C3%A9mo%20H%C3%B4tel%20Lagune%20Bleue).">Réserver une table</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="infos">
+    <div class="in around">
+      <div>
+        <div class="sh" style="margin-bottom:16px"><h2>Autour de l'hôtel</h2></div>
+        <ul class="near">
+          <li><b>Plage de sable fin</b><span>8 min à pied</span></li>
+          <li><b>Vieille ville et marché artisanal</b><span>5 min en voiture</span></li>
+          <li><b>Balade en pirogue sur la lagune</b><span>départ de l'hôtel</span></li>
+          <li><b>Aéroport</b><span>40 min en navette</span></li>
+        </ul>
+        <div class="sh" style="margin:40px 0 4px"><h2 style="font-size:clamp(30px,3.4vw,44px)">Bon à savoir</h2></div>
+        <details><summary>À quelle heure puis-je arriver et partir ?</summary><p>La chambre est prête à partir de 14 h et se libère à 12 h. Un départ tardif jusqu'à 17 h est possible pour 20 €, selon les disponibilités.</p></details>
+        <details><summary>Puis-je annuler ma réservation ?</summary><p>Oui, gratuitement jusqu'à 72 h avant l'arrivée. Ensuite, la première nuit est due.</p></details>
+        <details><summary>Les enfants sont-ils les bienvenus ?</summary><p>Oui. Le lit bébé est offert, et les enfants de moins de 6 ans dorment gratuitement dans la chambre des parents.</p></details>
+        <details><summary>Comment payer ?</summary><p>Par carte, virement ou mobile money. Un acompte de 30 % confirme la réservation, le solde se règle sur place.</p></details>
+      </div>
+      <img src="img/plage.jpg" alt="Plage de sable au coucher du soleil, près de l'hôtel" loading="lazy" width="1000" height="1200">
+    </div>
+  </section>
+</main>
 </div>
 
-<section id="hotel"><div class="in intro">
-  <div class="rv">
-    <span class="eyebrow">L'hôtel</span>
-    <h2>Une adresse <em>tranquille</em> dans la ville historique</h2>
-    <p>Entre les façades coloniales de la vieille ville et la lagune, Lagune Bleue accueille couples, familles et voyageurs d'affaires qui veulent souffler le temps d'un week-end.</p>
-    <p>Petit-déjeuner local, cuisine de poisson frais et transfert depuis l'aéroport sur demande.</p>
-  </div>
-  <div class="stack rv"><img class="a" src="img/jardin.jpg" alt="Jardin tropical et bungalows"><img class="b" src="img/nuit.jpg" alt="Piscine éclairée le soir"></div>
-</div></section>
+<div class="sum" id="sum" hidden aria-live="polite">
+  <div class="t"><small id="sumTxt"></small><b id="sumPrice"></b></div>
+  <a class="btn b-sun" id="sumBtn" target="_blank" rel="noopener">Réserver sur WhatsApp</a>
+</div>
 
-<section id="chambres" style="background:#fff8ee"><div class="in">
-  <span class="eyebrow">Chambres & suites</span>
-  <h2>Choisissez votre <em>vue</em></h2>
-  <div class="rooms">
-    <article class="room rv"><div class="ph"><img src="img/chambre.jpg" alt="Chambre classique ouverte sur la lagune"></div><div class="t"><h3>Classique lagune</h3><div class="meta">24 m² · lit queen · balcon vue lagune</div><div class="price"><b>45 000 F<small style="font-size:14px;font-family:var(--sans);font-weight:400"> /nuit</small></b><a href="#">Réserver →</a></div></div></article>
-    <article class="room rv"><div class="ph"><img src="img/suite.jpg" alt="Suite au mobilier colonial"></div><div class="t"><h3>Suite coloniale</h3><div class="meta">42 m² · salon · baignoire</div><div class="price"><b>85 000 F<small style="font-size:14px;font-family:var(--sans);font-weight:400"> /nuit</small></b><a href="#">Réserver →</a></div></div></article>
-    <article class="room rv"><div class="ph"><img src="img/jardin.jpg" alt="Bungalow dans le jardin tropical"></div><div class="t"><h3>Bungalow jardin</h3><div class="meta">36 m² · terrasse privée · 4 personnes</div><div class="price"><b>70 000 F<small style="font-size:14px;font-family:var(--sans);font-weight:400"> /nuit</small></b><a href="#">Réserver →</a></div></div></article>
-  </div>
-</div></section>
-
-<section class="dark" id="services"><div class="in">
-  <span class="eyebrow">Sur place</span>
-  <h2>Tout est prévu</h2>
-  <div class="feat">
-    <div class="rv"><h3>Piscine</h3><p>Ouverte de 7h à 21h, transats et service au bord de l'eau.</p></div>
-    <div class="rv"><h3>Restaurant</h3><p>Poisson frais, cuisine locale et internationale.</p></div>
-    <div class="rv"><h3>Navette</h3><p>Aéroport ↔ hôtel sur réservation.</p></div>
-    <div class="rv"><h3>Wi-Fi fibre</h3><p>Dans toutes les chambres et au bord de la piscine.</p></div>
-  </div>
-</div></section>
-
-<section><div class="in quote rv">
-  <span class="eyebrow">Exemple d'avis client</span>
-  <blockquote>« Les avis de vos clients s'affichent ici, avec leur note Google, pour rassurer ceux qui hésitent encore. »</blockquote>
-  <cite>Emplacement pour témoignage</cite>
-</div></section>
-
-<section class="night" id="contact">
-  <img src="img/nuit.jpg" alt="">
+<footer>
   <div class="in">
-    <span class="eyebrow">Réservation directe</span>
-    <h2>Réservez sur WhatsApp, sans commission.</h2>
-    <a class="btn gold" href="https://wa.me/2290153829990?text=Bonjour%2C%20j%27ai%20vu%20la%20d%C3%A9mo%20H%C3%B4tel%20Lagune%20Bleue." target="_blank" rel="noopener">Écrire à la réception</a>
+    <div class="fg">
+      <div><h4>Hôtel Lagune Bleue</h4><p style="max-width:34ch">Hôtel en bord de lagune, piscine et restaurant. Établissement fictif créé pour une démonstration.</p></div>
+      <div><h4>Réception</h4><ul><li>Route de la Lagune, km 3</li><li>Ouverte 24 h/24</li><li>01 99 00 74 10</li></ul></div>
+      <div><h4>Raccourcis</h4><ul><li><a href="#reserver">Choisir mes dates</a></li><li><a href="#chambres">Voir les chambres</a></li><li><a href="#restaurant">Réserver une table</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© Hôtel Lagune Bleue, entreprise fictive</span><span>Site réalisé par <a href="../../">AKPOTIN Fresnel</a></span></div>
   </div>
-</section>
+</footer>
 
-<footer><div class="in"><div><b>Lagune Bleue</b><br>Hôtel en bord de lagune</div><div>Entreprise fictive. Site réalisé par <a href="../../" style="color:#fff">AKPOTIN Fresnel</a>.</div></div></footer>
 <script>
-document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();document.getElementById('msg').style.display='block'});
-const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}}),{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const WA='2290153829990',wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const $=id=>document.getElementById(id);
+const eur=n=>Math.round(n).toLocaleString('fr-FR').replace(/ /g,' ')+' €';
+const ROOMS=[
+ {k:'classique',n:'Chambre Classique, vue lagune',img:'chambre',size:24,max:2,base:68,tags:['24 m²','Lit double','Balcon sur la lagune','Climatisation'],desc:"Une chambre lumineuse avec balcon face à l'eau, douche à l'italienne et bureau. Idéale pour un couple ou un voyage d'affaires.",stock:6},
+ {k:'bungalow',n:'Bungalow jardin',img:'jardin',size:36,max:4,base:105,tags:['36 m²','Jusqu\'à 4 personnes','Terrasse privée','Kitchenette'],desc:"Un bungalow indépendant au milieu du jardin tropical, avec une chambre, un coin salon convertible et une terrasse pour les petits-déjeuners.",stock:3},
+ {k:'suite',n:'Suite coloniale',img:'suite',size:42,max:3,base:128,tags:['42 m²','Salon séparé','Baignoire','Vue piscine'],desc:"Parquet, mobilier d'époque et grand salon : notre plus belle chambre, au dernier étage, avec vue sur la piscine et la lagune.",stock:2}];
+const night=(r,d)=>{const w=d.getDay();return r.base+((w===5||w===6)?15:0)};
+let ci=null,co=null,A=2,C=0,view=0;
+const today=new Date();today.setHours(0,0,0,0);
+const fmt=d=>d.toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
+const nights=()=>ci&&co?Math.round((co-ci)/864e5):0;
+const rnd=s=>{const x=Math.sin(s)*1e4;return x-Math.floor(x)};
+function left(r){if(!ci||!co)return r.stock;let m=r.stock;for(let d=new Date(ci);d<co;d.setDate(d.getDate()+1)){m=Math.min(m,Math.floor(r.stock*(.35+rnd(d.getDate()*13+d.getMonth()+r.base)*.9)))}return Math.max(m,0)}
+function total(r){let t=0;for(let d=new Date(ci);d<co;d.setDate(d.getDate()+1))t+=night(r,new Date(d));const tax=nights()*(A)*1.5;return {t,tax}}
+
+/* popovers */
+function openPop(id,btn){['calPop','gPop'].forEach(p=>{$(p).hidden=p!==id});document.querySelectorAll('.cell').forEach(c=>c.setAttribute('aria-expanded',c===btn));if(id==='calPop')renderCal()}
+function closePops(){$('calPop').hidden=true;$('gPop').hidden=true;document.querySelectorAll('.cell').forEach(c=>c.setAttribute('aria-expanded','false'))}
+$('cIn').onclick=()=>openPop('calPop',$('cIn'));$('cOut').onclick=()=>openPop('calPop',$('cOut'));$('cG').onclick=()=>openPop('gPop',$('cG'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePops()});
+document.addEventListener('click',e=>{if(!e.target.closest('.pop,.cell'))closePops()});
+
+/* calendrier sur deux mois */
+function renderCal(){const out=[];for(let k=0;k<2;k++){const m=new Date(today.getFullYear(),today.getMonth()+view+k,1);const first=(m.getDay()+6)%7;const dim=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
+  let h=`<div class="m"><h4>${m.toLocaleDateString('fr-FR',{month:'long',year:'numeric'})}</h4><div class="grid7">${['L','M','M','J','V','S','D'].map(x=>`<span>${x}</span>`).join('')}`;
+  for(let i=0;i<first;i++)h+='<i></i>';
+  for(let d=1;d<=dim;d++){const dt=new Date(m.getFullYear(),m.getMonth(),d);const past=dt<today;let cls='d';
+    if(ci&&+dt===+ci)cls+=' start';if(co&&+dt===+co)cls+=' end';if(ci&&co&&dt>ci&&dt<co)cls+=' in-range';
+    h+=`<button type="button" class="${cls}" data-t="${+dt}" ${past?'disabled':''} aria-label="${dt.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}${past?', indisponible':''}">${d}${past?'':`<small>${night(ROOMS[0],dt)}</small>`}</button>`}
+  out.push(h+'</div></div>')}
+  $('months').innerHTML=out.join('');$('prevM').disabled=view===0;
+  $('calHint').textContent=!ci||co?'Choisissez votre date d\'arrivée':'Choisissez votre date de départ';
+  $('months').querySelectorAll('.d:not(:disabled)').forEach(b=>b.onclick=e=>{e.stopPropagation();const t=new Date(+b.dataset.t);if(!ci||co||t<=ci){ci=t;co=null}else co=t;renderCal();sync()})}
+$('prevM').onclick=e=>{e.stopPropagation();if(view>0){view--;renderCal()}};$('nextM').onclick=e=>{e.stopPropagation();if(view<10){view++;renderCal()}};
+$('calOk').onclick=()=>{if(ci&&!co){co=new Date(ci);co.setDate(co.getDate()+1)}closePops();sync();if(ci)$('chambres').scrollIntoView()};
+
+/* voyageurs */
+document.querySelectorAll('.step button').forEach(b=>b.onclick=e=>{e.stopPropagation();const d=+b.dataset.d;if(b.dataset.k==='a')A=Math.min(6,Math.max(1,A+d));else C=Math.min(4,Math.max(0,C+d));sync()});
+$('gOk').onclick=()=>{closePops();sync()};
+
+let chosen=null;
+function sync(){$('vIn').textContent=ci?fmt(ci):'Choisir';$('vOut').textContent=co?fmt(co):'Choisir';$('vG').textContent=`${A} adulte${A>1?'s':''}${C?`, ${C} enfant${C>1?'s':''}`:''}`;
+  $('oA').textContent=A;$('oC').textContent=C;
+  document.querySelectorAll('.step button').forEach(b=>{const v=b.dataset.k==='a'?A:C;b.disabled=(+b.dataset.d<0&&v<=(b.dataset.k==='a'?1:0))||(+b.dataset.d>0&&v>=(b.dataset.k==='a'?6:4))});
+  const n=nights();$('roomsIntro').textContent=n?`Pour ${n} nuit${n>1?'s':''}, du ${fmt(ci)} au ${fmt(co)}, ${$('vG').textContent}. Taxe de séjour comprise.`:'Choisissez vos dates : le prix total du séjour s\'affiche sous chaque chambre.';
+  rooms();summary()}
+function rooms(){const n=nights(),g=A+C;
+  $('rlist').innerHTML=ROOMS.map(r=>{const fits=g<=r.max,l=left(r);let price=`<b>${eur(r.base)}</b><span>par nuit en semaine</span>`,av='';
+    if(n){const {t,tax}=total(r);price=`<b>${eur(t+tax)}</b><span>pour ${n} nuit${n>1?'s':''}, soit ${eur((t+tax)/n)} par nuit</span>`;av=!fits?`<span class="avail">Trop petite pour ${g} personnes (${r.max} au maximum)</span>`:l===0?'<span class="avail">Complet à ces dates</span>':`<span class="avail ${l>2?'ok':''}">${l>2?'Disponible à ces dates':`Plus que ${l} disponible${l>1?'s':''} à ces dates`}</span>`}
+    const can=n&&fits&&l>0;
+    return `<article class="room"><img src="img/${r.img}.jpg" alt="${r.n}" loading="lazy" width="1600" height="1067"><div class="b"><h3>${r.n}</h3><div class="tags">${r.tags.map(t=>`<span>${t}</span>`).join('')}</div><p>${r.desc}</p><div class="pr">${price}</div>${av}<button class="btn ${chosen===r.k&&can?'b-sun':'b-deep'}" type="button" data-k="${r.k}" ${n&&!can?'disabled style="opacity:.45;cursor:not-allowed"':''}>${!n?'Choisir mes dates':chosen===r.k&&can?'Chambre choisie':'Choisir cette chambre'}</button></div></article>`}).join('');
+  $('rlist').querySelectorAll('button[data-k]').forEach(b=>b.onclick=e=>{e.stopPropagation();if(!nights()){$('reserver').scrollIntoView();openPop('calPop',$('cIn'));return}chosen=b.dataset.k;rooms();summary()})}
+function summary(){const r=ROOMS.find(x=>x.k===chosen),n=nights();if(!r||!n||A+C>r.max||left(r)===0){$('sum').hidden=true;return}
+  const {t,tax}=total(r);$('sum').hidden=false;$('sumTxt').textContent=`${r.n}, ${n} nuit${n>1?'s':''}, ${$('vG').textContent}`;$('sumPrice').textContent=`${eur(t+tax)} au total`;
+  $('sumBtn').href=wa(`Bonjour Hôtel Lagune Bleue (démo), je souhaite réserver :\n${r.n}\nArrivée : ${ci.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}\nDépart : ${co.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}\n${n} nuit${n>1?'s':''}, ${$('vG').textContent}\nTotal annoncé : ${eur(t+tax)} (taxe de séjour comprise)\n\nMerci de me confirmer la disponibilité.`)}
+sync();
 </script>
 </body>
 </html>

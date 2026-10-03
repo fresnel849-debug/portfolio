@@ -2,188 +2,472 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Clinique Les Palmiers (démo)</title>
-<meta name="description" content="Site de démonstration réalisé par AKPOTIN Fresnel : clinique pluridisciplinaire fictive.">
+<meta name="description" content="Site de démonstration réalisé par AKPOTIN Fresnel : clinique fictive avec prise de rendez-vous en ligne, médecins, tarifs et résultats d'analyses.">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">
+<meta name="theme-color" content="#0b4d4a">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root{
-  --teal:#0b4d4a; --teal2:#0f6b66; --mint:#d8efe9; --mint2:#eef7f4; --coral:#ff7a59; --ink:#0f1f1d; --muted:#5b6e6a; --white:#fff; --line:#d6e4e0;
-  --serif:"Instrument Serif",Georgia,serif; --sans:"Manrope",system-ui,sans-serif;
+  --teal:#0b4d4a;
+  --teal-2:#0f6b66;
+  --mint:#e3f3ee;
+  --mint-2:#cbe7de;
+  --coral:#f0603f;
+  --text:#0f1f1d;
+  --muted:#566966;
+  --line:#d6e5e0;
+  --serif:"Instrument Serif",Georgia,serif;
+  --sans:"Manrope",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font:500 16px/1.6 var(--sans);color:var(--ink);background:var(--white)}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;font:500 16.5px/1.6 var(--sans);color:var(--text);background:#fff}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
-img{max-width:100%;display:block}
-.in{max-width:1180px;margin:0 auto;padding-inline:20px}
-.demo{background:var(--ink);color:#cfe3de;font-size:13px;text-align:center;padding:8px 16px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+.in{max-width:1200px;margin:0 auto;padding-inline:20px}
+@media (min-width:760px){.in{padding-inline:32px}}
+section{padding-block:clamp(64px,8vw,108px)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.demo{background:#06201f;color:#bcd3cd;font-size:13.5px;text-align:center;padding:8px 16px;line-height:1.45}
 .demo a{color:#fff;font-weight:700}
-header{position:sticky;top:0;z-index:10;background:rgb(255 255 255 / .92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-header .in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;text-decoration:none;color:var(--teal)}
-.logo i{width:38px;height:38px;border-radius:12px;background:var(--teal);display:grid;place-items:center}
-nav{display:flex;gap:26px;font-weight:600;font-size:15px}
-nav a{text-decoration:none;color:var(--muted)} nav a:hover{color:var(--teal)}
-@media (max-width:880px){nav{display:none}}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:15px;transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-2px)}
-.b-coral{background:var(--coral);color:#fff;box-shadow:0 10px 24px -10px rgb(255 122 89 / .8)}
-.b-wa{background:#25d366;color:#05301a}
-.b-ghost{background:var(--mint2);color:var(--teal)}
-.hero{background:var(--mint2);overflow:hidden}
-.hero .in{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding-block:64px 80px}
-@media (max-width:900px){.hero .in{grid-template-columns:1fr}}
-.kicker{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700;color:var(--teal)}
-.kicker b{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgb(34 197 94 / .2)}
-h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.02;margin:0}
-h1{font-size:clamp(46px,6.4vw,84px);margin-top:20px;color:var(--teal)}
-h1 em,h2 em{color:var(--coral)}
-.hero p.lead{font-size:18px;color:var(--muted);max-width:52ch;margin:20px 0 30px}
-.ctas{display:flex;flex-wrap:wrap;gap:12px}
-.pic{position:relative}
-.pic img{border-radius:28px;aspect-ratio:4/4.4;object-fit:cover;width:100%}
-.float{position:absolute;background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 20px 40px -18px rgb(11 77 74 / .45);display:flex;gap:12px;align-items:center;font-size:14px}
-.float strong{display:block;font-size:20px;color:var(--teal)}
-.f1{left:-24px;bottom:40px} .f2{right:-14px;top:30px}
-@media (max-width:900px){.f1{left:10px}.f2{right:10px}}
-.ic{width:42px;height:42px;border-radius:12px;background:var(--mint);display:grid;place-items:center;color:var(--teal);flex:none}
-.strip{background:var(--teal);color:#fff}
-.strip .in{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:28px}
-.strip div{display:flex;flex-direction:column}
-.strip strong{font-family:var(--serif);font-size:40px;line-height:1}
-.strip span{font-size:14px;color:#b9dcd5}
-@media (max-width:700px){.strip .in{grid-template-columns:repeat(2,1fr)}}
-section{padding-block:88px}
-h2{font-size:clamp(36px,4.6vw,58px);color:var(--teal)}
-.sh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:40px}
-.sh p{max-width:44ch;color:var(--muted)}
-.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media (max-width:900px){.svc{grid-template-columns:1fr 1fr}} @media (max-width:560px){.svc{grid-template-columns:1fr}}
-.card{border:1px solid var(--line);border-radius:22px;padding:26px;display:grid;gap:10px;align-content:start;transition:border-color .2s,transform .2s,background .2s}
-.card:hover{border-color:var(--teal2);transform:translateY(-4px);background:var(--mint2)}
-.card h3{margin:6px 0 0;font-size:20px}
-.card p{margin:0;color:var(--muted);font-size:15px}
-.card small{color:var(--teal2);font-weight:700}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-@media (max-width:900px){.split{grid-template-columns:1fr}}
-.split img{border-radius:28px;aspect-ratio:5/4;object-fit:cover}
-.why{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:18px}
-.why li{display:grid;grid-template-columns:42px 1fr;gap:14px}
-.why b{display:block;font-size:17px}
-.why span{color:var(--muted);font-size:15px}
-.rdv{background:var(--teal);color:#fff;border-radius:32px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:40px}
-@media (max-width:900px){.rdv{grid-template-columns:1fr}}
-.rdv h2{color:#fff}
-.rdv p{color:#b9dcd5}
-form{background:#fff;color:var(--ink);border-radius:22px;padding:24px;display:grid;gap:12px}
-label{font-size:13px;font-weight:700;color:var(--muted)}
-input,select{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--mint2)}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ok{display:none;background:var(--mint);color:var(--teal);border-radius:12px;padding:12px;font-weight:700}
-.hours{display:grid;gap:8px;margin-top:22px}
-.hours div{display:flex;justify-content:space-between;border-bottom:1px solid rgb(255 255 255 / .15);padding-bottom:8px;font-size:15px}
-footer{background:var(--ink);color:#a9bdb8;padding-block:48px;font-size:14px}
-footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
-footer strong{color:#fff}
-.wa-fab{position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 26px -8px rgb(0 0 0 / .4);animation:pulse 2.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgb(37 211 102 / .55)}70%{box-shadow:0 0 0 16px rgb(37 211 102 / 0)}100%{box-shadow:0 0 0 0 rgb(37 211 102 / 0)}}
-.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
-.rv.on{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.wa-fab{animation:none}html{scroll-behavior:auto}}
+
+.top{position:sticky;top:0;z-index:30}
+.urg{background:var(--coral);color:#fff;font-weight:700;font-size:14.5px}
+.urg .in{display:flex;justify-content:center;align-items:center;gap:10px;min-height:38px;flex-wrap:wrap;text-align:center}
+.urg a{color:#fff}
+header{background:rgb(255 255 255 / .95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .in{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--teal)}
+.logo b{font:400 24px var(--serif);display:block;line-height:1}
+.logo small{font-size:12px;font-weight:600;color:var(--muted)}
+nav.main{display:flex;gap:26px;font-weight:600;font-size:15px}
+nav.main a{text-decoration:none;color:var(--muted)} nav.main a:hover{color:var(--teal)}
+@media (max-width:940px){nav.main{display:none}}
+@media (max-width:480px){.logo small{display:none}.logo b{font-size:21px}header .b-sm{padding:9px 14px;font-size:14px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;font:700 16px var(--sans);padding:14px 24px;cursor:pointer;text-decoration:none;transition:background .15s,transform .15s}
+.btn:active{transform:translateY(1px)}
+.b-teal{background:var(--teal);color:#fff} .b-teal:hover{background:var(--teal-2)}
+.b-mint{background:var(--mint);color:var(--teal)} .b-mint:hover{background:var(--mint-2)}
+.b-sm{padding:10px 18px;font-size:15px}
+
+/* héros */
+.hero{background:linear-gradient(180deg,var(--mint) 0%,#fff 100%);padding-block:clamp(40px,6vw,80px)}
+.hero .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,60px);align-items:center}
+@media (max-width:920px){.hero .in{grid-template-columns:minmax(0,1fr)}}
+.status{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;color:var(--teal)}
+.status i{width:9px;height:9px;border-radius:50%;background:#9ca3af}
+.status i.on{background:#16a34a;box-shadow:0 0 0 4px rgb(22 163 74 / .18)}
+.hero h1{font-size:clamp(42px,5.6vw,76px);color:var(--teal);margin-top:20px}
+.hero .lead{font-size:clamp(17px,1.6vw,19.5px);color:var(--muted);max-width:46ch;margin-top:18px}
+.quick{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;box-shadow:0 20px 40px -28px rgb(11 77 74 / .45);max-width:520px}
+.quick select{font:600 16px var(--sans);border:0;background:var(--mint);border-radius:12px;padding:12px;color:var(--text);width:100%}
+@media (max-width:480px){.quick{grid-template-columns:minmax(0,1fr)}}
+.hero figure{margin:0;position:relative}
+.hero figure img{border-radius:28px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.next{position:absolute;left:-20px;bottom:-22px;background:#fff;border-radius:18px;padding:14px 18px;box-shadow:0 20px 40px -18px rgb(11 77 74 / .45);display:grid;gap:2px;max-width:290px}
+.next small{font-weight:700;color:var(--coral);font-size:13px}
+.next b{font:400 22px/1.15 var(--serif);color:var(--teal)}
+.next span{font-size:14px;color:var(--muted)}
+@media (max-width:920px){.next{left:12px}}
+
+.sh{display:grid;gap:12px;max-width:62ch;margin-bottom:36px}
+.sh h2{font-size:clamp(34px,4.4vw,54px);color:var(--teal)}
+.sh p{color:var(--muted);font-size:18px}
+
+/* spécialités */
+.specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:980px){.specs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.specs{grid-template-columns:minmax(0,1fr)}}
+.spec{appearance:none;text-align:left;font:inherit;color:inherit;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:8px;cursor:pointer;transition:border-color .15s,background .15s}
+.spec:hover{border-color:var(--teal-2);background:var(--mint)}
+.spec svg{color:var(--teal)}
+.spec b{font:400 23px var(--serif);color:var(--text)}
+.spec span{font-size:14.5px;color:var(--muted)}
+.spec em{font-style:normal;font-size:13.5px;font-weight:700;color:var(--teal-2)}
+
+/* médecins */
+.docs-s{background:var(--mint)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filters button{appearance:none;border:1px solid var(--mint-2);background:#fff;border-radius:999px;padding:8px 16px;font:700 14.5px var(--sans);color:var(--muted);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.doclist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:980px){.doclist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.doclist{grid-template-columns:minmax(0,1fr)}}
+.doc{background:#fff;border-radius:20px;padding:20px;display:grid;gap:12px;align-content:start}
+.doc .id{display:flex;gap:14px;align-items:center}
+.av{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:400 22px var(--serif);color:#fff;flex:none}
+.doc b{font:400 22px/1.15 var(--serif);display:block}
+.doc .sp{font-size:14.5px;color:var(--teal-2);font-weight:700}
+.doc ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:14.5px;color:var(--muted)}
+.doc .btn{justify-self:start}
+
+/* prise de rendez-vous */
+.book .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:920px){.book .wrap{grid-template-columns:minmax(0,1fr)}}
+.side{display:grid;gap:18px}
+.side img{border-radius:22px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.hours{border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.hours div{display:flex;justify-content:space-between;gap:14px;padding:11px 16px;border-bottom:1px solid var(--line);font-size:15px}
+.hours div:last-child{border-bottom:0}
+.hours div.today{background:var(--mint);font-weight:700}
+.wiz{border:1px solid var(--line);border-radius:24px;padding:clamp(20px,3vw,32px);box-shadow:0 30px 60px -40px rgb(11 77 74 / .5)}
+.bar{display:flex;gap:6px;margin-bottom:24px;list-style:none;padding:0}
+.bar li{flex:1;display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}
+.bar li::before{content:"";height:5px;border-radius:5px;background:var(--line)}
+.bar li.done::before,.bar li.now::before{background:var(--teal)}
+.bar li.now{color:var(--teal)}
+@media (max-width:520px){.bar li{font-size:0}}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:16px}
+legend{font:400 28px var(--serif);color:var(--teal);padding:0;margin-bottom:4px}
+.f{display:grid;gap:6px}
+.f label{font-weight:700;font-size:15px}
+.f input,.f select,.f textarea{font:600 16px var(--sans);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;width:100%;color:var(--text);background:#fff}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--teal-2);box-shadow:0 0 0 4px var(--mint)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.two{grid-template-columns:minmax(0,1fr)}}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.days button{flex:none;appearance:none;width:66px;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:8px 0;cursor:pointer;font:700 13px var(--sans);color:var(--muted);display:grid;justify-items:center;gap:0}
+.days button b{font:400 24px var(--serif);color:var(--text)}
+.days button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#cfe7e1}
+.days button[aria-pressed="true"] b{color:#fff}
+.days button:disabled{opacity:.4;cursor:not-allowed}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px}
+.slots button{appearance:none;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px 0;font:700 15px var(--sans);cursor:pointer;color:var(--text)}
+.slots button[aria-pressed="true"]{background:var(--coral);border-color:var(--coral);color:#fff}
+.slots button:disabled{color:#b8c6c2;background:#f6faf9;text-decoration:line-through;cursor:not-allowed}
+.hint{font-size:14.5px;color:var(--muted)}
+.radio{display:flex;gap:8px;flex-wrap:wrap}
+.radio label{border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:700;font-size:15px}
+.radio input{position:absolute;opacity:0}
+.radio label:has(input:checked){background:var(--teal);border-color:var(--teal);color:#fff}
+.radio label:has(input:focus-visible){outline:3px solid var(--coral);outline-offset:2px}
+.recap{background:var(--mint);border-radius:16px;padding:16px 18px;display:grid;gap:8px;margin:0}
+.recap div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed var(--mint-2);padding-bottom:8px}
+.recap div:last-child{border-bottom:0;padding-bottom:0}
+.recap dt{color:var(--muted)} .recap dd{margin:0;font-weight:700;text-align:right}
+.navb{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+.err{color:#b4232c;font-weight:700;font-size:14.5px}
+.done{display:none;text-align:center;justify-items:center;gap:12px}
+.done.show{display:grid}
+.done h3{font-size:32px;color:var(--teal)}
+
+/* tarifs */
+.price .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:920px){.price .wrap{grid-template-columns:minmax(0,1fr)}}
+table{width:100%;border-collapse:collapse;font-size:15.5px}
+th,td{text-align:left;padding:13px 10px;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:700}
+td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
+td b{color:var(--teal)}
+.ins{display:grid;gap:12px;background:var(--mint);border-radius:18px;padding:20px;margin-bottom:18px}
+.ins p{font-size:15px;color:var(--muted)}
+.lab{background:var(--teal);color:#fff;border-radius:24px;overflow:hidden}
+.lab img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.lab form{padding:22px;display:grid;gap:14px}
+.lab h3{font-size:30px}
+.lab p{color:#cfe7e1}
+.lab .f label{color:#e5f3ef}
+.lab .f input{background:rgb(255 255 255 / .1);border-color:rgb(255 255 255 / .25);color:#fff}
+.lab .btn{background:#fff;color:var(--teal)}
+
+.prep{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center}
+@media (max-width:920px){.prep{grid-template-columns:minmax(0,1fr)}}
+.prep img{border-radius:24px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.check{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.check li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px}
+.check li::before{content:"";width:22px;height:22px;border-radius:7px;background:var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b4d4a' stroke-width='3.5'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/14px no-repeat;margin-top:2px}
+.check span{display:block;color:var(--muted);font-size:15px}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font:400 22px/1.3 var(--serif)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:700 24px/1 var(--sans);color:var(--coral);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 20px;color:var(--muted);max-width:64ch}
+
+footer{background:#06201f;color:#bcd3cd;padding-block:52px 28px;font-size:15.5px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+@media (max-width:760px){.fg{grid-template-columns:minmax(0,1fr)}}
+footer h4{font:400 22px var(--serif);color:#fff;margin:0 0 12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.legal{margin-top:36px;padding-top:18px;border-top:1px solid #163a37;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px}
+.legal a{color:#fff}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo">Site de démonstration · entreprise fictive · réalisé par <a href="../../">AKPOTIN Fresnel, développeur web</a></div>
-<header><div class="in">
-  <a class="logo" href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i>Clinique Les Palmiers</a>
-  <nav><a href="#services">Spécialités</a><a href="#clinique">La clinique</a><a href="#rdv">Rendez-vous</a><a href="#contact">Contact</a></nav>
-  <a class="btn b-coral" href="#rdv">Prendre RDV</a>
-</div></header>
+<div class="demo">Site de démonstration, clinique fictive. Les demandes de rendez-vous envoient un vrai message WhatsApp à <a href="../../">AKPOTIN Fresnel, développeur web</a>, pour que vous voyiez le résultat.</div>
 
-<section class="hero" style="padding:0"><div class="in">
-  <div>
-    <span class="kicker"><b></b>Urgences ouvertes 24h/24</span>
-    <h1>Des soins proches de vous, <em>sans attendre</em> au téléphone.</h1>
-    <p class="lead">Médecine générale, pédiatrie, gynécologie et laboratoire réunis sous un même toit. Réservez votre consultation en ligne, on vous confirme sur WhatsApp.</p>
-    <div class="ctas">
-      <a class="btn b-coral" href="#rdv">Réserver une consultation</a>
-      <a class="btn b-wa" href="https://wa.me/2290153829990?text=Bonjour%2C%20j%27ai%20vu%20la%20d%C3%A9mo%20Clinique%20Les%20Palmiers." target="_blank" rel="noopener">WhatsApp</a>
+<div class="top">
+  <div class="urg"><div class="in"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Urgences 24 h/24, 7 j/7 : <a href="tel:+33199001122">01 99 00 11 22</a></div></div>
+  <header>
+    <div class="in">
+      <a class="logo" href="#top" aria-label="Clinique Les Palmiers, accueil">
+        <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true"><rect width="38" height="38" rx="12" fill="#0b4d4a"/><path d="M19 9c-5 2-8 6-8 11 4-2 6-2 8 0 2-2 4-2 8 0 0-5-3-9-8-11Z" fill="#e3f3ee"/><path d="M19 19v11" stroke="#e3f3ee" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <span><b>Les Palmiers</b><small>Clinique pluridisciplinaire</small></span>
+      </a>
+      <nav class="main" aria-label="Sections"><a href="#specialites">Spécialités</a><a href="#medecins">Médecins</a><a href="#rdv">Rendez-vous</a><a href="#tarifs">Tarifs</a><a href="#resultats">Résultats</a></nav>
+      <a class="btn b-teal b-sm" href="#rdv">Prendre rendez-vous</a>
     </div>
-  </div>
-  <div class="pic">
-    <img src="img/accueil.jpg" alt="Accueil lumineux de la clinique">
-    <div class="float f1"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><strong>15 min</strong>d'attente moyenne</div></div>
-    <div class="float f2"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg></span><div><strong>4,8/5</strong>avis patients</div></div>
-  </div>
-</div></section>
+  </header>
+</div>
 
-<div class="strip"><div class="in">
-  <div><strong>12</strong><span>spécialités</span></div>
-  <div><strong>24h/24</strong><span>service d'urgence</span></div>
-  <div><strong>48h</strong><span>résultats d'analyses</span></div>
-  <div><strong>7j/7</strong><span>consultations</span></div>
-</div></div>
+<main id="top">
+  <section class="hero">
+    <div class="in">
+      <div>
+        <span class="status"><i id="stDot"></i><span id="stTxt">Consultations du lundi au samedi</span></span>
+        <h1>Un médecin vous reçoit cette semaine.</h1>
+        <p class="lead">Huit spécialités, un laboratoire et une maternité sous le même toit. Choisissez votre médecin et votre créneau en ligne, sans attendre au téléphone.</p>
+        <form class="quick" id="quick">
+          <label class="sr" for="qs" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Spécialité</label>
+          <select id="qs"></select>
+          <button class="btn b-teal" type="submit">Voir les créneaux</button>
+        </form>
+      </div>
+      <figure>
+        <img src="img/medecins.jpg" alt="Une médecin explique un examen à un confrère devant un écran" width="1400" height="1050" fetchpriority="high">
+        <div class="next" aria-live="polite"><small>Prochain créneau libre</small><b id="nextTxt">—</b><span id="nextDoc"></span></div>
+      </figure>
+    </div>
+  </section>
 
-<section id="services"><div class="in">
-  <div class="sh rv"><h2>Nos <em>spécialités</em></h2><p>Une équipe de médecins généralistes et spécialistes, avec des créneaux disponibles dès cette semaine.</p></div>
-  <div class="svc">
-    <div class="card rv"><span class="ic">🩺</span><h3>Médecine générale</h3><p>Consultations sans rendez-vous le matin, sur rendez-vous l'après-midi.</p><small>À partir de 10 000 FCFA</small></div>
-    <div class="card rv"><span class="ic">👶</span><h3>Pédiatrie</h3><p>Suivi des enfants de 0 à 15 ans, vaccinations et bilans de croissance.</p><small>À partir de 15 000 FCFA</small></div>
-    <div class="card rv"><span class="ic">🤰</span><h3>Gynécologie & maternité</h3><p>Suivi de grossesse, échographies et consultations prénatales.</p><small>À partir de 20 000 FCFA</small></div>
-    <div class="card rv"><span class="ic">🧪</span><h3>Laboratoire</h3><p>Bilans sanguins, paludisme, typhoïde. Résultats envoyés par WhatsApp.</p><small>Résultats en 48h</small></div>
-    <div class="card rv"><span class="ic">🦷</span><h3>Dentisterie</h3><p>Soins, détartrage et urgences dentaires.</p><small>Sur rendez-vous</small></div>
-    <div class="card rv"><span class="ic">🚑</span><h3>Urgences</h3><p>Accueil 24h/24 avec médecin de garde et ambulance.</p><small>Toujours ouvert</small></div>
-  </div>
-</div></section>
+  <section id="specialites">
+    <div class="in">
+      <div class="sh"><h2>Nos spécialités</h2><p>Touchez une spécialité pour voir le premier créneau disponible et réserver.</p></div>
+      <div class="specs" id="specs"></div>
+    </div>
+  </section>
 
-<section id="clinique" style="background:var(--mint2)"><div class="in split">
-  <img class="rv" src="img/chambres.jpg" alt="Chambres d'hospitalisation propres et équipées">
-  <div class="rv">
-    <h2>Pourquoi les familles nous <em>font confiance</em></h2>
-    <ul class="why">
-      <li><span class="ic">✓</span><div><b>Hygiène irréprochable</b><span>Chambres désinfectées chaque jour et matériel stérilisé.</span></div></li>
-      <li><span class="ic">✓</span><div><b>Assurances acceptées</b><span>Les principales assurances santé et la plupart des mutuelles.</span></div></li>
-      <li><span class="ic">✓</span><div><b>Suivi sur WhatsApp</b><span>Rappel de rendez-vous et résultats directement sur votre téléphone.</span></div></li>
-    </ul>
-  </div>
-</div></section>
+  <section class="docs-s" id="medecins">
+    <div class="in">
+      <div class="sh"><h2>Les médecins qui vous recevront</h2><p>Huit praticiens, chacun avec ses jours de consultation. Choisissez celui qui vous convient, ou le premier disponible.</p></div>
+      <div class="filters" role="group" aria-label="Filtrer par spécialité" id="filters"></div>
+      <div class="doclist" id="doclist"></div>
+    </div>
+  </section>
 
-<section id="rdv"><div class="in">
-  <div class="rdv rv">
-    <div>
-      <h2>Réservez votre <em>consultation</em></h2>
-      <p>Choisissez un créneau. Notre accueil vous confirme dans l'heure par WhatsApp.</p>
-      <div class="hours" id="contact">
-        <div><span>Lundi – Vendredi</span><span>7h – 20h</span></div>
-        <div><span>Samedi</span><span>8h – 18h</span></div>
-        <div><span>Dimanche</span><span>Urgences uniquement</span></div>
-        <div><span>Adresse</span><span>Au cœur de la ville</span></div>
+  <section class="book" id="rdv">
+    <div class="in wrap">
+      <div class="side">
+        <div class="sh" style="margin-bottom:0"><h2>Prendre rendez-vous</h2><p>Quatre étapes, une minute. L'accueil confirme votre rendez-vous sur WhatsApp dans l'heure.</p></div>
+        <div class="hours" id="hours"></div>
+        <img src="img/accueil.jpg" alt="Hall d'accueil lumineux de la clinique" loading="lazy" width="1600" height="1089">
+      </div>
+      <div class="wiz">
+        <form id="wiz" novalidate>
+          <ol class="bar"><li class="now">Spécialité</li><li>Créneau</li><li>Patient</li><li>Vérification</li></ol>
+          <fieldset data-s="0">
+            <legend>Pour quelle consultation ?</legend>
+            <div class="f"><label for="wsp">Spécialité</label><select id="wsp"></select></div>
+            <div class="f"><label for="wdoc">Médecin</label><select id="wdoc"></select></div>
+            <div class="f"><label for="wwhy">Motif <span style="font-weight:500;color:var(--muted)">(facultatif)</span></label><input id="wwhy" placeholder="Fièvre, suivi de grossesse, certificat…"></div>
+          </fieldset>
+          <fieldset data-s="1" hidden>
+            <legend>Quel jour, à quelle heure ?</legend>
+            <div class="days" id="wdays" role="group" aria-label="Jour"></div>
+            <p class="hint" id="whint"></p>
+            <div class="slots" id="wslots" role="group" aria-label="Heure"></div>
+          </fieldset>
+          <fieldset data-s="2" hidden>
+            <legend>Qui consulte ?</legend>
+            <div class="radio" role="radiogroup" aria-label="Patient"><label><input type="radio" name="who" value="Moi-même" checked>Moi-même</label><label><input type="radio" name="who" value="Mon enfant">Mon enfant</label><label><input type="radio" name="who" value="Un proche">Un proche</label></div>
+            <div class="two">
+              <div class="f"><label for="wname">Nom et prénom du patient</label><input id="wname" autocomplete="name"></div>
+              <div class="f"><label for="wbirth">Date de naissance</label><input id="wbirth" type="date"></div>
+            </div>
+            <div class="two">
+              <div class="f"><label for="wtel">Téléphone (WhatsApp)</label><input id="wtel" type="tel" inputmode="tel" autocomplete="tel"></div>
+              <div class="f"><label for="wins">Assurance santé</label><select id="wins"><option>Pas d'assurance</option><option>Assurance prise en charge à 70 %</option><option>Assurance prise en charge à 80 %</option><option>Assurance prise en charge à 100 %</option></select></div>
+            </div>
+            <div class="radio" role="radiogroup" aria-label="Première visite"><label><input type="radio" name="first" value="Première visite" checked>Première visite</label><label><input type="radio" name="first" value="Déjà patient">Déjà venu à la clinique</label></div>
+          </fieldset>
+          <fieldset data-s="3" hidden>
+            <legend>Vérifiez avant d'envoyer</legend>
+            <dl class="recap" id="wrecap"></dl>
+            <p class="hint">En cliquant sur « Envoyer la demande », WhatsApp s'ouvre avec ce récapitulatif. Il ne reste qu'à appuyer sur Envoyer.</p>
+          </fieldset>
+          <p class="err" id="werr" role="alert"></p>
+          <div class="navb"><button class="btn b-mint" type="button" id="wprev" hidden>Retour</button><button class="btn b-teal" type="submit" id="wnext" style="margin-left:auto">Continuer</button></div>
+        </form>
+        <div class="done" id="wdone" role="status">
+          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#e3f3ee"/><path d="m20 33 8 8 16-17" stroke="#0b4d4a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Demande prête à partir</h3>
+          <p class="hint">Après l'envoi sur WhatsApp, l'accueil vous confirme le rendez-vous dans l'heure.</p>
+          <button class="btn b-mint" type="button" id="wagain">Prendre un autre rendez-vous</button>
+        </div>
       </div>
     </div>
-    <form id="f">
-      <div><label for="n">Nom complet</label><input id="n" required placeholder="Ex. Kouassi Aya"></div>
-      <div class="row2"><div><label for="t">Téléphone</label><input id="t" required placeholder="07 00 00 00 00"></div>
-      <div><label for="d">Date</label><input id="d" type="date" required></div></div>
-      <div><label for="s">Spécialité</label><select id="s"><option>Médecine générale</option><option>Pédiatrie</option><option>Gynécologie</option><option>Laboratoire</option><option>Dentisterie</option></select></div>
-      <button class="btn b-coral" style="justify-content:center">Demander le rendez-vous</button>
-      <div class="ok" id="ok">Démonstration : sur un vrai site, la clinique recevrait cette demande sur WhatsApp.</div>
-    </form>
+  </section>
+
+  <section class="price" id="tarifs" style="background:#fbfdfc;border-top:1px solid var(--line)">
+    <div class="in wrap">
+      <div>
+        <div class="sh"><h2>Tarifs affichés, sans surprise</h2><p>Indiquez votre taux de prise en charge : la somme à régler à l'accueil s'affiche pour chaque acte.</p></div>
+        <div class="ins">
+          <div class="f"><label for="rate">Mon assurance rembourse</label><select id="rate"><option value="0">Je n'ai pas d'assurance</option><option value="70">70 %</option><option value="80" selected>80 %</option><option value="100">100 %</option></select></div>
+          <p>Avec une assurance partenaire, vous ne payez que votre part : nous nous chargeons du reste avec l'assureur.</p>
+        </div>
+        <table>
+          <thead><tr><th>Acte</th><th>Tarif</th><th>Vous payez</th></tr></thead>
+          <tbody id="ptable"></tbody>
+        </table>
+      </div>
+      <div class="lab" id="resultats">
+        <img src="img/labo.jpg" alt="Biologiste qui examine un échantillon au laboratoire" loading="lazy" width="1200" height="800">
+        <form id="labf" novalidate>
+          <h3>Vos résultats d'analyses sur WhatsApp</h3>
+          <p>Bilans sanguins, paludisme, typhoïde, glycémie : résultats en 24 à 48 h. Indiquez votre numéro de dossier, inscrit sur votre reçu.</p>
+          <div class="two">
+            <div class="f"><label for="lnum">N° de dossier</label><input id="lnum" placeholder="Ex. LAB-20481"></div>
+            <div class="f"><label for="lbirth">Date de naissance</label><input id="lbirth" type="date"></div>
+          </div>
+          <p class="err" id="lerr" role="alert" style="color:#ffd3c8"></p>
+          <button class="btn" type="submit" style="justify-self:start">Recevoir mes résultats</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="in prep">
+      <div>
+        <div class="sh"><h2>Pour votre venue</h2></div>
+        <ul class="check">
+          <li><div>Votre carte d'assurance et une pièce d'identité<span>Sans elles, la prise en charge ne peut pas être appliquée.</span></div></li>
+          <li><div>Vos ordonnances et examens récents<span>Le médecin gagne du temps et vous évite des examens en double.</span></div></li>
+          <li><div>Le carnet de santé ou de vaccination<span>Indispensable pour les consultations de pédiatrie.</span></div></li>
+          <li><div>À jeun pour une prise de sang<span>Ne mangez pas pendant les 8 heures qui précèdent ; l'eau est autorisée.</span></div></li>
+        </ul>
+        <div style="margin-top:34px">
+          <details><summary>Faut-il un rendez-vous pour une urgence ?</summary><p>Non. Le service d'urgences reçoit sans rendez-vous, jour et nuit, avec un médecin de garde. En cas de détresse, appelez le 01 99 00 11 22.</p></details>
+          <details><summary>Comment annuler ou déplacer un rendez-vous ?</summary><p>Répondez au message de confirmation sur WhatsApp, au plus tard la veille. Le créneau est alors proposé à un autre patient.</p></details>
+          <details><summary>Quelles assurances acceptez-vous ?</summary><p>La plupart des assurances santé et mutuelles d'entreprise. Envoyez une photo de votre carte sur WhatsApp, l'accueil vous confirme la prise en charge.</p></details>
+        </div>
+      </div>
+      <img src="img/mains.jpg" alt="Une soignante tient la main d'une patiente" loading="lazy" width="1200" height="800">
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div class="fg">
+      <div><h4>Clinique Les Palmiers</h4><p style="max-width:34ch">Médecine générale, spécialités, laboratoire et maternité. Clinique fictive créée pour une démonstration.</p></div>
+      <div><h4>Adresse</h4><ul><li>45, boulevard des Palmiers</li><li>Parking gratuit pour les patients</li><li>Accueil : 01 99 00 11 20</li></ul></div>
+      <div><h4>Raccourcis</h4><ul><li><a href="#rdv">Prendre rendez-vous</a></li><li><a href="#resultats">Recevoir mes résultats</a></li><li><a href="tel:+33199001122">Urgences 24 h/24</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© Clinique Les Palmiers, entreprise fictive</span><span>Site réalisé par <a href="../../">AKPOTIN Fresnel</a></span></div>
   </div>
-</div></section>
+</footer>
 
-<footer><div class="in">
-  <div><strong>Clinique Les Palmiers</strong><br>Clinique pluridisciplinaire</div>
-  <div>Entreprise fictive. Site réalisé par <a href="../../" style="color:#fff">AKPOTIN Fresnel</a>.</div>
-</div></footer>
-
-<a class="wa-fab" href="https://wa.me/2290153829990?text=Bonjour%2C%20j%27ai%20vu%20la%20d%C3%A9mo%20Clinique%20Les%20Palmiers." target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3Z"/></svg></a>
 <script>
-document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').style.display='block'});
-const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}}),{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const WA='2290153829990',wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const $=id=>document.getElementById(id);
+const eur=n=>Math.round(n).toLocaleString('fr-FR').replace(/ /g,' ')+' €';
+const IC={
+ gen:'<path d="M6 3v6a4 4 0 0 0 8 0V3M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/>',
+ ped:'<circle cx="12" cy="8" r="4"/><path d="M6 21v-2a6 6 0 0 1 12 0v2M10 8h.01M14 8h.01"/>',
+ gyn:'<circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 18h6"/>',
+ card:'<path d="M12 20s-7-4.5-8.5-9A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8.5 4c-1.5 4.5-8.5 9-8.5 9Z"/><path d="M3 12h5l2-3 3 6 2-3h6"/>',
+ derm:'<path d="M4 20c2-6 4-10 8-14 4 4 6 8 8 14"/><circle cx="12" cy="14" r="1.5"/>',
+ dent:'<path d="M7 3c-2 0-4 2-4 5 0 4 2 5 2 8s1 5 2.5 5S9 17 12 17s3 4 4.5 4S19 19 19 16s2-4 2-8c0-3-2-5-4-5-2 0-3 1-5 1S9 3 7 3Z"/>',
+ lab:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7 15h10"/>',
+ echo:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 12c1.5-3 3-3 5 0s3.5 3 5 0M8 20h8"/>'};
+const SP=[
+ ['gen','Médecine générale','Consultations, certificats, suivi des maladies chroniques',20],
+ ['ped','Pédiatrie','Enfants de 0 à 15 ans, vaccins et croissance',25],
+ ['gyn','Gynécologie et maternité','Suivi de grossesse, contraception, accouchement',30],
+ ['card','Cardiologie','Tension, électrocardiogramme, bilan du cœur',40],
+ ['derm','Dermatologie','Peau, cheveux, taches et acné',35],
+ ['dent','Dentaire','Soins, détartrage et urgences dentaires',25],
+ ['echo','Échographie','Grossesse, abdomen, thyroïde',35],
+ ['lab','Laboratoire','Prises de sang sans rendez-vous de 7 h à 11 h',null]];
+const DOCS=[
+ ['Dr Aïcha Bamba','gen',[1,2,3,4,5],'Français, anglais','#0f6b66'],
+ ['Dr Serge Adjovi','gen',[1,3,5,6],'Français','#3b7a57'],
+ ['Dr Koffi Mensah','ped',[1,2,4,5],'Français, anglais','#c2410c'],
+ ['Dr Mariam Diallo','gyn',[2,3,4,6],'Français, peul','#9d174d'],
+ ['Dr Nadia Kouassi','card',[1,4],'Français','#1d4ed8'],
+ ['Dr Fatou Traoré','derm',[2,5],'Français, bambara','#7c3aed'],
+ ['Dr Yannick Hounkpè','dent',[1,2,3,4,5,6],'Français, fon','#0e7490'],
+ ['Dr Éric Dossou','echo',[1,3,5],'Français, anglais','#4d7c0f']];
+const spName=k=>SP.find(s=>s[0]===k)[1];
+const ini=n=>n.replace('Dr ','').split(' ').map(x=>x[0]).join('');
+
+/* créneaux simulés, stables pour une date donnée */
+const rnd=s=>{const x=Math.sin(s)*1e4;return x-Math.floor(x)};
+const DAYS=[];{const d=new Date();for(let i=0;DAYS.length<14;i++){const x=new Date(d);x.setDate(d.getDate()+i);DAYS.push(x)}}
+function slotsFor(docIdx,date){const doc=DOCS[docIdx];if(!doc[2].includes(date.getDay()))return [];const end=date.getDay()===6?13*60:18*60;const now=new Date();const L=[];
+  for(let m=8*60;m<end;m+=30){if(m>=12*60+30&&m<14*60)continue;let ok=rnd(docIdx*97+date.getDate()*31+date.getMonth()*7+m)>.45;if(date.toDateString()===now.toDateString()&&m<now.getHours()*60+now.getMinutes()+45)ok=false;L.push([m,ok])}return L}
+const hm=m=>`${Math.floor(m/60)} h ${String(m%60).padStart(2,'0')}`;
+const dlabel=d=>{const t=new Date();const tm=new Date(t);tm.setDate(t.getDate()+1);return d.toDateString()===t.toDateString()?'aujourd\'hui':d.toDateString()===tm.toDateString()?'demain':d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})};
+function firstFree(spKey){let best=null;DOCS.forEach((d,i)=>{if(spKey&&d[1]!==spKey)return;for(const day of DAYS){const s=slotsFor(i,day).find(x=>x[1]);if(s){const t=day.getTime()+s[0]*6e4;if(!best||t<best.t)best={t,day,m:s[0],doc:i};break}}});return best}
+
+/* héros */
+(()=>{const f=firstFree();if(f){$('nextTxt').textContent=`${dlabel(f.day).replace(/^./,c=>c.toUpperCase())}, ${hm(f.m)}`;$('nextDoc').textContent=`${DOCS[f.doc][0]}, ${spName(DOCS[f.doc][1]).toLowerCase()}`}
+  const d=new Date(),h=d.getHours()*60+d.getMinutes(),wd=d.getDay(),end=wd===6?13*60:20*60,open=wd!==0&&h>=7*60&&h<end;
+  $('stDot').classList.toggle('on',open);$('stTxt').textContent=open?`Ouvert, consultations jusqu'à ${end/60} h`:'Consultations fermées, urgences ouvertes'})();
+const opts=SP.filter(s=>s[3]!==null).map(s=>`<option value="${s[0]}">${s[1]}</option>`).join('');
+$('qs').innerHTML=opts;$('wsp').innerHTML=opts;
+
+/* spécialités */
+$('specs').innerHTML=SP.map(([k,n,d])=>{const f=k==='lab'?null:firstFree(k);return `<button class="spec" type="button" data-k="${k}"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg><b>${n}</b><span>${d}</span><em>${k==='lab'?'Sans rendez-vous le matin':f?`Libre ${dlabel(f.day)} à ${hm(f.m)}`:'Complet cette semaine'}</em></button>`}).join('');
+$('specs').querySelectorAll('.spec').forEach(b=>b.onclick=()=>{if(b.dataset.k==='lab'){$('resultats').scrollIntoView();return}startWith(b.dataset.k)});
+$('quick').onsubmit=e=>{e.preventDefault();startWith($('qs').value)};
+
+/* médecins */
+let filt='';
+function docs(){const keys=[...new Set(DOCS.map(d=>d[1]))];
+  $('filters').innerHTML=`<button type="button" aria-pressed="${!filt}" data-k="">Tous</button>`+keys.map(k=>`<button type="button" aria-pressed="${filt===k}" data-k="${k}">${spName(k)}</button>`).join('');
+  $('filters').querySelectorAll('button').forEach(b=>b.onclick=()=>{filt=b.dataset.k;docs()});
+  const J=['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'];
+  $('doclist').innerHTML=DOCS.map((d,i)=>[d,i]).filter(([d])=>!filt||d[1]===filt).map(([d,i])=>{let nx='';for(const day of DAYS){const s=slotsFor(i,day).find(x=>x[1]);if(s){nx=`${dlabel(day)} à ${hm(s[0])}`;break}}
+    return `<article class="doc"><div class="id"><span class="av" style="background:${d[4]}" aria-hidden="true">${ini(d[0])}</span><div><b>${d[0]}</b><span class="sp">${spName(d[1])}</span></div></div><ul><li>Consulte le ${d[2].map(x=>J[x]).join(' ')}</li><li>Langues : ${d[3]}</li><li>Prochain créneau : <strong style="color:var(--text)">${nx||'complet'}</strong></li></ul><button class="btn b-mint b-sm" type="button" data-doc="${i}">Réserver avec ${d[0].split(' ').slice(0,2).join(' ')}</button></article>`}).join('');
+  $('doclist').querySelectorAll('[data-doc]').forEach(b=>b.onclick=()=>{const i=+b.dataset.doc;startWith(DOCS[i][1],i)})}
+docs();
+
+/* horaires */
+(()=>{const H=[['Lundi au vendredi','7 h à 20 h',[1,2,3,4,5]],['Samedi','8 h à 13 h',[6]],['Dimanche','Urgences seulement',[0]],['Laboratoire','7 h à 11 h, sans rendez-vous',[]]];const wd=new Date().getDay();
+  $('hours').innerHTML=H.map(([a,b,d])=>`<div class="${d.includes(wd)?'today':''}"><span>${a}</span><span>${b}</span></div>`).join('')})();
+
+/* assistant de rendez-vous */
+const wiz=$('wiz'),sets=[...wiz.querySelectorAll('fieldset')],marks=[...wiz.querySelectorAll('.bar li')];let step=0,dayI=null,slot=null;
+function fillDocs(){const k=$('wsp').value;$('wdoc').innerHTML=`<option value="any">Le premier disponible</option>`+DOCS.map((d,i)=>d[1]===k?`<option value="${i}">${d[0]}</option>`:'').join('')}
+$('wsp').onchange=()=>{fillDocs();dayI=slot=null};$('wdoc').onchange=()=>{dayI=slot=null};fillDocs();
+function docIdxs(){const v=$('wdoc').value;return v==='any'?DOCS.map((d,i)=>d[1]===$('wsp').value?i:-1).filter(i=>i>=0):[+v]}
+function merged(day){const map=new Map();docIdxs().forEach(i=>slotsFor(i,day).forEach(([m,ok])=>{if(ok&&!map.get(m))map.set(m,i);else if(!map.has(m))map.set(m,null)}));return [...map.entries()].sort((a,b)=>a[0]-b[0])}
+function renderDays(){$('wdays').innerHTML=DAYS.map((d,i)=>{const free=merged(d).some(x=>x[1]!==null);return `<button type="button" data-i="${i}" aria-pressed="${dayI===i}" ${free?'':'disabled'}>${d.toLocaleDateString('fr-FR',{weekday:'short'})}<b>${d.getDate()}</b>${d.toLocaleDateString('fr-FR',{month:'short'})}</button>`}).join('');
+  $('wdays').querySelectorAll('button:not(:disabled)').forEach(b=>b.onclick=()=>{dayI=+b.dataset.i;slot=null;renderDays();renderSlots()});
+  if(dayI===null){const f=[...$('wdays').querySelectorAll('button:not(:disabled)')][0];if(f)f.click();else $('whint').textContent='Aucun créneau sur deux semaines : écrivez-nous, nous vous trouvons une place.'}}
+function renderSlots(){const L=merged(DAYS[dayI]);$('whint').textContent=`Créneaux du ${dlabel(DAYS[dayI])} :`;
+  $('wslots').innerHTML=L.map(([m,doc])=>`<button type="button" data-m="${m}" data-doc="${doc}" aria-pressed="${slot&&slot.m===m}" ${doc===null?'disabled':''}>${hm(m)}</button>`).join('');
+  $('wslots').querySelectorAll('button:not(:disabled)').forEach(b=>b.onclick=()=>{slot={m:+b.dataset.m,doc:+b.dataset.doc};renderSlots()})}
+function go(s){step=s;sets.forEach((f,i)=>f.hidden=i!==s);marks.forEach((m,i)=>m.className=i<s?'done':i===s?'now':'');$('wprev').hidden=!s;$('wnext').textContent=s===3?'Envoyer la demande':'Continuer';$('werr').textContent='';if(s===1)renderDays();if(s===3)recap()}
+function rows(){const p=document.querySelector('[name=who]:checked').value,b=$('wbirth').value;return [['Consultation',spName($('wsp').value)],['Médecin',DOCS[slot.doc][0]],['Rendez-vous',`${dlabel(DAYS[dayI])} à ${hm(slot.m)}`],['Patient',`${$('wname').value.trim()} (${p.toLowerCase()})`],['Né(e) le',b?new Date(b).toLocaleDateString('fr-FR'):'Non précisé'],['Téléphone',$('wtel').value.trim()],['Assurance',$('wins').value],['Dossier',document.querySelector('[name=first]:checked').value]].concat($('wwhy').value.trim()?[['Motif',$('wwhy').value.trim()]]:[])}
+function recap(){$('wrecap').innerHTML=rows().map(([a,b])=>`<div><dt>${a}</dt><dd>${b.replace(/</g,'&lt;')}</dd></div>`).join('')}
+wiz.onsubmit=e=>{e.preventDefault();let m='';
+  if(step===1&&!slot)m='Choisissez un créneau.';
+  if(step===2){if(!$('wname').value.trim())m='Indiquez le nom du patient.';else if($('wtel').value.replace(/\D/g,'').length<8)m='Indiquez un numéro WhatsApp valide.'}
+  if(m){$('werr').textContent=m;return}
+  if(step<3){go(step+1);return}
+  window.open(wa(`Bonjour Clinique Les Palmiers (démo), je souhaite un rendez-vous :\n\n${rows().map(([a,b])=>`${a} : ${b}`).join('\n')}\n\nMerci de me confirmer.`),'_blank','noopener');wiz.hidden=true;$('wdone').classList.add('show')};
+$('wprev').onclick=()=>go(step-1);
+$('wagain').onclick=()=>{wiz.reset();fillDocs();dayI=slot=null;wiz.hidden=false;$('wdone').classList.remove('show');go(0)};
+function startWith(k,doc){$('wsp').value=k;fillDocs();if(doc!==undefined)$('wdoc').value=doc;dayI=slot=null;wiz.hidden=false;$('wdone').classList.remove('show');go(1);$('rdv').scrollIntoView()}
+
+/* tarifs */
+const ACTS=[['Consultation de médecine générale',20],['Consultation de pédiatrie',25],['Consultation de gynécologie',30],['Consultation spécialiste (cardio, dermato)',38],['Échographie',35],['Bilan sanguin complet',28],['Test du paludisme',8],['Détartrage',25]];
+function prices(){const r=+$('rate').value;$('ptable').innerHTML=ACTS.map(([a,p])=>`<tr><td>${a}</td><td>${eur(p)}</td><td><b>${eur(p*(100-r)/100)}</b></td></tr>`).join('')}
+$('rate').onchange=prices;prices();
+
+/* résultats */
+$('labf').onsubmit=e=>{e.preventDefault();const n=$('lnum').value.trim(),b=$('lbirth').value;if(!n||!b){$('lerr').textContent='Indiquez le numéro de dossier et la date de naissance du patient.';return}$('lerr').textContent='';
+  window.open(wa(`Bonjour Clinique Les Palmiers (démo), je souhaite recevoir mes résultats d'analyses.\nN° de dossier : ${n}\nDate de naissance : ${new Date(b).toLocaleDateString('fr-FR')}`),'_blank','noopener')};
 </script>
 </body>
 </html>
