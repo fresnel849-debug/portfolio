@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Maison Nala, institut et spa (démo)</title>
+<meta name="description" content="Site de démonstration réalisé par AKPOTIN Fresnel : institut de beauté fictif avec réservation en ligne de plusieurs soins et cartes cadeaux.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2b1622">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --plum:#2b1622;
+  --plum-2:#45243a;
+  --orchid:#9e2f62;
+  --blush:#f7ecef;
+  --jade:#1f6b5c;
+  --gold:#c9a66b;
+  --text:#2b1622;
+  --muted:#76606c;
+  --line:#ead9df;
+  --serif:"Bodoni Moda",Didot,Georgia,serif;
+  --sans:"Jost",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{margin:0;font:400 17px/1.65 var(--sans);color:var(--text);background:#fff}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+*{font-optical-sizing:none;font-variation-settings:'opsz' 14}
+.word{font-variation-settings:'opsz' 96}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+.in{max-width:1200px;margin:0 auto;padding-inline:20px}
+@media (min-width:760px){.in{padding-inline:32px}}
+section{padding-block:clamp(64px,8vw,112px)}
+:focus-visible{outline:2px solid var(--orchid);outline-offset:3px}
+.demo{background:#170b12;color:#d9c7cf;font-size:13.5px;text-align:center;padding:8px 16px;line-height:1.45}
+.demo a{color:#fff;font-weight:600}
+
+header{position:sticky;top:0;z-index:30;background:rgb(255 255 255 / .94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .in{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{text-decoration:none;display:grid;line-height:1}
+.logo b{font:500 26px var(--serif);letter-spacing:.01em}
+.logo small{font:500 11.5px var(--sans);letter-spacing:.18em;color:var(--muted);margin-top:4px}
+nav.main{display:flex;gap:30px;font-weight:500;font-size:15.5px}
+nav.main a{text-decoration:none;color:var(--muted)} nav.main a:hover{color:var(--text)}
+@media (max-width:900px){nav.main{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;font:600 16px var(--sans);padding:14px 26px;cursor:pointer;text-decoration:none;transition:background .2s,color .2s,transform .15s}
+.btn:active{transform:translateY(1px)}
+.b-plum{background:var(--plum);color:#fff} .b-plum:hover{background:var(--orchid)}
+.b-out{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--text)} .b-out:hover{background:var(--text);color:#fff}
+.b-sm{padding:10px 18px;font-size:15px}
+
+/* héros éditorial */
+.hero{padding:0;background:var(--blush);overflow:hidden}
+.hero .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(24px,4vw,56px);align-items:end;min-height:min(86vh,820px)}
+@media (max-width:900px){.hero .in{grid-template-columns:minmax(0,1fr);min-height:0}}
+.hero .txt{padding-block:clamp(48px,7vw,96px);position:relative;z-index:1}
+.word{font:400 clamp(110px,19vw,280px)/.8 var(--serif);color:transparent;-webkit-text-stroke:1.2px rgb(158 47 98 / .45);letter-spacing:-.04em;display:block;margin-bottom:-.02em;user-select:none}
+.hero h1{font-size:clamp(40px,5.2vw,72px);max-width:12ch}
+.hero .lead{font-size:clamp(17px,1.6vw,19.5px);color:var(--muted);max-width:44ch;margin-top:22px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hero figure{margin:0;align-self:stretch;position:relative}
+.hero figure img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:280px 280px 0 0}
+@media (max-width:900px){.hero figure img{aspect-ratio:4/5;height:auto}}
+.hero figcaption{position:absolute;left:-28px;bottom:48px;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 18px 40px -20px rgb(43 22 34 / .4);display:grid;gap:2px;font-size:15px}
+.hero figcaption b{font:500 20px var(--serif)}
+@media (max-width:900px){.hero figcaption{left:12px}}
+
+.strip{border-bottom:1px solid var(--line)}
+.strip ul{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.strip li{padding:20px 22px;display:flex;gap:12px;align-items:center;border-right:1px solid var(--line);font-size:15.5px}
+.strip li:last-child{border-right:0}
+.dot{width:10px;height:10px;border-radius:50%;background:#bbb;flex:none}
+.dot.on{background:#1f9d55;box-shadow:0 0 0 4px rgb(31 157 85 / .18)}
+@media (max-width:760px){.strip ul{grid-template-columns:minmax(0,1fr)}.strip li{border-right:0;border-bottom:1px solid var(--line)}}
+
+.sh{display:grid;gap:14px;max-width:60ch;margin-bottom:40px}
+.sh h2{font-size:clamp(36px,4.6vw,58px)}
+.sh p{color:var(--muted);font-size:18px}
+
+/* carte des soins */
+.menu-wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:36px;align-items:start}
+@media (max-width:980px){.menu-wrap{grid-template-columns:minmax(0,1fr)}}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.cats button{appearance:none;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 18px;font:500 16px var(--sans);color:var(--muted);cursor:pointer}
+.cats button[aria-selected="true"]{background:var(--plum);border-color:var(--plum);color:#fff}
+.cat-intro{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;align-items:center;margin-bottom:12px}
+.cat-intro img{border-radius:999px 999px 16px 16px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.cat-intro p{color:var(--muted)}
+@media (max-width:520px){.cat-intro{grid-template-columns:96px minmax(0,1fr)}}
+.svc{list-style:none;margin:0;padding:0}
+.svc li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.svc h3{font-size:22px}
+.svc p{color:var(--muted);font-size:15.5px;margin-top:4px}
+.svc .meta{text-align:right;white-space:nowrap}
+.svc .meta b{display:block;font:500 21px var(--serif)}
+.svc .meta span{font-size:14.5px;color:var(--muted)}
+.add{appearance:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--plum);background:#fff;color:var(--plum);font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
+.add[aria-pressed="true"]{background:var(--plum);color:#fff}
+@media (max-width:560px){.svc li{grid-template-columns:minmax(0,1fr) auto}.svc .meta{grid-column:1;text-align:left;display:flex;gap:12px;align-items:baseline}.svc .add{grid-row:1/span 2;grid-column:2}}
+.basket{position:sticky;top:92px;border-radius:22px;background:var(--plum);color:#fff;padding:24px;display:grid;gap:14px}
+.basket h3{font-size:26px}
+.basket ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15.5px}
+.basket li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgb(255 255 255 / .14);padding-bottom:8px}
+.basket .empty{color:#d9c7cf;font-size:15.5px}
+.basket .tot{display:flex;justify-content:space-between;font-weight:600}
+.basket .tot b{font:500 24px var(--serif);color:var(--gold)}
+.basket .btn{background:#fff;color:var(--plum)}
+.basket .btn:hover{background:var(--gold)}
+.basket .btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+@media (max-width:980px){.basket{position:fixed;left:12px;right:12px;bottom:12px;top:auto;z-index:25;padding:14px 16px;grid-template-columns:minmax(0,1fr) auto;align-items:center;box-shadow:0 20px 40px -12px rgb(0 0 0 / .45)}.basket h3,.basket ul,.basket .empty{display:none}.basket .tot{flex-direction:column;gap:0;font-size:14px}.basket .tot b{font-size:20px}.basket.none{display:none}}
+
+/* réservation */
+.book{background:var(--blush)}
+.book .card{background:#fff;border-radius:26px;padding:clamp(22px,3.4vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px)}
+@media (max-width:900px){.book .card{grid-template-columns:minmax(0,1fr)}}
+.step-t{font:500 22px var(--serif);margin-bottom:12px;display:flex;gap:10px;align-items:baseline}
+.step-t i{font:600 13px var(--sans);font-style:normal;color:var(--orchid)}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.days button{flex:none;appearance:none;width:68px;border:1.5px solid var(--line);background:#fff;border-radius:16px;padding:10px 0;cursor:pointer;font:500 14px var(--sans);color:var(--muted);display:grid;gap:2px;justify-items:center}
+.days button b{font:500 24px var(--serif);color:var(--text)}
+.days button[aria-pressed="true"]{background:var(--plum);border-color:var(--plum);color:#e9d8df}
+.days button[aria-pressed="true"] b{color:#fff}
+.days button:disabled{opacity:.4;cursor:not-allowed;text-decoration:line-through}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px;margin-top:6px}
+.slots button{appearance:none;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px 0;font:500 15.5px var(--sans);cursor:pointer;color:var(--text)}
+.slots button[aria-pressed="true"]{background:var(--jade);border-color:var(--jade);color:#fff}
+.slots button:disabled{color:#c9b8bf;text-decoration:line-through;cursor:not-allowed;background:#faf6f7}
+.hint{color:var(--muted);font-size:15px}
+.f{display:grid;gap:6px}
+.f label{font-weight:600;font-size:15px}
+.f input,.f textarea,.f select{font:400 16.5px var(--sans);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;width:100%;color:var(--text);background:#fff}
+.f input:focus,.f textarea:focus,.f select:focus{outline:0;border-color:var(--orchid);box-shadow:0 0 0 4px rgb(158 47 98 / .12)}
+.summary{background:var(--blush);border-radius:16px;padding:16px 18px;display:grid;gap:6px;font-size:15.5px}
+.summary b{font-weight:600}
+.err{color:#b4232c;font-weight:600;font-size:14.5px}
+
+/* institut */
+.place{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;align-items:end}
+.place .t{grid-column:1/6;align-self:center;display:grid;gap:18px}
+.place .t h2{font-size:clamp(34px,4.2vw,52px)}
+.place .t p{color:var(--muted)}
+.place img{border-radius:20px;object-fit:cover;width:100%}
+.place .a{grid-column:6/10}.place .a img{aspect-ratio:3/4}
+.place .b{grid-column:10/13;display:grid;gap:16px}.place .b img{aspect-ratio:1}
+@media (max-width:900px){.place .t,.place .a,.place .b{grid-column:1/-1}.place .b{grid-template-columns:1fr 1fr}}
+.engage{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.engage li{display:flex;gap:12px}
+.engage li::before{content:"";flex:none;width:8px;height:8px;margin-top:10px;border-radius:50%;background:var(--orchid)}
+
+/* carte cadeau */
+.gift{background:var(--plum);color:#fff}
+.gift .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+@media (max-width:900px){.gift .wrap{grid-template-columns:minmax(0,1fr)}}
+.gift .sh p{color:#d9c7cf}
+.amounts{display:flex;gap:8px;flex-wrap:wrap}
+.amounts button{appearance:none;border:1.5px solid rgb(255 255 255 / .3);background:transparent;color:#fff;border-radius:999px;padding:9px 18px;font:500 16px var(--sans);cursor:pointer}
+.amounts button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--plum)}
+.gift .f label{color:#e9d8df}
+.gift .f input,.gift .f textarea{background:rgb(255 255 255 / .06);border-color:rgb(255 255 255 / .2);color:#fff}
+.gift form{display:grid;gap:16px}
+.gcard{aspect-ratio:1.6;border-radius:22px;background:radial-gradient(120% 140% at 100% 0%,#7a2c55 0%,#45243a 45%,#1f0f18 100%);padding:clamp(20px,3vw,32px);display:grid;align-content:space-between;position:relative;overflow:hidden;box-shadow:0 40px 60px -30px #000;transform:rotate(-3deg)}
+.gcard::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgb(201 166 107 / .4)}
+.gcard .brand{font:500 28px var(--serif);color:var(--gold)}
+.gcard .val{font:500 clamp(44px,6vw,64px)/1 var(--serif);color:#fff}
+.gcard .to{font-size:15px;color:#e9d8df}
+.gcard .msg{font:italic 400 18px var(--serif);color:#fff;max-width:30ch;min-height:1.5em}
+
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font:500 21px/1.3 var(--serif)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 26px/1 var(--sans);color:var(--orchid);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 20px;color:var(--muted);max-width:64ch}
+
+footer{background:#170b12;color:#cbb7c0;padding-block:52px 28px;font-size:15.5px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+@media (max-width:760px){.fg{grid-template-columns:minmax(0,1fr)}}
+footer h4{font:500 21px var(--serif);color:#fff;margin:0 0 12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.legal{margin-top:36px;padding-top:18px;border-top:1px solid #33202b;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px}
+.legal a{color:#fff}
+@media (max-width:980px){footer{padding-bottom:110px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Site de démonstration, institut fictif. Les réservations envoient un vrai message WhatsApp à <a href="../../">AKPOTIN Fresnel, développeur web</a>, pour que vous voyiez le résultat.</div>
+
+<header>
+  <div class="in">
+    <a class="logo" href="#top" aria-label="Maison Nala, accueil"><b>Maison Nala</b><small>INSTITUT &amp; SPA</small></a>
+    <nav class="main" aria-label="Sections"><a href="#soins">Les soins</a><a href="#reserver">Réserver</a><a href="#institut">L'institut</a><a href="#cadeau">Carte cadeau</a></nav>
+    <a class="btn b-plum b-sm" href="#soins">Prendre rendez-vous</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="in">
+      <div class="txt">
+        <span class="word" aria-hidden="true">Nala</span>
+        <h1>Une heure rien que pour vous.</h1>
+        <p class="lead">Coiffure afro et naturelle, soins du visage, ongles et massages. Choisissez vos soins, voyez tout de suite les créneaux libres et réservez en moins d'une minute.</p>
+        <div class="ctas"><a class="btn b-plum" href="#soins">Choisir mes soins</a><a class="btn b-out" href="#cadeau">Offrir une carte cadeau</a></div>
+      </div>
+      <figure>
+        <img src="img/portrait.jpg" alt="Portrait d'une cliente au teint lumineux" width="1100" height="1400" fetchpriority="high">
+        <figcaption><b>Soin éclat, 60 min</b><span>Le plus réservé ce mois-ci</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="strip">
+    <ul class="in">
+      <li><span class="dot" id="dot"></span><span id="openTxt">Mardi au samedi, 9 h à 19 h</span></li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>8, rue des Orchidées, 1er étage</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Réservation en ligne, même la nuit</li>
+    </ul>
+  </div>
+
+  <section id="soins">
+    <div class="in">
+      <div class="sh"><h2>Composez votre rendez-vous</h2><p>Ajoutez un ou plusieurs soins : la durée et le prix total se calculent au fur et à mesure.</p></div>
+      <div class="menu-wrap">
+        <div>
+          <div class="cats" role="tablist" aria-label="Catégories de soins" id="cats"></div>
+          <div id="catBody" role="tabpanel"></div>
+        </div>
+        <aside class="basket none" id="basket" aria-live="polite">
+          <h3>Votre rendez-vous</h3>
+          <p class="empty" id="bEmpty">Aucun soin choisi pour l'instant. Touchez « + » à côté d'un soin pour l'ajouter.</p>
+          <ul id="bList"></ul>
+          <div class="tot"><span id="bDur">0 min</span><b id="bPrice">0 €</b></div>
+          <a class="btn" href="#reserver" id="bGo" aria-disabled="true">Choisir un créneau</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="reserver">
+    <div class="in">
+      <div class="sh"><h2>Choisissez votre créneau</h2><p>Les horaires grisés sont déjà pris. Les créneaux proposés tiennent compte de la durée totale de vos soins.</p></div>
+      <div class="card">
+        <div>
+          <p class="step-t"><i>Étape 1</i>Le jour</p>
+          <div class="days" id="days" role="group" aria-label="Jour du rendez-vous"></div>
+          <p class="step-t" style="margin-top:26px"><i>Étape 2</i>L'heure</p>
+          <p class="hint" id="slotHint">Choisissez d'abord un jour.</p>
+          <div class="slots" id="slots" role="group" aria-label="Heure du rendez-vous"></div>
+        </div>
+        <form id="bookForm" novalidate style="display:grid;gap:16px;align-content:start">
+          <p class="step-t"><i>Étape 3</i>Vos coordonnées</p>
+          <div class="summary" id="summary"><span>Choisissez vos soins puis un créneau : le récapitulatif s'affiche ici.</span></div>
+          <div class="f"><label for="bn">Prénom et nom</label><input id="bn" autocomplete="name"></div>
+          <div class="f"><label for="bt">Téléphone (WhatsApp)</label><input id="bt" type="tel" inputmode="tel" autocomplete="tel"></div>
+          <div class="f"><label for="bm">Une précision ? <span style="font-weight:400;color:var(--muted)">(facultatif)</span></label><textarea id="bm" rows="2" placeholder="Cheveux très longs, peau sensible, première visite…"></textarea></div>
+          <p class="err" id="bErr" role="alert"></p>
+          <button class="btn b-plum" type="submit">Confirmer sur WhatsApp</button>
+          <p class="hint">Annulation gratuite jusqu'à 24 h avant le rendez-vous.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="institut">
+    <div class="in place">
+      <div class="t">
+        <h2>Un lieu calme, des gestes précis</h2>
+        <p>Quatre cabines, un espace coiffure lumineux et une équipe de cinq professionnelles diplômées. Nous prenons le temps d'écouter avant de commencer.</p>
+        <ul class="engage">
+          <li>Produits sans sulfates pour les cheveux crépus et bouclés</li>
+          <li>Matériel stérilisé après chaque cliente</li>
+          <li>Diagnostic offert avant tout premier soin</li>
+          <li>Thé ou jus frais offert pendant l'attente</li>
+        </ul>
+      </div>
+      <div class="a"><img src="img/boucles.jpg" alt="Cliente aux cheveux bouclés et définis" loading="lazy" width="1000" height="1250"></div>
+      <div class="b"><img src="img/salon.jpg" alt="Espace coiffure de l'institut" loading="lazy" width="1200" height="800"><img src="img/huiles.jpg" alt="Huiles de soin et bougie" loading="lazy" width="1200" height="800"></div>
+    </div>
+  </section>
+
+  <section class="gift" id="cadeau">
+    <div class="in wrap">
+      <div>
+        <div class="sh"><h2>Offrez un moment chez Nala</h2><p>Choisissez le montant, écrivez votre message : la carte est prête à imprimer ou à envoyer par WhatsApp le jour même.</p></div>
+        <form id="giftForm" novalidate>
+          <div class="amounts" role="group" aria-label="Montant de la carte">
+            <button type="button" aria-pressed="false" data-v="30">30 €</button><button type="button" aria-pressed="true" data-v="50">50 €</button><button type="button" aria-pressed="false" data-v="80">80 €</button><button type="button" aria-pressed="false" data-v="120">120 €</button>
+          </div>
+          <div class="f"><label for="gto">Pour</label><input id="gto" placeholder="Prénom de la personne" maxlength="30"></div>
+          <div class="f"><label for="gfrom">De la part de</label><input id="gfrom" placeholder="Votre prénom" maxlength="30"></div>
+          <div class="f"><label for="gmsg">Votre message</label><textarea id="gmsg" rows="2" maxlength="90" placeholder="Joyeux anniversaire, prends soin de toi !"></textarea></div>
+          <button class="btn" type="submit" style="background:var(--gold);color:var(--plum);justify-self:start">Commander cette carte</button>
+        </form>
+      </div>
+      <div class="gcard" aria-label="Aperçu de la carte cadeau">
+        <span class="brand">Maison Nala</span>
+        <span class="val" id="gVal">50 €</span>
+        <div><p class="msg" id="gMsg">Joyeux anniversaire, prends soin de toi !</p><p class="to" id="gTo">Pour … , de la part de …</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="in" style="max-width:860px">
+      <div class="sh"><h2>Avant de venir</h2></div>
+      <details><summary>Je suis en retard, que se passe-t-il ?</summary><p>Prévenez-nous sur WhatsApp. Jusqu'à 15 minutes de retard, nous gardons votre rendez-vous, en raccourcissant le soin si la cliente suivante attend.</p></details>
+      <details><summary>Comment annuler ou déplacer un rendez-vous ?</summary><p>Répondez simplement au message de confirmation. L'annulation est gratuite jusqu'à 24 h avant le rendez-vous.</p></details>
+      <details><summary>Faut-il venir les cheveux lavés ?</summary><p>Non, le shampoing est compris dans toutes les prestations coiffure. Pour une pose de tresses, venez démêlée si possible : on gagne du temps.</p></details>
+      <details><summary>Les cartes cadeaux sont-elles valables longtemps ?</summary><p>Un an à partir de la date d'achat, sur tous les soins de l'institut.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div class="fg">
+      <div><h4>Maison Nala</h4><p style="max-width:34ch">Institut de beauté et spa. Entreprise fictive créée pour une démonstration.</p></div>
+      <div><h4>Horaires</h4><ul><li>Mardi au vendredi, 9 h à 19 h</li><li>Samedi, 9 h à 18 h</li><li>Fermé dimanche et lundi</li></ul></div>
+      <div><h4>Nous trouver</h4><ul><li>8, rue des Orchidées</li><li>01 99 00 27 48</li><li><a href="#reserver" style="color:#fff">Réserver en ligne</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© Maison Nala, entreprise fictive</span><span>Site réalisé par <a href="../../">AKPOTIN Fresnel</a></span></div>
+  </div>
+</footer>
+
+<script>
+const WA='2290153829990',wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const $=id=>document.getElementById(id);
+const CATS=[
+ {k:'cheveux',n:'Cheveux',img:'boucles',intro:"Coiffures protectrices, soins des cheveux crépus et bouclés, brushing et coupes.",s:[
+  ['Soin hydratant profond','Bain d\'huile, masque au karité et vapeur, pour des boucles souples.',60,35],
+  ['Tresses sans nœuds, mi-longues','Mèches fournies comprises. Tenue de 6 à 8 semaines.',240,90],
+  ['Vanilles ou twists','Sur cheveux naturels, avec soin d\'entretien offert.',120,45],
+  ['Brushing et mise en forme','Shampoing, soin, séchage et lissage léger.',60,28],
+  ['Coupe sur cheveux bouclés','Coupe à sec, boucle par boucle, puis définition.',45,30]]},
+ {k:'visage',n:'Visage',img:'soin-visage',intro:"Des soins adaptés aux peaux noires et métissées : éclat, taches, hydratation.",s:[
+  ['Soin éclat','Gommage doux, masque et massage du visage. Teint lumineux et unifié.',60,45],
+  ['Soin anti-taches','Exfoliation enzymatique et sérum ciblé. Cure de 4 séances conseillée.',75,60],
+  ['Nettoyage de peau','Extraction douce, masque purifiant, hydratation.',45,35],
+  ['Restructuration des sourcils','Épilation au fil et teinture légère.',20,12]]},
+ {k:'ongles',n:'Ongles',img:'ongles',intro:"Manucure, pédicure et vernis semi-permanent qui tient trois semaines.",s:[
+  ['Manucure semi-permanent','Préparation de l\'ongle et pose de vernis, couleur au choix.',45,25],
+  ['Pédicure spa','Bain, gommage, soin des cuticules et vernis.',60,32],
+  ['Pose de gel, chablons','Allongement naturel, forme au choix.',90,48],
+  ['Dépose et soin','Dépose sans abîmer l\'ongle, puis soin fortifiant.',30,15]]},
+ {k:'corps',n:'Massages',img:'massage',intro:"Massages relaxants et soins du corps, en cabine calme, aux huiles chaudes.",s:[
+  ['Massage relaxant','Huile chaude, pressions lentes, tout le corps.',60,50],
+  ['Massage aux pierres chaudes','Détente musculaire profonde.',75,65],
+  ['Gommage au sucre et karité','Peau douce et nourrie, suivi d\'un enveloppement.',45,38],
+  ['Massage du dos et de la nuque','Idéal après une longue semaine au bureau.',30,28]]}];
+const sel=new Map();let curCat=0,day=null,slot=null;
+const eur=n=>`${n} €`;
+const dur=m=>m<60?`${m} min`:`${Math.floor(m/60)} h${m%60?` ${String(m%60).padStart(2,'0')}`:''}`;
+function cats(){$('cats').innerHTML=CATS.map((c,i)=>`<button role="tab" aria-selected="${i===curCat}" tabindex="${i===curCat?0:-1}" data-i="${i}">${c.n}</button>`).join('');
+  [...$('cats').children].forEach((b,i)=>{b.onclick=()=>{curCat=i;cats();body()};b.onkeydown=e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];if(d){curCat=(i+d+CATS.length)%CATS.length;cats();body();$('cats').children[curCat].focus()}}})}
+function body(){const c=CATS[curCat];$('catBody').innerHTML=`<div class="cat-intro"><img src="img/${c.img}.jpg" alt="" width="1000" height="1250"><p>${c.intro}</p></div><ul class="svc">${c.s.map(([n,d,m,p],j)=>{const id=`${c.k}-${j}`;return `<li><div><h3>${n}</h3><p>${d}</p></div><div class="meta"><b>${eur(p)}</b><span>${dur(m)}</span></div><button class="add" type="button" data-id="${id}" aria-pressed="${sel.has(id)}" aria-label="${sel.has(id)?'Retirer':'Ajouter'} ${n}">${sel.has(id)?'✓':'+'}</button></li>`}).join('')}</ul>`;
+  $('catBody').querySelectorAll('.add').forEach(b=>b.onclick=()=>{const [k,j]=b.dataset.id.split('-');const s=CATS.find(x=>x.k===k).s[+j];if(sel.has(b.dataset.id))sel.delete(b.dataset.id);else sel.set(b.dataset.id,{n:s[0],m:s[2],p:s[3]});body();basket();if(day)slots()})}
+const total=()=>[...sel.values()].reduce((a,s)=>({m:a.m+s.m,p:a.p+s.p}),{m:0,p:0});
+function basket(){const t=total(),L=[...sel.values()];$('basket').classList.toggle('none',!L.length);$('bEmpty').hidden=!!L.length;
+  $('bList').innerHTML=L.map(s=>`<li><span>${s.n}</span><span>${eur(s.p)}</span></li>`).join('');$('bDur').textContent=`${L.length} soin${L.length>1?'s':''}, ${dur(t.m)}`;$('bPrice').textContent=eur(t.p);
+  if(L.length)$('bGo').removeAttribute('aria-disabled');else $('bGo').setAttribute('aria-disabled','true');summary()}
+$('bGo').addEventListener('click',e=>{if($('bGo').hasAttribute('aria-disabled'))e.preventDefault()});
+
+/* jours et créneaux : fermé dimanche et lundi, samedi jusqu'à 18 h */
+const DAYS=[];{const d=new Date();for(let i=0;DAYS.length<12;i++){const x=new Date(d);x.setDate(d.getDate()+i);DAYS.push(x)}}
+const closed=d=>d.getDay()===0||d.getDay()===1;
+function rnd(seed){let x=Math.sin(seed)*10000;return x-Math.floor(x)}
+function days(){$('days').innerHTML=DAYS.map((d,i)=>`<button type="button" data-i="${i}" aria-pressed="${day===i}" ${closed(d)?'disabled aria-label="Fermé"':''}>${d.toLocaleDateString('fr-FR',{weekday:'short'})}<b>${d.getDate()}</b>${d.toLocaleDateString('fr-FR',{month:'short'})}</button>`).join('');
+  $('days').querySelectorAll('button:not(:disabled)').forEach(b=>b.onclick=()=>{day=+b.dataset.i;slot=null;days();slots();summary()})}
+function slots(){const d=DAYS[day],t=total().m||30,close=d.getDay()===6?18*60:19*60,now=new Date(),seed=d.getDate()*31+d.getMonth();
+  const busy=new Set();for(let m=9*60;m<close;m+=30)if(rnd(seed+m)<.2)busy.add(m);
+  const L=[];for(let m=9*60;m+t<=close;m+=30){let ok=true;for(let k=m;k<m+t;k+=30)if(busy.has(k))ok=false;if(d.toDateString()===now.toDateString()&&m<now.getHours()*60+now.getMinutes()+60)ok=false;L.push([m,ok])}
+  $('slotHint').textContent=L.some(x=>x[1])?`Créneaux pour ${dur(t)} de soins${sel.size?'':' (choisissez vos soins pour un calcul exact)'}.`:'Plus de créneau libre ce jour-là pour cette durée. Essayez un autre jour.';
+  const f=m=>`${Math.floor(m/60)} h ${String(m%60).padStart(2,'0')}`;
+  $('slots').innerHTML=L.map(([m,ok])=>`<button type="button" data-m="${m}" aria-pressed="${slot===m}" ${ok?'':'disabled'}>${f(m)}</button>`).join('');
+  $('slots').querySelectorAll('button:not(:disabled)').forEach(b=>b.onclick=()=>{slot=+b.dataset.m;slots();summary();$('bn').focus({preventScroll:true})})}
+const fmtSlot=()=>`${DAYS[day].toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})} à ${Math.floor(slot/60)} h ${String(slot%60).padStart(2,'0')}`;
+function summary(){const t=total(),L=[...sel.values()];if(!L.length&&day===null){return}
+  $('summary').innerHTML=`<span><b>Soins :</b> ${L.length?L.map(s=>s.n).join(', '):'à choisir plus haut'}</span><span><b>Durée :</b> ${L.length?dur(t.m):'—'}, <b>total :</b> ${eur(t.p)}</span><span><b>Rendez-vous :</b> ${day!==null&&slot!==null?fmtSlot():'à choisir'}</span>`}
+$('bookForm').onsubmit=e=>{e.preventDefault();const n=$('bn').value.trim(),t=$('bt').value.replace(/\D/g,'');let m='';
+  if(!sel.size)m='Choisissez au moins un soin dans la carte.';else if(day===null||slot===null)m='Choisissez un jour et une heure.';else if(!n)m='Indiquez votre nom.';else if(t.length<8)m='Indiquez un numéro WhatsApp valide.';
+  $('bErr').textContent=m;if(m){if(!sel.size)$('soins').scrollIntoView();return}
+  const T=total();window.open(wa(`Bonjour Maison Nala (démo), je souhaite réserver :\n${[...sel.values()].map(s=>`• ${s.n} (${dur(s.m)}, ${eur(s.p)})`).join('\n')}\n\nLe ${fmtSlot()}\nDurée totale : ${dur(T.m)}, total : ${eur(T.p)}\n\nNom : ${n}\nTéléphone : ${$('bt').value.trim()}${$('bm').value.trim()?`\nPrécision : ${$('bm').value.trim()}`:''}`),'_blank','noopener')};
+
+/* ouvert maintenant ? */
+(()=>{const d=new Date(),h=d.getHours()*60+d.getMinutes(),wd=d.getDay(),close=wd===6?18*60:19*60,open=!closed(d)&&h>=540&&h<close;
+  $('dot').classList.toggle('on',open);$('openTxt').textContent=open?`Ouvert, jusqu'à ${close/60} h aujourd'hui`:`Fermé pour le moment. Réservez en ligne, nous confirmons à l'ouverture.`})();
+
+/* carte cadeau */
+let gv=50;const gup=()=>{$('gVal').textContent=eur(gv);$('gMsg').textContent=$('gmsg').value.trim()||'Joyeux anniversaire, prends soin de toi !';$('gTo').textContent=`Pour ${$('gto').value.trim()||'…'}, de la part de ${$('gfrom').value.trim()||'…'}`};
+document.querySelectorAll('.amounts button').forEach(b=>b.onclick=()=>{gv=+b.dataset.v;document.querySelectorAll('.amounts button').forEach(x=>x.setAttribute('aria-pressed',x===b));gup()});
+['gto','gfrom','gmsg'].forEach(id=>$(id).addEventListener('input',gup));
+$('giftForm').onsubmit=e=>{e.preventDefault();gup();window.open(wa(`Bonjour Maison Nala (démo), je souhaite commander une carte cadeau de ${eur(gv)}.\nPour : ${$('gto').value.trim()||'(à préciser)'}\nDe la part de : ${$('gfrom').value.trim()||'(à préciser)'}\nMessage : ${$('gMsg').textContent}`),'_blank','noopener')};
+
+cats();body();basket();days();
+</script>
+</body>
+</html>

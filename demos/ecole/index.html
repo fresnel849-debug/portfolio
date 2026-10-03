@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>École bilingue Les Lucioles (démo)</title>
+<meta name="description" content="Site de démonstration réalisé par AKPOTIN Fresnel : école bilingue fictive, de la maternelle au collège, avec pré-inscription en ligne.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1d3a8a">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --ink:#1d3a8a;      /* encre bleue */
+  --ink-2:#2f55c4;
+  --rule:#c9d8f5;     /* lignes du cahier */
+  --margin:#e0525a;   /* marge rouge */
+  --board:#173f35;    /* tableau vert */
+  --sun:#ffd23f;      /* surligneur */
+  --paper:#ffffff;
+  --text:#18213a;
+  --muted:#56607a;
+  --line:#dfe5f1;
+  --serif:"Young Serif",Georgia,serif;
+  --sans:"Figtree",system-ui,sans-serif;
+  --hand:"Caveat","Segoe Print",cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font:400 17px/1.6 var(--sans);color:var(--text);background:var(--paper)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;margin:0;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+.in{max-width:1180px;margin:0 auto;padding-inline:20px}
+@media (min-width:760px){.in{padding-inline:32px}}
+section{padding-block:clamp(64px,8vw,112px)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:4px}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* bandeau démo */
+.demo{background:var(--text);color:#cdd5ea;font-size:13.5px;text-align:center;padding:8px 16px;line-height:1.45}
+.demo a{color:#fff;font-weight:700}
+
+/* en-tête */
+header{position:sticky;top:0;z-index:20;background:rgb(255 255 255 / .94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .in{height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.logo strong{font:400 21px/1 var(--serif)}
+.logo small{display:block;font:600 12px var(--sans);color:var(--muted);margin-top:3px}
+nav.main{display:flex;gap:26px;font-weight:600;font-size:15.5px}
+nav.main a{text-decoration:none;color:var(--muted)}
+nav.main a:hover{color:var(--ink)}
+@media (max-width:960px){nav.main{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 16px var(--sans);text-decoration:none;border:0;border-radius:12px;padding:14px 22px;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s}
+.btn:active{transform:translateY(1px)}
+.b-ink{background:var(--ink);color:#fff;box-shadow:0 3px 0 #0f2260}
+.b-ink:hover{background:var(--ink-2)}
+.b-line{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.b-line:hover{background:#eef3ff}
+.b-sm{padding:10px 16px;font-size:15px}
+@media (max-width:480px){header .b-sm span{display:none}}
+
+/* héros : page de cahier Seyès */
+.hero{position:relative;padding-block:clamp(40px,6vw,84px) clamp(56px,7vw,96px);overflow:hidden;
+  background:
+    linear-gradient(90deg,transparent calc(var(--mx) - 1px),var(--margin) calc(var(--mx) - 1px),var(--margin) calc(var(--mx) + 1px),transparent calc(var(--mx) + 1px)),
+    repeating-linear-gradient(180deg,transparent 0 31px,#9db6ea 31px 32px),
+    repeating-linear-gradient(180deg,transparent 0 7px,var(--rule) 7px 8px),
+    repeating-linear-gradient(90deg,transparent 0 31px,var(--rule) 31px 32px),
+    #fff;
+  --mx:clamp(28px,7vw,96px)}
+.hero .in{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);gap:clamp(32px,5vw,64px);align-items:center;padding-left:calc(var(--mx) + 8px)}
+@media (max-width:900px){.hero .in{grid-template-columns:minmax(0,1fr)}}
+.open{display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 14px 6px 8px;font-weight:700;font-size:14.5px;color:var(--ink)}
+.open b{background:var(--sun);border-radius:999px;padding:2px 10px;font-weight:800}
+.hero h1{font-size:clamp(40px,5vw,68px);color:var(--ink);margin-top:22px}
+.hero h1 mark{background:linear-gradient(transparent 58%,var(--sun) 58% 92%,transparent 92%);color:inherit;padding-inline:.06em}
+.hero .lead{font-size:clamp(17px,1.6vw,20px);margin-top:22px;max-width:52ch;background:rgb(255 255 255 / .85)}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.photo{position:relative;justify-self:center;width:min(480px,100%)}
+.photo figure{margin:0;background:#fff;padding:12px 12px 52px;box-shadow:0 18px 40px -18px rgb(29 58 138 / .45),0 2px 6px rgb(0 0 0 / .08);transform:rotate(2.2deg)}
+.photo img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.photo figcaption{position:absolute;left:24px;bottom:12px;font:600 26px/1 var(--hand);color:var(--ink)}
+.tape{position:absolute;width:110px;height:30px;background:rgb(255 210 63 / .75);top:-12px;left:50%;transform:translateX(-50%) rotate(-4deg);box-shadow:0 1px 2px rgb(0 0 0 / .1)}
+.note{position:absolute;right:-6px;top:-48px;font:600 25px/1.05 var(--hand);color:var(--margin);transform:rotate(-6deg);text-align:right}
+.note svg{display:block;margin:4px 0 0 auto}
+@media (max-width:900px){.note{right:6px;top:-40px}}
+
+/* repères */
+.facts{border-block:1px solid var(--line);background:#f6f8fd}
+.facts ul{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.facts li{padding:26px 22px;border-right:1px solid var(--line);display:grid;gap:4px}
+.facts li:last-child{border-right:0}
+.facts strong{font:400 22px/1.2 var(--serif);color:var(--ink)}
+.facts span{color:var(--muted);font-size:15.5px}
+@media (max-width:820px){.facts ul{grid-template-columns:repeat(2,minmax(0,1fr))}.facts li:nth-child(2){border-right:0}.facts li:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* titres de section */
+.sh{display:grid;gap:14px;max-width:62ch;margin-bottom:44px}
+.sh h2{font-size:clamp(34px,4.4vw,54px);color:var(--ink)}
+.sh p{color:var(--muted);font-size:18px}
+
+/* cycles */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:2px solid var(--line);margin-bottom:34px}
+.tab{appearance:none;border:0;background:none;font:700 17px var(--sans);color:var(--muted);padding:12px 18px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab small{display:block;font-weight:500;font-size:13.5px}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--ink)}
+.panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start}
+.panel[hidden]{display:none}
+@media (max-width:860px){.panel{grid-template-columns:minmax(0,1fr)}}
+.panel img{border-radius:18px;aspect-ratio:3/2;object-fit:cover;width:100%}
+.panel h3{font-size:clamp(28px,3vw,38px);color:var(--ink)}
+.panel .txt{display:grid;gap:18px}
+.panel ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.panel li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px}
+.panel li::before{content:"";width:12px;height:12px;margin-top:7px;border-radius:3px;background:var(--sun);box-shadow:inset 0 0 0 2px #e0b300}
+.hours{display:flex;flex-wrap:wrap;gap:8px}
+.hours span{background:#eef3ff;color:var(--ink);border-radius:8px;padding:6px 12px;font-weight:600;font-size:15px}
+
+/* journée type : tableau vert */
+.day{background:var(--board);color:#e7efe9;position:relative}
+.day::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 400px at 20% 0%,rgb(255 255 255 / .06),transparent 60%);pointer-events:none}
+.day .sh h2{color:#fff}
+.day .sh p{color:#b9cdc3}
+.timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;position:relative}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:30px;border-top:2px dashed rgb(255 255 255 / .35)}
+.timeline li{position:relative;padding:0 14px 0 0;display:grid;gap:10px;align-content:start}
+.timeline time{display:inline-flex;align-self:start;justify-self:start;background:var(--board);border:2px solid #fff;border-radius:999px;padding:8px 14px;font:700 16px var(--sans);color:#fff;position:relative}
+.timeline h3{font-size:21px;color:#fff}
+.timeline p{color:#b9cdc3;font-size:15.5px}
+@media (max-width:980px){.timeline{grid-template-columns:minmax(0,1fr);gap:22px}.timeline::before{left:44px;right:auto;top:0;bottom:0;border-top:0;border-left:2px dashed rgb(255 255 255 / .35)}.timeline li{grid-template-columns:96px minmax(0,1fr);column-gap:16px}.timeline li>*:not(time){grid-column:2}.timeline time{grid-row:1/span 2}}
+
+/* vie scolaire */
+.life{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,4vw,56px)}
+@media (max-width:900px){.life{grid-template-columns:minmax(0,1fr)}}
+.clubs{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.clubs span{border:2px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600;background:#fff}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:28px}
+.gallery img{border-radius:14px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.menu{border:2px solid var(--ink);border-radius:20px;padding:24px;background:#fff;box-shadow:8px 8px 0 #dfe7fb;align-self:start}
+.menu h3{font-size:28px;color:var(--ink)}
+.menu .days{display:flex;gap:6px;margin:18px 0}
+.menu .days button{flex:1;appearance:none;border:2px solid var(--line);background:#fff;border-radius:10px;padding:8px 0;font:700 15px var(--sans);color:var(--muted);cursor:pointer}
+.menu .days button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.menu dl{margin:0;display:grid;gap:12px}
+.menu dt{font-weight:700;font-size:13.5px;color:var(--muted)}
+.menu dd{margin:2px 0 0;font:400 20px/1.3 var(--serif);color:var(--text)}
+.menu .fine{margin-top:16px;font-size:14.5px;color:var(--muted)}
+
+/* dates */
+.dates{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.dates{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.dates{grid-template-columns:minmax(0,1fr)}}
+.dates li{border-left:4px solid var(--margin);background:#fff7f7;padding:18px 18px 18px 20px;border-radius:0 14px 14px 0;display:grid;gap:4px}
+.dates b{font:400 22px var(--serif);color:var(--text)}
+.dates span{color:var(--muted);font-size:15.5px}
+
+/* pré-inscription */
+.enrol{background:#f6f8fd;border-block:1px solid var(--line)}
+.enrol .grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,64px);align-items:start}
+@media (max-width:900px){.enrol .grid{grid-template-columns:minmax(0,1fr)}}
+.docs{margin-top:24px;display:grid;gap:10px;padding:0;list-style:none}
+.docs li{display:flex;gap:12px;align-items:flex-start}
+.docs li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;margin-top:2px}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(22px,3vw,34px);box-shadow:0 24px 50px -30px rgb(29 58 138 / .35)}
+.steps{display:flex;gap:6px;margin-bottom:26px;list-style:none;padding:0}
+.steps li{flex:1;display:grid;gap:8px;font-size:13.5px;font-weight:700;color:var(--muted)}
+.steps li::before{content:"";height:5px;border-radius:5px;background:var(--line)}
+.steps li.done::before,.steps li.now::before{background:var(--ink)}
+.steps li.now{color:var(--ink)}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:16px}
+fieldset[hidden]{display:none}
+legend{font:400 26px var(--serif);color:var(--ink);margin-bottom:6px;padding:0}
+.f{display:grid;gap:6px}
+.f label{font-weight:700;font-size:15px}
+.f input,.f select,.f textarea{font:500 16px var(--sans);color:var(--text);border:2px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--ink-2);box-shadow:0 0 0 4px #dfe7fb}
+.f .help{font-size:14px;color:var(--muted)}
+.f .err{font-size:14px;color:#b4232c;font-weight:600}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:520px){.two{grid-template-columns:minmax(0,1fr)}}
+.suggest{display:none;background:#fffbe6;border:2px dashed #e0b300;border-radius:12px;padding:12px 14px;font-weight:600}
+.suggest.show{display:block}
+.suggest button{appearance:none;border:0;background:none;color:var(--ink);font:800 15px var(--sans);text-decoration:underline;cursor:pointer;padding:0;margin-left:4px}
+.nav-btns{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+.recap{background:#f6f8fd;border-radius:14px;padding:16px 18px;display:grid;gap:8px}
+.recap div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.recap div:last-child{border-bottom:0;padding-bottom:0}
+.recap dt{color:var(--muted)} .recap dd{margin:0;font-weight:700;text-align:right}
+.ok{display:none;text-align:center;gap:14px;justify-items:center}
+.ok.show{display:grid}
+.ok h3{font-size:30px;color:var(--ink)}
+
+/* visites + faq */
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px)}
+@media (max-width:900px){.visit{grid-template-columns:minmax(0,1fr)}}
+.slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}
+.slots button{appearance:none;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px;text-align:left;cursor:pointer;font:600 15.5px var(--sans);color:var(--text)}
+.slots button b{display:block;font:400 19px var(--serif);color:var(--ink)}
+.slots button[aria-pressed="true"]{border-color:var(--ink);background:#eef3ff}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font:400 21px/1.3 var(--serif);color:var(--text)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:700 24px/1 var(--sans);color:var(--ink);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 20px;color:var(--muted);max-width:62ch}
+
+/* pied */
+footer{background:var(--text);color:#cdd5ea;padding-block:56px 30px}
+.fg{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px}
+@media (max-width:760px){.fg{grid-template-columns:minmax(0,1fr)}}
+footer h4{font:400 20px var(--serif);color:#fff;margin:0 0 12px}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.legal{margin-top:40px;padding-top:18px;border-top:1px solid #2c3656;font-size:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.legal a{color:#fff}
+
+.wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;background:#25d366;color:#05301a;text-decoration:none;font-weight:800;border-radius:999px;padding:12px 18px 12px 14px;box-shadow:0 10px 24px -8px rgb(0 0 0 / .35)}
+@media (max-width:520px){.wa span{display:none}.wa{padding:14px}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="demo">Site de démonstration, école fictive. Les formulaires envoient un vrai message WhatsApp à <a href="../../">AKPOTIN Fresnel, développeur web</a>, pour que vous voyiez le résultat.</div>
+
+<header>
+  <div class="in">
+    <a class="logo" href="#top" aria-label="École Les Lucioles, accueil">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#1d3a8a"/><circle cx="20" cy="22" r="7" fill="#ffd23f"/><circle cx="20" cy="22" r="11" fill="#ffd23f" opacity=".25"/><path d="M13 13c3 2 4 4 7 4s4-2 7-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      <span><strong>Les Lucioles</strong><small>École bilingue, maternelle au collège</small></span>
+    </a>
+    <nav class="main" aria-label="Sections">
+      <a href="#cycles">Les cycles</a><a href="#journee">Une journée</a><a href="#vie">Vie de l'école</a><a href="#inscription">Inscriptions</a><a href="#questions">Questions</a>
+    </nav>
+    <a class="btn b-ink b-sm" href="#inscription"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg><span>Pré-inscrire mon enfant</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="in">
+      <div>
+        <span class="open"><b>Ouvert</b>Pré-inscriptions pour la rentrée de septembre</span>
+        <h1>Ici, chaque enfant apprend à son rythme, en <mark>français et en anglais</mark>.</h1>
+        <p class="lead">De la petite section à la 3<sup>e</sup> : des classes de 25 élèves au plus, des enseignants qui suivent chaque enfant, une étude surveillée le soir et une cantine qui cuisine sur place.</p>
+        <div class="ctas">
+          <a class="btn b-ink" href="#inscription">Pré-inscrire mon enfant</a>
+          <a class="btn b-line" href="#visite">Visiter l'école</a>
+        </div>
+      </div>
+      <div class="photo">
+        <p class="note" aria-hidden="true">25 élèves au plus<br>par classe<svg width="70" height="34" viewBox="0 0 70 34" fill="none" stroke="#e0525a" stroke-width="2.4" stroke-linecap="round"><path d="M64 3C50 10 30 14 10 26"/><path d="M10 26l10-1M10 26l4-9"/></svg></p>
+        <figure>
+          <span class="tape" aria-hidden="true"></span>
+          <img src="img/ecriture.jpg" alt="Deux élèves concentrés écrivent dans leur cahier en classe" width="1400" height="1050" fetchpriority="high">
+          <figcaption>Classe de CE1, atelier d'écriture</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts">
+    <ul class="in">
+      <li><strong>25 élèves au plus</strong><span>par classe, pour que personne ne décroche</span></li>
+      <li><strong>Anglais tous les jours</strong><span>dès la petite section, avec des enseignants anglophones</span></li>
+      <li><strong>Étude jusqu'à 17 h 30</strong><span>les devoirs sont faits avant de rentrer</span></li>
+      <li><strong>Cantine sur place</strong><span>menus de la semaine publiés chaque lundi</span></li>
+    </ul>
+  </div>
+
+  <section id="cycles">
+    <div class="in">
+      <div class="sh">
+        <h2>Trois cycles, une seule école</h2>
+        <p>Votre enfant grandit dans le même établissement, avec une méthode suivie d'une année à l'autre.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Cycles">
+        <button class="tab" role="tab" id="t-mat" aria-controls="p-mat" aria-selected="true">Maternelle<small>3 à 5 ans</small></button>
+        <button class="tab" role="tab" id="t-pri" aria-controls="p-pri" aria-selected="false" tabindex="-1">Primaire<small>CP au CM2</small></button>
+        <button class="tab" role="tab" id="t-col" aria-controls="p-col" aria-selected="false" tabindex="-1">Collège<small>6<sup>e</sup> à 3<sup>e</sup></small></button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-mat" aria-labelledby="t-mat">
+        <img src="img/atelier.jpg" alt="Enfants qui dessinent ensemble autour d'une table" loading="lazy" width="1200" height="800">
+        <div class="txt">
+          <h3>Apprendre en jouant, sans brûler les étapes</h3>
+          <p>Petite, moyenne et grande section. Les enfants découvrent les lettres, les nombres et l'anglais par le jeu, le chant et les ateliers manuels. Une assistante accompagne chaque enseignante.</p>
+          <ul>
+            <li>Une enseignante et une assistante par classe</li>
+            <li>Sieste et coin calme pour les plus petits</li>
+            <li>Comptines et histoires en anglais chaque matin</li>
+            <li>Cahier de liaison numérique pour les parents</li>
+          </ul>
+          <div class="hours"><span>7 h 30 à 12 h 30</span><span>Garderie jusqu'à 17 h 30</span></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-pri" aria-labelledby="t-pri" hidden>
+        <img src="img/classe.jpg" alt="Classe de primaire attentive pendant un cours" loading="lazy" width="1200" height="800">
+        <div class="txt">
+          <h3>Lire, écrire, compter, et oser parler</h3>
+          <p>Du CP au CM2, le programme officiel en français, complété par cinq heures d'anglais par semaine. Les élèves en difficulté sont repérés tôt et suivis en petits groupes.</p>
+          <ul>
+            <li>Soutien en petits groupes de 6 élèves</li>
+            <li>Salle informatique et initiation au code dès le CE2</li>
+            <li>Bibliothèque avec plus de 3 000 livres</li>
+            <li>Bulletin chaque trimestre et rencontre parents-enseignant</li>
+          </ul>
+          <div class="hours"><span>7 h 30 à 15 h 30</span><span>Étude surveillée jusqu'à 17 h 30</span></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-col" aria-labelledby="t-col" hidden>
+        <img src="img/college.jpg" alt="Collégien qui travaille sur un ordinateur portable" loading="lazy" width="1200" height="800">
+        <div class="txt">
+          <h3>Préparer le brevet, et la suite</h3>
+          <p>De la 6<sup>e</sup> à la 3<sup>e</sup>, un professeur principal par classe, des devoirs surveillés et des examens blancs chaque trimestre. Les élèves de 3<sup>e</sup> sont accompagnés dans leur orientation.</p>
+          <ul>
+            <li>Brevet blanc deux fois par an</li>
+            <li>Anglais renforcé et certification en fin de 3<sup>e</sup></li>
+            <li>Laboratoire de sciences équipé</li>
+            <li>Notes et absences consultables en ligne par les parents</li>
+          </ul>
+          <div class="hours"><span>7 h 15 à 16 h 30</span><span>Étude jusqu'à 17 h 30</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="day" id="journee">
+    <div class="in">
+      <div class="sh">
+        <h2>Une journée de primaire, heure par heure</h2>
+        <p>Les parents nous le demandent souvent : voici comment se passe la journée de votre enfant.</p>
+      </div>
+      <ol class="timeline">
+        <li><time>7 h 15</time><h3>Accueil</h3><p>Les enseignants accueillent les élèves au portail.</p></li>
+        <li><time>7 h 30</time><h3>Français et maths</h3><p>Les matières de base, le matin, quand l'attention est la meilleure.</p></li>
+        <li><time>10 h 00</time><h3>Récréation</h3><p>Cour ombragée, surveillée par deux adultes.</p></li>
+        <li><time>10 h 20</time><h3>Anglais</h3><p>Une heure par jour, à l'oral surtout.</p></li>
+        <li><time>12 h 00</time><h3>Déjeuner</h3><p>À la cantine ou avec le repas apporté de la maison.</p></li>
+        <li><time>15 h 30</time><h3>Étude ou clubs</h3><p>Devoirs surveillés, puis départ jusqu'à 17 h 30.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="vie">
+    <div class="in life">
+      <div>
+        <div class="sh" style="margin-bottom:0">
+          <h2>Après les cours, on continue d'apprendre</h2>
+          <p>Six clubs le mercredi après-midi et après l'étude. Chaque élève en choisit un par trimestre.</p>
+        </div>
+        <div class="clubs"><span>Robotique</span><span>Théâtre</span><span>Football</span><span>Chorale</span><span>Échecs</span><span>Club lecture</span></div>
+        <div class="gallery">
+          <img src="img/cour.jpg" alt="Élèves avec leur cartable dans la cour" loading="lazy" width="1200" height="800">
+          <img src="img/livres.jpg" alt="Pile de livres et pomme sur un bureau" loading="lazy" width="1200" height="800">
+        </div>
+      </div>
+      <div class="menu" aria-labelledby="menu-t">
+        <h3 id="menu-t">À la cantine cette semaine</h3>
+        <div class="days" role="group" aria-label="Jour de la semaine">
+          <button aria-pressed="true" data-d="0">Lun</button><button aria-pressed="false" data-d="1">Mar</button><button aria-pressed="false" data-d="2">Mer</button><button aria-pressed="false" data-d="3">Jeu</button><button aria-pressed="false" data-d="4">Ven</button>
+        </div>
+        <dl id="menu" aria-live="polite"></dl>
+        <p class="fine">Repas préparés le matin même par notre cuisinière. Menus adaptés sur demande (allergies, sans porc).</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="in">
+      <div class="sh"><h2>Les dates à retenir</h2></div>
+      <ul class="dates">
+        <li><b>Samedi 7 juin</b><span>Journée portes ouvertes, de 9 h à 13 h</span></li>
+        <li><b>Jusqu'au 31 juillet</b><span>Pré-inscriptions en ligne pour la rentrée</span></li>
+        <li><b>Fin août</b><span>Tests de niveau pour les nouveaux élèves du CP à la 3<sup>e</sup></span></li>
+        <li><b>Lundi 8 septembre</b><span>Rentrée des classes, accueil des parents à 7 h 30</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="enrol" id="inscription">
+    <div class="in grid">
+      <div>
+        <div class="sh" style="margin-bottom:0">
+          <h2>Pré-inscrire votre enfant en 2 minutes</h2>
+          <p>Remplissez le formulaire : le secrétariat vous rappelle sous 48 h pour fixer un rendez-vous et vous envoyer le dossier complet.</p>
+        </div>
+        <p style="margin-top:26px;font-weight:700">Pour le rendez-vous, prévoyez :</p>
+        <ul class="docs">
+          <li>L'acte de naissance de l'enfant</li>
+          <li>Les deux derniers bulletins scolaires</li>
+          <li>Le carnet de vaccination</li>
+          <li>Deux photos d'identité</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <form id="form" novalidate>
+          <ol class="steps" aria-label="Étapes">
+            <li class="now">Votre enfant</li><li>Vous</li><li>Vérification</li>
+          </ol>
+
+          <fieldset data-step="0">
+            <legend>Votre enfant</legend>
+            <div class="two">
+              <div class="f"><label for="cprenom">Prénom</label><input id="cprenom" name="cprenom" autocomplete="off" required></div>
+              <div class="f"><label for="cnom">Nom</label><input id="cnom" name="cnom" autocomplete="off" required></div>
+            </div>
+            <div class="f"><label for="cnaiss">Date de naissance</label><input id="cnaiss" name="cnaiss" type="date" required><span class="help">Nous vous indiquons la classe correspondant à son âge.</span></div>
+            <p class="suggest" id="suggest" aria-live="polite"></p>
+            <div class="f"><label for="classe">Classe demandée pour la rentrée</label>
+              <select id="classe" name="classe" required>
+                <option value="">Choisir une classe</option>
+                <optgroup label="Maternelle"><option>Petite section</option><option>Moyenne section</option><option>Grande section</option></optgroup>
+                <optgroup label="Primaire"><option>CP</option><option>CE1</option><option>CE2</option><option>CM1</option><option>CM2</option></optgroup>
+                <optgroup label="Collège"><option>6e</option><option>5e</option><option>4e</option><option>3e</option></optgroup>
+              </select>
+            </div>
+            <div class="f"><label for="ecole">École actuelle <span style="font-weight:500;color:var(--muted)">(facultatif)</span></label><input id="ecole" name="ecole"></div>
+          </fieldset>
+
+          <fieldset data-step="1" hidden>
+            <legend>Vous</legend>
+            <div class="f"><label for="pnom">Votre nom et prénom</label><input id="pnom" name="pnom" autocomplete="name" required></div>
+            <div class="two">
+              <div class="f"><label for="ptel">Téléphone (WhatsApp)</label><input id="ptel" name="ptel" type="tel" inputmode="tel" autocomplete="tel" required></div>
+              <div class="f"><label for="plien">Vous êtes</label><select id="plien" name="plien"><option>La mère</option><option>Le père</option><option>Le tuteur ou la tutrice</option></select></div>
+            </div>
+            <div class="f"><label for="pmsg">Une question, un besoin particulier ? <span style="font-weight:500;color:var(--muted)">(facultatif)</span></label><textarea id="pmsg" name="pmsg" rows="3" placeholder="Transport, allergie, frère ou sœur déjà inscrit…"></textarea></div>
+          </fieldset>
+
+          <fieldset data-step="2" hidden>
+            <legend>Vérifiez avant d'envoyer</legend>
+            <dl class="recap" id="recap"></dl>
+            <p class="help" style="color:var(--muted);font-size:15px">En cliquant sur « Envoyer la demande », WhatsApp s'ouvre avec ce récapitulatif. Il ne reste qu'à appuyer sur Envoyer.</p>
+          </fieldset>
+
+          <div class="nav-btns">
+            <button type="button" class="btn b-line" id="prev" hidden>Retour</button>
+            <button type="submit" class="btn b-ink" id="next" style="margin-left:auto">Continuer</button>
+          </div>
+        </form>
+        <div class="ok" id="ok" role="status">
+          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#eef3ff"/><path d="m20 33 8 8 16-17" stroke="#1d3a8a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Demande prête à partir</h3>
+          <p>WhatsApp s'est ouvert dans un nouvel onglet. Après l'envoi, le secrétariat vous rappelle sous 48 h.</p>
+          <button class="btn b-line" type="button" id="again">Inscrire un autre enfant</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visite">
+    <div class="in visit">
+      <div>
+        <div class="sh" style="margin-bottom:0">
+          <h2>Venez voir l'école avant de décider</h2>
+          <p>Une visite de 45 minutes avec la directrice : les classes, la cour, la cantine, et toutes vos questions.</p>
+        </div>
+        <div class="slots" role="group" aria-label="Créneaux de visite">
+          <button type="button" aria-pressed="false" data-slot="mercredi à 10 h"><b>Mercredi</b>10 h 00</button>
+          <button type="button" aria-pressed="false" data-slot="mercredi à 15 h"><b>Mercredi</b>15 h 00</button>
+          <button type="button" aria-pressed="false" data-slot="samedi à 9 h"><b>Samedi</b>9 h 00</button>
+          <button type="button" aria-pressed="false" data-slot="samedi à 11 h"><b>Samedi</b>11 h 00</button>
+        </div>
+        <a class="btn b-ink" id="visitBtn" href="#" style="margin-top:18px" aria-disabled="true">Choisissez un créneau</a>
+      </div>
+      <div id="questions">
+        <div class="sh" style="margin-bottom:12px"><h2>Les questions des parents</h2></div>
+        <details><summary>Combien coûte la scolarité ?</summary><p>Les frais dépendent du cycle. Ils sont détaillés dans le dossier remis au rendez-vous, et peuvent être réglés en trois fois : à la rentrée, en janvier et en avril.</p></details>
+        <details><summary>Mon enfant ne parle pas anglais. Est-ce un problème ?</summary><p>Non. Les nouveaux élèves suivent deux séances de mise à niveau par semaine pendant le premier trimestre, puis rejoignent le rythme de la classe.</p></details>
+        <details><summary>Y a-t-il un transport scolaire ?</summary><p>Oui, trois circuits de bus desservent les quartiers voisins. Le plan des arrêts est envoyé avec le dossier d'inscription.</p></details>
+        <details><summary>Comment suivre la scolarité de mon enfant ?</summary><p>Par le cahier de liaison numérique : notes, absences, devoirs et messages des enseignants, sur votre téléphone. Une rencontre parents-enseignant a lieu chaque trimestre.</p></details>
+        <details><summary>Peut-on inscrire un enfant en cours d'année ?</summary><p>Oui, s'il reste des places dans la classe. Un test de niveau est organisé à partir du CP.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div class="fg">
+      <div><h4>École bilingue Les Lucioles</h4><p style="max-width:34ch">De la petite section à la 3<sup>e</sup>, en français et en anglais. Établissement fictif créé pour une démonstration.</p></div>
+      <div><h4>Secrétariat</h4><ul><li>Lundi au vendredi, 7 h à 17 h</li><li>Samedi, 8 h à 12 h</li><li>Téléphone : 01 99 00 41 20</li></ul></div>
+      <div><h4>Adresse</h4><ul><li>12, allée des Flamboyants</li><li>Quartier Les Cocotiers</li><li><a href="#visite" style="color:#fff">Prendre rendez-vous pour une visite</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© École Les Lucioles, entreprise fictive</span><span>Site réalisé par <a href="../../">AKPOTIN Fresnel</a></span></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/2290153829990?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20l%27%C3%A9cole%20Les%20Lucioles%20(d%C3%A9mo)." target="_blank" rel="noopener" aria-label="Poser une question sur WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3Z"/></svg><span>Une question ?</span></a>
+
+<script>
+const WA='2290153829990';
+const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+
+/* onglets accessibles */
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function show(t,focus){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on});if(focus)t.focus()}
+tabs.forEach((t,i)=>{t.onclick=()=>show(t);t.onkeydown=e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];if(d){e.preventDefault();show(tabs[(i+d+tabs.length)%tabs.length],true)}}});
+
+/* menu de la cantine */
+const MENUS=[
+ ["Salade de crudités","Poulet rôti, riz parfumé","Banane plantain frite","Ananas frais"],
+ ["Soupe de légumes","Poisson braisé, attiéké","Haricots verts","Yaourt nature"],
+ ["Avocat vinaigrette","Spaghetti bolognaise","Fromage râpé","Mangue"],
+ ["Salade de tomates","Sauce arachide, riz blanc","Gombo sauté","Gâteau au citron"],
+ ["Œufs durs mayonnaise","Brochettes de bœuf, frites","Salade verte","Pastèque"]];
+const LBL=["Entrée","Plat","Accompagnement","Dessert"];
+const dl=document.getElementById('menu');
+function menu(d){dl.innerHTML=MENUS[d].map((m,i)=>`<div><dt>${LBL[i]}</dt><dd>${m}</dd></div>`).join('');document.querySelectorAll('.days button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.d==d))}
+document.querySelectorAll('.days button').forEach(b=>b.onclick=()=>menu(+b.dataset.d));
+menu(Math.min(Math.max(new Date().getDay()-1,0),4));
+
+/* pré-inscription en 3 étapes */
+const form=document.getElementById('form'),sets=[...form.querySelectorAll('fieldset')],marks=[...form.querySelectorAll('.steps li')];
+const prev=document.getElementById('prev'),next=document.getElementById('next');let step=0;
+function go(s){step=s;sets.forEach((f,i)=>f.hidden=i!==s);marks.forEach((m,i)=>{m.className=i<s?'done':i===s?'now':''});prev.hidden=s===0;next.textContent=s===2?'Envoyer la demande':'Continuer';const first=sets[s].querySelector('input,select');if(first&&s)first.focus({preventScroll:true})}
+function check(){let ok=true;sets[step].querySelectorAll('[required]').forEach(el=>{const bad=!el.value.trim()||(el.type==='tel'&&el.value.replace(/\D/g,'').length<8);let e=el.parentElement.querySelector('.err');if(bad){ok=false;if(!e){e=document.createElement('span');e.className='err';el.parentElement.append(e)}e.textContent=el.type==='tel'?'Indiquez un numéro joignable sur WhatsApp.':'Ce champ est nécessaire pour la demande.';el.setAttribute('aria-invalid','true')}else{e&&e.remove();el.removeAttribute('aria-invalid')}});if(!ok)sets[step].querySelector('[aria-invalid]').focus();return ok}
+const v=id=>document.getElementById(id).value.trim();
+function recap(){const rows=[["Enfant",`${v('cprenom')} ${v('cnom')}`],["Né(e) le",new Date(v('cnaiss')).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})],["Classe demandée",v('classe')],["École actuelle",v('ecole')||'Non précisée'],["Parent",`${v('pnom')} (${v('plien').toLowerCase()})`],["Téléphone",v('ptel')]];if(v('pmsg'))rows.push(["Message",v('pmsg')]);document.getElementById('recap').innerHTML=rows.map(([a,b])=>`<div><dt>${a}</dt><dd>${b.replace(/</g,'&lt;')}</dd></div>`).join('');return rows}
+form.onsubmit=e=>{e.preventDefault();if(!check())return;if(step<2){if(step===1)recap();go(step+1);return}
+  const rows=recap();const txt=`Bonjour, je souhaite pré-inscrire mon enfant à l'école Les Lucioles (démo).\n\n${rows.map(([a,b])=>`${a} : ${b}`).join('\n')}\n\nMerci de me rappeler pour le rendez-vous.`;
+  window.open(wa(txt),'_blank','noopener');form.hidden=true;document.getElementById('ok').classList.add('show')};
+prev.onclick=()=>go(step-1);
+document.getElementById('again').onclick=()=>{form.reset();form.hidden=false;document.getElementById('ok').classList.remove('show');document.getElementById('suggest').classList.remove('show');go(0)};
+
+/* classe suggérée selon l'âge au 31 décembre de l'année de rentrée */
+const ORDER=["Petite section","Moyenne section","Grande section","CP","CE1","CE2","CM1","CM2","6e","5e","4e","3e"];
+document.getElementById('cnaiss').addEventListener('change',e=>{const s=document.getElementById('suggest');const d=new Date(e.target.value);if(isNaN(d)){s.classList.remove('show');return}
+  const now=new Date();const rentree=now.getMonth()>=8?now.getFullYear()+1:now.getFullYear();const age=rentree-d.getFullYear();const idx=age-3;
+  if(idx<0){s.innerHTML=`Votre enfant aura moins de 3 ans à la rentrée ${rentree} : l'accueil commence en petite section, à 3 ans.`}
+  else if(idx>=ORDER.length){s.innerHTML=`À cet âge, votre enfant serait au lycée : nous accueillons les élèves jusqu'à la 3<sup>e</sup>.`}
+  else{s.innerHTML=`À la rentrée ${rentree}, votre enfant devrait entrer en <strong>${ORDER[idx]}</strong>.<button type="button">Choisir cette classe</button>`;s.querySelector('button').onclick=()=>{document.getElementById('classe').value=ORDER[idx];document.getElementById('classe').focus()}}
+  s.classList.add('show')});
+
+/* créneaux de visite */
+const vb=document.getElementById('visitBtn');
+document.querySelectorAll('.slots button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.slots button').forEach(x=>x.setAttribute('aria-pressed',x===b));vb.textContent=`Réserver la visite du ${b.dataset.slot}`;vb.href=wa(`Bonjour, je souhaite visiter l'école Les Lucioles (démo) ${b.dataset.slot}. Est-ce possible ?`);vb.target='_blank';vb.rel='noopener';vb.removeAttribute('aria-disabled')});
+vb.addEventListener('click',e=>{if(vb.hasAttribute('aria-disabled')){e.preventDefault();document.querySelector('.slots button').focus()}});
+</script>
+</body>
+</html>

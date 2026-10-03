@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Escale Voyages (démo)</title>
+<meta name="description" content="Site de démonstration réalisé par AKPOTIN Fresnel : agence de voyage fictive avec demande de billet, destinations et assistant visa.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b1e3a">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --navy:#0b1e3a;
+  --navy-2:#16305a;
+  --sun:#ff6a3d;
+  --sky:#e8f1ff;
+  --sky-2:#cfe0fb;
+  --text:#0b1e3a;
+  --muted:#56657e;
+  --line:#dbe3f0;
+  --disp:"Unbounded",system-ui,sans-serif;
+  --sans:"Instrument Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;font:400 17px/1.6 var(--sans);color:var(--text);background:#fff}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--disp);font-weight:600;margin:0;line-height:1.08;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+.in{max-width:1220px;margin:0 auto;padding-inline:20px}
+@media (min-width:760px){.in{padding-inline:32px}}
+section{padding-block:clamp(64px,8vw,112px)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.demo{background:#06111f;color:#bcc8db;font-size:13.5px;text-align:center;padding:8px 16px;line-height:1.45}
+.demo a{color:#fff;font-weight:700}
+
+header{position:sticky;top:0;z-index:30;background:var(--navy);color:#fff}
+header .in{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 19px var(--disp);letter-spacing:-.01em}
+nav.main{display:flex;gap:28px;font-weight:600;font-size:15.5px}
+nav.main a{text-decoration:none;color:#bcc8db} nav.main a:hover{color:#fff}
+@media (max-width:920px){nav.main{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:12px;font:700 16px var(--sans);padding:14px 22px;cursor:pointer;text-decoration:none;transition:background .15s,transform .15s}
+.btn:active{transform:translateY(1px)}
+.b-sun{background:var(--sun);color:#fff} .b-sun:hover{background:#ec5426}
+.b-navy{background:var(--navy);color:#fff} .b-navy:hover{background:var(--navy-2)}
+.b-sm{padding:10px 16px;font-size:15px}
+
+/* héros */
+.hero{position:relative;color:#fff;background:var(--navy);padding-block:clamp(44px,6vw,84px) clamp(56px,7vw,100px);overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(11 30 58 / .3),rgb(11 30 58 / .9))}
+.hero .in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,56px);align-items:center}
+@media (max-width:1000px){.hero .in{grid-template-columns:minmax(0,1fr)}}
+.hero h1{font-size:clamp(34px,4.2vw,54px)}
+.hero .lead{font-size:clamp(17px,1.6vw,19.5px);color:#d7e2f3;max-width:44ch;margin-top:20px}
+.hero ul{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;font-weight:600}
+.hero li{display:flex;gap:10px;align-items:center}
+.hero li::before{content:"";width:18px;height:18px;border-radius:50%;background:var(--sun) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/12px no-repeat;flex:none}
+
+/* carte d'embarquement */
+.pass{background:#fff;color:var(--text);border-radius:22px;display:grid;grid-template-columns:minmax(0,1fr) 170px;box-shadow:0 40px 70px -30px rgb(0 0 0 / .6);position:relative}
+@media (max-width:640px){.pass{grid-template-columns:minmax(0,1fr)}}
+.pass .main{padding:22px 24px;display:grid;gap:16px}
+.pass .stub{border-left:2px dashed var(--line);padding:22px 20px;display:grid;align-content:space-between;gap:16px;background:var(--sky);border-radius:0 22px 22px 0;position:relative}
+.pass .stub::before,.pass .stub::after{content:"";position:absolute;left:-13px;width:24px;height:24px;border-radius:50%;background:var(--navy)}
+.pass .stub::before{top:-12px}.pass .stub::after{bottom:-12px}
+@media (max-width:640px){.pass .stub{border-left:0;border-top:2px dashed var(--line);border-radius:0 0 22px 22px}.pass .stub::before,.pass .stub::after{display:none}}
+.trip{display:inline-flex;background:var(--sky);border-radius:10px;padding:4px;justify-self:start}
+.trip button{appearance:none;border:0;background:none;font:700 14.5px var(--sans);padding:8px 14px;border-radius:8px;cursor:pointer;color:var(--muted)}
+.trip button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.route{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:end}
+.code{font:700 clamp(30px,3.6vw,44px)/1 var(--disp);letter-spacing:.02em;color:var(--navy);min-height:1em}
+.code.empty{color:var(--sky-2)}
+.plane{color:var(--sun);padding-bottom:6px}
+.f{display:grid;gap:5px}
+.f label{font-size:13px;font-weight:700;color:var(--muted)}
+.f input,.f select,.f textarea{font:600 16px var(--sans);color:var(--text);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;background:#fff}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--navy);box-shadow:0 0 0 4px var(--sky)}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.row3{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.4fr);gap:12px}
+@media (max-width:520px){.row3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stub dl{margin:0;display:grid;gap:12px}
+.stub dt{font-size:12.5px;font-weight:700;color:var(--muted)}
+.stub dd{margin:0;font:600 15px var(--disp)}
+.bar{height:44px;background:repeating-linear-gradient(90deg,var(--navy) 0 2px,transparent 2px 4px,var(--navy) 4px 7px,transparent 7px 9px,var(--navy) 9px 10px,transparent 10px 13px);border-radius:3px}
+.err{color:#c2310b;font-weight:700;font-size:14.5px}
+
+/* services */
+.serv{border-bottom:1px solid var(--line)}
+.serv ul{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.serv li{padding:26px 22px;border-right:1px solid var(--line);display:grid;gap:6px}
+.serv li:last-child{border-right:0}
+.serv b{font:600 17px var(--disp)}
+.serv span{color:var(--muted);font-size:15.5px}
+@media (max-width:860px){.serv ul{grid-template-columns:repeat(2,minmax(0,1fr))}.serv li:nth-child(2){border-right:0}.serv li:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+.sh{display:grid;gap:14px;max-width:62ch;margin-bottom:34px}
+.sh h2{font-size:clamp(28px,3.6vw,46px)}
+.sh p{color:var(--muted);font-size:18px}
+
+/* destinations */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.chips button{appearance:none;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 18px;font:700 15.5px var(--sans);color:var(--muted);cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.dests{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:960px){.dests{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.dests{grid-template-columns:minmax(0,1fr)}}
+.dest{position:relative;border-radius:20px;overflow:hidden;color:#fff;min-height:420px;display:grid;align-content:end}
+.dest img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.dest:hover img{transform:scale(1.05)}
+.dest::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgb(6 17 31 / .88))}
+.dest .b{position:relative;z-index:1;padding:20px;display:grid;gap:8px}
+.dest h3{font-size:26px}
+.dest .meta{display:flex;flex-wrap:wrap;gap:6px}
+.dest .meta span{background:rgb(255 255 255 / .16);backdrop-filter:blur(6px);border-radius:999px;padding:3px 10px;font-size:13.5px;font-weight:600}
+.dest .meta .visa{background:var(--sun)}
+.dest .p{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-top:4px}
+.dest .p b{font:700 24px var(--disp)}
+.dest .p small{display:block;font-size:13px;color:#cfd9ea}
+.dest .p button{appearance:none;border:0;background:#fff;color:var(--navy);font:700 15px var(--sans);border-radius:10px;padding:10px 14px;cursor:pointer}
+
+/* visa */
+.visa-s{background:var(--sky)}
+.visa-s .grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:900px){.visa-s .grid{grid-template-columns:minmax(0,1fr)}}
+.vcard{background:#fff;border-radius:22px;padding:clamp(20px,3vw,30px);display:grid;gap:18px}
+.vhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.vhead b{font:600 20px var(--disp)}
+.prog{height:10px;background:var(--sky);border-radius:999px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--sun);width:0;transition:width .3s}
+.docs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.docs label{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:start;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+.docs input{width:20px;height:20px;accent-color:var(--navy);margin-top:2px}
+.docs label:has(input:checked){background:var(--sky);border-color:var(--sky-2)}
+.docs label:has(input:checked) b{text-decoration:line-through;text-decoration-color:var(--sun)}
+.docs span{display:block;color:var(--muted);font-size:14.5px}
+.vinfo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.vinfo div{background:var(--sky);border-radius:12px;padding:12px}
+.vinfo dt{font-size:12.5px;font-weight:700;color:var(--muted)}
+.vinfo dd{margin:2px 0 0;font:600 15.5px var(--disp)}
+@media (max-width:520px){.vinfo{grid-template-columns:minmax(0,1fr)}}
+
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font:600 18px/1.35 var(--disp)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:700 24px/1 var(--sans);color:var(--sun);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 20px;color:var(--muted);max-width:64ch}
+.agent{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center}
+@media (max-width:900px){.agent{grid-template-columns:minmax(0,1fr)}}
+.agent img{border-radius:22px;aspect-ratio:4/3;object-fit:cover;width:100%}
+
+footer{background:var(--navy);color:#bcc8db;padding-block:52px 28px;font-size:15.5px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+@media (max-width:760px){.fg{grid-template-columns:minmax(0,1fr)}}
+footer h4{font:600 16px var(--disp);color:#fff;margin:0 0 12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.legal{margin-top:36px;padding-top:18px;border-top:1px solid #1d3762;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px}
+.legal a{color:#fff}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Site de démonstration, agence fictive. Les demandes envoient un vrai message WhatsApp à <a href="../../">AKPOTIN Fresnel, développeur web</a>, pour que vous voyiez le résultat.</div>
+
+<header>
+  <div class="in">
+    <a class="logo" href="#top" aria-label="Escale Voyages, accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="#ff6a3d"/><path d="M7 17.5 23 10l-4.5 12-3.2-5.3Z" fill="#fff"/></svg>Escale</a>
+    <nav class="main" aria-label="Sections"><a href="#billet">Billet d'avion</a><a href="#destinations">Destinations</a><a href="#visa">Visa</a><a href="#questions">Questions</a></nav>
+    <a class="btn b-sun b-sm" href="#billet">Demander un billet</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="billet">
+    <img src="img/ciel.jpg" alt="" width="1900" height="1100" fetchpriority="high">
+    <div class="in">
+      <div>
+        <h1>Votre billet au meilleur prix, sans y passer la journée.</h1>
+        <p class="lead">Dites-nous où et quand vous voulez partir. Un agent compare les compagnies et vous envoie trois propositions sur WhatsApp en moins de 2 heures.</p>
+        <ul><li>Paiement en plusieurs fois possible</li><li>Assistance visa de A à Z</li><li>Un agent joignable avant, pendant et après le voyage</li></ul>
+      </div>
+
+      <form class="pass" id="pass" novalidate aria-label="Demande de billet d'avion">
+        <div class="main">
+          <div class="trip" role="group" aria-label="Type de trajet"><button type="button" aria-pressed="true" data-t="ar">Aller-retour</button><button type="button" aria-pressed="false" data-t="as">Aller simple</button></div>
+          <div class="route" aria-hidden="true"><span class="code empty" id="cFrom">DEP</span><svg class="plane" width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5Z" transform="rotate(90 12 12)"/></svg><span class="code empty" id="cTo" style="text-align:right">ARR</span></div>
+          <div class="row">
+            <div class="f"><label for="from">Départ</label><input id="from" placeholder="Votre ville" autocomplete="off" list="cities"></div>
+            <div class="f"><label for="to">Destination</label><input id="to" placeholder="Paris, Dubaï…" autocomplete="off" list="cities"></div>
+          </div>
+          <datalist id="cities"><option>Paris</option><option>Dubaï</option><option>Istanbul</option><option>Londres</option><option>Marrakech</option><option>Zanzibar</option><option>Bruxelles</option><option>Montréal</option><option>New York</option><option>Casablanca</option></datalist>
+          <div class="row">
+            <div class="f"><label for="d1">Aller le</label><input type="date" id="d1"></div>
+            <div class="f" id="retWrap"><label for="d2">Retour le</label><input type="date" id="d2"></div>
+          </div>
+          <div class="row3">
+            <div class="f"><label for="pa">Adultes</label><select id="pa"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+            <div class="f"><label for="pc">Enfants</label><select id="pc"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+            <div class="f"><label for="cl">Classe</label><select id="cl"><option>Économique</option><option>Premium</option><option>Affaires</option></select></div>
+          </div>
+          <div class="f"><label for="nm">Votre nom</label><input id="nm" autocomplete="name"></div>
+          <p class="err" id="pErr" role="alert"></p>
+        </div>
+        <div class="stub">
+          <dl>
+            <div><dt>Passagers</dt><dd id="sPax">1 adulte</dd></div>
+            <div><dt>Départ</dt><dd id="sD1">À choisir</dd></div>
+            <div id="sRetW"><dt>Retour</dt><dd id="sD2">À choisir</dd></div>
+            <div><dt>Classe</dt><dd id="sCl">Économique</dd></div>
+          </dl>
+          <div class="bar" aria-hidden="true"></div>
+          <button class="btn b-sun" type="submit">Recevoir 3 offres</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="serv">
+    <ul class="in">
+      <li><b>Billets d'avion</b><span>Toutes compagnies, comparées pour vous.</span></li>
+      <li><b>Visas</b><span>Dossier vérifié avant le dépôt, rendez-vous pris.</span></li>
+      <li><b>Hôtels</b><span>Sélectionnés près de ce que vous venez faire.</span></li>
+      <li><b>Assurance voyage</b><span>Obligatoire pour certains visas, incluse sur demande.</span></li>
+    </ul>
+  </div>
+
+  <section id="destinations">
+    <div class="in">
+      <div class="sh"><h2>Les destinations du moment</h2><p>Prix aller-retour en classe économique, par personne, constatés ce mois-ci. Touchez « Ce voyage » pour une offre à vos dates.</p></div>
+      <div class="chips" role="group" aria-label="Filtrer les destinations" id="chips"></div>
+      <div class="dests" id="dests"></div>
+    </div>
+  </section>
+
+  <section class="visa-s" id="visa">
+    <div class="in grid">
+      <div>
+        <div class="sh"><h2>Votre visa, sans oublier un seul papier</h2><p>Choisissez votre destination : la liste des documents s'affiche. Cochez ce que vous avez déjà, nous nous occupons du reste.</p></div>
+        <div class="f" style="max-width:360px"><label for="vdest">Destination</label><select id="vdest"></select></div>
+      </div>
+      <div class="vcard" aria-live="polite">
+        <div class="vhead"><b id="vTitle"></b><span id="vCount"></span></div>
+        <div class="prog" aria-hidden="true"><i id="vBar"></i></div>
+        <dl class="vinfo" id="vInfo"></dl>
+        <ul class="docs" id="vDocs"></ul>
+        <a class="btn b-navy" id="vBtn" target="_blank" rel="noopener">Faire ma demande de visa</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="questions">
+    <div class="in agent">
+      <img src="img/voyageur.jpg" alt="Voyageur détendu en salle d'embarquement" loading="lazy" width="1200" height="900">
+      <div>
+        <div class="sh" style="margin-bottom:10px"><h2>Vos questions avant de partir</h2></div>
+        <details><summary>Puis-je payer mon billet en plusieurs fois ?</summary><p>Oui, en deux ou trois fois selon la date de départ. Le billet est émis une fois le dernier versement reçu, et le prix est bloqué dès le premier.</p></details>
+        <details><summary>En combien de temps ai-je une réponse ?</summary><p>Moins de 2 heures pendant les horaires d'ouverture, le lendemain matin pour les demandes envoyées le soir.</p></details>
+        <details><summary>Et si mon visa est refusé ?</summary><p>Nous vous conseillons de réserver un billet modifiable tant que le visa n'est pas obtenu. En cas de refus, nous vous aidons à préparer un nouveau dossier.</p></details>
+        <details><summary>Mon vol est annulé, que faire ?</summary><p>Écrivez-nous sur WhatsApp : un agent contacte la compagnie et vous propose un autre vol ou un remboursement.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div class="fg">
+      <div><h4>Escale Voyages</h4><p style="max-width:34ch">Billets, visas, hôtels et assurances. Agence fictive créée pour une démonstration.</p></div>
+      <div><h4>Agence</h4><ul><li>Galerie Les Arcades, local 6</li><li>Lundi au samedi, 8 h 30 à 19 h</li><li>01 99 00 52 70</li></ul></div>
+      <div><h4>Raccourcis</h4><ul><li><a href="#billet">Demander un billet</a></li><li><a href="#visa">Préparer un visa</a></li><li><a href="#destinations">Destinations</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© Escale Voyages, entreprise fictive</span><span>Site réalisé par <a href="../../">AKPOTIN Fresnel</a></span></div>
+  </div>
+</footer>
+
+<script>
+const WA='2290153829990',wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const $=id=>document.getElementById(id);
+const eur=n=>n.toLocaleString('fr-FR').replace(/ /g,' ')+' €';
+const fd=v=>v?new Date(v).toLocaleDateString('fr-FR',{day:'numeric',month:'short'}):'À choisir';
+const code=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z]/gi,'').slice(0,3).toUpperCase();
+
+/* carte d'embarquement */
+let trip='ar';
+const today=new Date().toISOString().slice(0,10);$('d1').min=today;$('d2').min=today;
+document.querySelectorAll('.trip button').forEach(b=>b.onclick=()=>{trip=b.dataset.t;document.querySelectorAll('.trip button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('retWrap').hidden=trip==='as';$('sRetW').hidden=trip==='as';upd()});
+function upd(){const f=$('from').value.trim(),t=$('to').value.trim();
+  $('cFrom').textContent=f?code(f):'DEP';$('cFrom').classList.toggle('empty',!f);$('cTo').textContent=t?code(t):'ARR';$('cTo').classList.toggle('empty',!t);
+  const a=+$('pa').value,c=+$('pc').value;$('sPax').textContent=`${a} adulte${a>1?'s':''}${c?`, ${c} enfant${c>1?'s':''}`:''}`;
+  $('sD1').textContent=fd($('d1').value);$('sD2').textContent=fd($('d2').value);$('sCl').textContent=$('cl').value;
+  if($('d1').value)$('d2').min=$('d1').value}
+$('pass').addEventListener('input',upd);$('pass').addEventListener('change',upd);
+$('pass').onsubmit=e=>{e.preventDefault();const f=$('from').value.trim(),t=$('to').value.trim(),n=$('nm').value.trim();let m='';
+  if(!f||!t)m='Indiquez la ville de départ et la destination.';else if(!$('d1').value)m='Choisissez la date de départ.';else if(trip==='ar'&&!$('d2').value)m='Choisissez la date de retour, ou passez en aller simple.';else if(!n)m='Indiquez votre nom.';
+  $('pErr').textContent=m;if(m)return;
+  const long=v=>new Date(v).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  window.open(wa(`Bonjour Escale Voyages (démo), je m'appelle ${n}.\nJe cherche un billet ${trip==='ar'?'aller-retour':'aller simple'} :\n${f} → ${t}\nAller : ${long($('d1').value)}${trip==='ar'?`\nRetour : ${long($('d2').value)}`:''}\nPassagers : ${$('sPax').textContent}\nClasse : ${$('cl').value}\n\nMerci de m'envoyer vos meilleures offres.`),'_blank','noopener')};
+upd();
+
+/* destinations */
+const D=[
+ {n:'Dubaï',img:'dubai',cat:'Grandes villes',price:610,fly:'6 h 40',visa:true,txt:'Shopping, désert et gratte-ciel'},
+ {n:'Istanbul',img:'istanbul',cat:'Culture',price:520,fly:'5 h 50',visa:true,txt:'Bazars, mosquées et Bosphore'},
+ {n:'Paris',img:'paris',cat:'Grandes villes',price:640,fly:'6 h 20',visa:true,txt:'Musées, études et affaires'},
+ {n:'Zanzibar',img:'plage',cat:'Plage',price:780,fly:'9 h, 1 escale',visa:false,txt:'Plages de sable blanc et vieille ville'},
+ {n:'Marrakech',img:'marrakech',cat:'Culture',price:450,fly:'4 h 30',visa:false,txt:'Médina, riads et jardins'},
+ {n:'Londres',img:'londres',cat:'Grandes villes',price:690,fly:'6 h 30',visa:true,txt:'Affaires, études et famille'}];
+const CATS=['Toutes','Plage','Grandes villes','Culture'];let cat='Toutes';
+function dests(){$('chips').innerHTML=CATS.map(c=>`<button type="button" aria-pressed="${c===cat}">${c}</button>`).join('');
+  [...$('chips').children].forEach((b,i)=>b.onclick=()=>{cat=CATS[i];dests()});
+  $('dests').innerHTML=D.filter(d=>cat==='Toutes'||d.cat===cat).map(d=>`<article class="dest"><img src="img/${d.img}.jpg" alt="${d.n}" loading="lazy" width="1000" height="1200"><div class="b"><div class="meta"><span>${d.cat}</span><span>${d.fly}</span>${d.visa?'<span class="visa">Visa requis</span>':'<span>Sans visa</span>'}</div><h3>${d.n}</h3><p style="color:#dbe4f2">${d.txt}</p><div class="p"><span><small>À partir de</small><b>${eur(d.price)}</b></span><button type="button" data-n="${d.n}">Ce voyage</button></div></div></article>`).join('');
+  $('dests').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('to').value=b.dataset.n;upd();$('billet').scrollIntoView();setTimeout(()=>$('from').focus({preventScroll:true}),500)})}
+dests();
+
+/* assistant visa */
+const V={
+ 'France (Schengen)':{d:'15 jours',v:'90 jours',c:'80 €',docs:[['Passeport valide','au moins 3 mois après le retour, 2 pages vierges'],['Formulaire de demande','nous le remplissons avec vous'],['2 photos d\'identité','format 35 × 45 mm, fond clair'],['Réservation d\'hôtel ou attestation d\'accueil',''],['Billet d\'avion aller-retour','réservation modifiable conseillée'],['Assurance voyage','couverture de 30 000 € minimum'],['Relevés bancaires','des 3 derniers mois'],['Attestation de travail ou d\'inscription','avec congé ou dates de cours']]},
+ 'Émirats (Dubaï)':{d:'3 à 5 jours',v:'30 jours',c:'95 €',docs:[['Passeport valide','au moins 6 mois'],['Photo d\'identité','fond blanc, format numérique'],['Billet d\'avion aller-retour',''],['Réservation d\'hôtel','']]},
+ 'Turquie':{d:'48 h',v:'30 jours',c:'50 €',docs:[['Passeport valide','au moins 6 mois'],['Billet d\'avion aller-retour',''],['Réservation d\'hôtel',''],['Justificatif de ressources','relevé bancaire récent']]},
+ 'Royaume-Uni':{d:'3 semaines',v:'6 mois',c:'130 €',docs:[['Passeport valide','pour toute la durée du séjour'],['Formulaire en ligne','nous le remplissons avec vous'],['Relevés bancaires','des 6 derniers mois'],['Attestation de travail',''],['Lettre d\'invitation','si vous rendez visite à de la famille'],['Rendez-vous biométrique','nous le réservons pour vous']]}};
+const VK=Object.keys(V);$('vdest').innerHTML=VK.map(k=>`<option>${k}</option>`).join('');
+function visa(){const k=$('vdest').value,v=V[k];$('vTitle').textContent=`Visa ${k}`;
+  $('vInfo').innerHTML=`<div><dt>Délai moyen</dt><dd>${v.d}</dd></div><div><dt>Séjour</dt><dd>${v.v}</dd></div><div><dt>Frais consulaires</dt><dd>${v.c}</dd></div>`;
+  $('vDocs').innerHTML=v.docs.map(([a,b],i)=>`<li><label><input type="checkbox" data-i="${i}"><span><b>${a}</b>${b?`<span>${b}</span>`:''}</span></label></li>`).join('');vprog()}
+function vprog(){const k=$('vdest').value,v=V[k],all=[...$('vDocs').querySelectorAll('input')],ok=all.filter(c=>c.checked);
+  $('vCount').textContent=`${ok.length} sur ${all.length} prêts`;$('vBar').style.width=`${ok.length/all.length*100}%`;
+  const miss=all.filter(c=>!c.checked).map(c=>v.docs[c.dataset.i][0]);
+  $('vBtn').textContent=miss.length?`Faire ma demande (${miss.length} document${miss.length>1?'s':''} à préparer)`:'Tout est prêt : déposer ma demande';
+  $('vBtn').href=wa(`Bonjour Escale Voyages (démo), je prépare un visa ${k}.\nDéjà prêt : ${ok.length?ok.map(c=>v.docs[c.dataset.i][0]).join(', '):'rien pour l\'instant'}.\nIl me manque : ${miss.length?miss.join(', '):'rien'}.\nPouvez-vous m'accompagner ?`)}
+$('vdest').onchange=visa;$('vDocs').addEventListener('change',vprog);visa();
+</script>
+</body>
+</html>

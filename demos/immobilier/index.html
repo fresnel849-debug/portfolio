@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Adresse Immobilier (démo)</title>
+<meta name="description" content="Site de démonstration réalisé par AKPOTIN Fresnel : agence immobilière fictive avec recherche de biens, fiches détaillées et prise de rendez-vous de visite.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1c241d">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --night:#1c241d;   /* vert nuit */
+  --moss:#3d4f3a;
+  --stone:#eceee8;   /* pierre claire */
+  --stone-2:#dfe3da;
+  --brass:#a47a35;   /* laiton */
+  --brass-2:#c79a4e;
+  --white:#fff;
+  --text:#1c241d;
+  --muted:#5f6a5e;
+  --line:#d9ddd4;
+  --f:"Archivo",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;font:400 16.5px/1.6 var(--f);color:var(--text);background:var(--white)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:700;font-stretch:118%;letter-spacing:-.02em;line-height:1.02;text-wrap:balance}
+p{margin:0}
+.in{max-width:1240px;margin:0 auto;padding-inline:20px}
+@media (min-width:760px){.in{padding-inline:32px}}
+section{padding-block:clamp(64px,8vw,112px)}
+:focus-visible{outline:3px solid var(--brass-2);outline-offset:2px}
+.demo{background:#0e130f;color:#c4cbc2;font-size:13.5px;text-align:center;padding:8px 16px;line-height:1.45}
+.demo a{color:#fff;font-weight:700}
+
+header{position:sticky;top:0;z-index:30;background:var(--night);color:#fff}
+header .in{height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;font-stretch:125%;font-size:19px;letter-spacing:.02em}
+.logo svg{flex:none}
+nav.main{display:flex;gap:28px;font-size:15px;font-weight:600}
+nav.main a{text-decoration:none;color:#c4cbc2} nav.main a:hover{color:#fff}
+@media (max-width:920px){nav.main{display:none}}
+.fav-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;border:1px solid #4d5b4b;border-radius:999px;padding:8px 14px}
+.fav-link b{background:var(--brass);color:#fff;border-radius:999px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:12.5px;padding-inline:6px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:10px;font:700 16px var(--f);padding:14px 22px;cursor:pointer;text-decoration:none;transition:background .15s,transform .15s}
+.btn:active{transform:translateY(1px)}
+.b-brass{background:var(--brass);color:#fff} .b-brass:hover{background:#8d6829}
+.b-night{background:var(--night);color:#fff} .b-night:hover{background:var(--moss)}
+.b-ghost{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--text)} .b-ghost:hover{background:var(--stone)}
+
+/* héros + moteur de recherche */
+.hero{position:relative;color:#fff;padding:0;background:var(--night)}
+.hero .bg{position:absolute;inset:0;overflow:hidden}
+.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(14 19 15 / .82) 0%,rgb(14 19 15 / .45) 55%,rgb(14 19 15 / .15) 100%)}
+.hero .in{position:relative;padding-block:clamp(72px,10vw,140px) clamp(150px,14vw,190px)}
+.hero h1{font-size:clamp(42px,6.6vw,92px);max-width:13ch}
+.hero p{font-size:clamp(17px,1.6vw,20px);max-width:46ch;margin-top:22px;color:#e2e7df}
+.search-wrap{position:relative;margin-top:-110px;z-index:5}
+.search{background:#fff;color:var(--text);border-radius:18px;box-shadow:0 30px 60px -30px rgb(14 19 15 / .5);padding:20px;display:grid;gap:16px}
+.mode{display:inline-flex;background:var(--stone);border-radius:10px;padding:4px;justify-self:start}
+.mode button{appearance:none;border:0;background:none;font:700 15px var(--f);padding:9px 18px;border-radius:8px;cursor:pointer;color:var(--muted)}
+.mode button[aria-pressed="true"]{background:var(--night);color:#fff}
+.fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:12px;align-items:end}
+@media (max-width:980px){.fields{grid-template-columns:repeat(2,minmax(0,1fr))}.fields .btn{grid-column:1/-1}}
+@media (max-width:520px){.fields{grid-template-columns:minmax(0,1fr)}}
+.fl{display:grid;gap:6px}
+.fl label{font-size:13.5px;font-weight:700;color:var(--muted)}
+.fl select,.fl input{font:600 16px var(--f);color:var(--text);border:1.5px solid var(--line);border-radius:10px;padding:12px;background:#fff;width:100%}
+.fl select:focus,.fl input:focus,.fl textarea:focus{outline:0;border-color:var(--brass);box-shadow:0 0 0 4px rgb(164 122 53 / .18)}
+
+/* résultats */
+.res-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px}
+.res-head h2{font-size:clamp(30px,3.6vw,46px)}
+.count{color:var(--muted);margin-top:8px}
+.sort{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+.sort select{font:600 15px var(--f);border:1.5px solid var(--line);border-radius:10px;padding:9px 10px;background:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 24px}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.grid{grid-template-columns:minmax(0,1fr)}}
+.prop{display:grid;gap:12px;position:relative}
+.prop .ph{position:relative;border-radius:14px;overflow:hidden;background:var(--stone)}
+.prop .ph img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .5s}
+.prop:hover .ph img{transform:scale(1.04)}
+.badge{position:absolute;left:12px;top:12px;background:#fff;color:var(--text);font-weight:700;font-size:13px;border-radius:6px;padding:4px 9px}
+.badge.ex{background:var(--brass);color:#fff}
+.heart{position:absolute;right:10px;top:10px;width:40px;height:40px;border-radius:50%;border:0;background:rgb(255 255 255 / .92);display:grid;place-items:center;cursor:pointer;z-index:2}
+.heart svg{fill:none;stroke:var(--text);stroke-width:2}
+.heart[aria-pressed="true"] svg{fill:#c2410c;stroke:#c2410c}
+.price{font-weight:800;font-stretch:112%;font-size:23px;letter-spacing:-.01em}
+.price small{font-weight:600;font-size:14.5px;color:var(--muted);font-stretch:100%}
+.prop h3{font-size:17px;font-stretch:100%;font-weight:700;letter-spacing:0;line-height:1.35}
+.prop h3 a{text-decoration:none}
+.prop h3 a::after{content:"";position:absolute;inset:0;z-index:1}
+.where{color:var(--muted);font-size:15px}
+.specs{display:flex;gap:16px;flex-wrap:wrap;font-size:14.5px;font-weight:600;color:var(--moss);border-top:1px solid var(--line);padding-top:10px}
+.specs span{display:inline-flex;align-items:center;gap:6px}
+.empty{grid-column:1/-1;border:1.5px dashed var(--line);border-radius:16px;padding:40px;text-align:center;display:grid;gap:14px;justify-items:center}
+
+/* fiche bien */
+dialog{border:0;padding:0;border-radius:20px;width:min(1040px,calc(100% - 24px));max-height:calc(100dvh - 24px);box-shadow:0 40px 80px -30px rgb(0 0 0 / .6)}
+dialog::backdrop{background:rgb(14 19 15 / .7)}
+.sheet{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+@media (max-width:860px){.sheet{grid-template-columns:minmax(0,1fr)}}
+.gal{background:var(--night);display:grid;align-content:start}
+.gal .main{aspect-ratio:4/3;object-fit:cover;width:100%}
+.thumbs{display:flex;gap:8px;padding:10px}
+.thumbs button{appearance:none;border:2px solid transparent;padding:0;border-radius:8px;overflow:hidden;cursor:pointer;width:84px;background:none}
+.thumbs button[aria-current="true"]{border-color:var(--brass-2)}
+.thumbs img{aspect-ratio:4/3;object-fit:cover}
+.det{padding:clamp(20px,3vw,32px);display:grid;gap:16px;align-content:start;overflow:auto}
+.det h2{font-size:clamp(24px,2.6vw,32px)}
+.close{position:absolute;right:12px;top:12px;width:42px;height:42px;border-radius:50%;border:0;background:#fff;cursor:pointer;font-size:22px;z-index:3;box-shadow:0 2px 8px rgb(0 0 0 / .2)}
+.feat{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.feat li{background:var(--stone);border-radius:8px;padding:5px 10px;font-weight:600;font-size:14px}
+.visit{border-top:1px solid var(--line);padding-top:16px;display:grid;gap:12px}
+.visit h3{font-size:18px;font-stretch:105%}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{appearance:none;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font:600 14.5px var(--f);cursor:pointer;color:var(--text)}
+.chips button[aria-pressed="true"]{background:var(--night);border-color:var(--night);color:#fff}
+.chips button small{display:block;font-weight:500;font-size:12.5px;opacity:.8}
+
+/* chiffres de l'agence */
+.agency{background:var(--stone)}
+.agency .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+@media (max-width:900px){.agency .wrap{grid-template-columns:minmax(0,1fr)}}
+.agency h2{font-size:clamp(32px,4vw,52px)}
+.agency p.lead{color:var(--muted);font-size:18px;margin-top:18px;max-width:52ch}
+.pillars{display:grid;gap:0;margin-top:30px;border-top:1px solid var(--stone-2)}
+.pillars div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:18px 0;border-bottom:1px solid var(--stone-2)}
+.pillars b{font-weight:800;font-stretch:120%;font-size:15px}
+.pillars span{color:var(--muted)}
+@media (max-width:520px){.pillars div{grid-template-columns:minmax(0,1fr);gap:4px}}
+.agency figure{margin:0;position:relative}
+.agency figure img{border-radius:18px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.agency figcaption{position:absolute;left:16px;bottom:16px;right:16px;background:#fff;border-radius:12px;padding:14px 16px;font-weight:600;display:flex;justify-content:space-between;gap:12px}
+
+/* simulateur */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:900px){.calc{grid-template-columns:minmax(0,1fr)}}
+.calc h2{font-size:clamp(30px,3.6vw,46px)}
+.calc .intro{color:var(--muted);font-size:18px;margin-top:16px;max-width:46ch}
+.panel{border:1.5px solid var(--line);border-radius:18px;padding:clamp(20px,3vw,30px);display:grid;gap:18px}
+.range{display:grid;gap:8px}
+.range .top{display:flex;justify-content:space-between;font-weight:700;font-size:15px}
+.range output{font-weight:800}
+input[type=range]{width:100%;accent-color:var(--brass)}
+.result{background:var(--night);color:#fff;border-radius:14px;padding:20px;display:grid;gap:6px}
+.result strong{font-size:clamp(34px,4vw,44px);font-weight:800;font-stretch:115%;letter-spacing:-.02em}
+.result span{color:#c4cbc2;font-size:15px}
+
+/* propriétaires */
+.owners{background:var(--night);color:#fff}
+.owners .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px)}
+@media (max-width:900px){.owners .wrap{grid-template-columns:minmax(0,1fr)}}
+.owners h2{font-size:clamp(32px,4vw,52px)}
+.owners .lead{color:#c4cbc2;font-size:18px;margin-top:18px;max-width:48ch}
+.seq{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:22px;counter-reset:s}
+.seq li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;counter-increment:s}
+.seq li::before{content:counter(s);width:44px;height:44px;border-radius:50%;border:1.5px solid var(--brass-2);color:var(--brass-2);display:grid;place-items:center;font-weight:800}
+.seq b{display:block;font-size:17px}
+.seq span{color:#c4cbc2}
+.owners form{background:#fff;color:var(--text);border-radius:18px;padding:clamp(20px,3vw,30px);display:grid;gap:14px;align-content:start}
+.owners form h3{font-size:24px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.two{grid-template-columns:minmax(0,1fr)}}
+.fl textarea{font:500 16px var(--f);border:1.5px solid var(--line);border-radius:10px;padding:12px;width:100%;resize:vertical}
+
+footer{background:#0e130f;color:#aab3a8;padding-block:52px 28px;font-size:15px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+@media (max-width:760px){.fg{grid-template-columns:minmax(0,1fr)}}
+footer h4{color:#fff;margin:0 0 12px;font-stretch:115%;font-size:16px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.legal{margin-top:36px;padding-top:18px;border-top:1px solid #253026;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px}
+.legal a{color:#fff}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,220%);visibility:hidden;background:var(--night);color:#fff;padding:12px 18px;border-radius:10px;font-weight:600;z-index:60;transition:transform .3s}
+.toast.on{transform:translate(-50%,0);visibility:visible}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Site de démonstration, agence fictive. Les demandes de visite envoient un vrai message WhatsApp à <a href="../../">AKPOTIN Fresnel, développeur web</a>, pour que vous voyiez le résultat.</div>
+
+<header>
+  <div class="in">
+    <a class="logo" href="#top" aria-label="Adresse Immobilier, accueil">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 3 3 14v17h10v-9h8v9h10V14Z" fill="none" stroke="#c79a4e" stroke-width="2.4" stroke-linejoin="round"/><circle cx="17" cy="14" r="2.6" fill="#c79a4e"/></svg>
+      ADRESSE
+    </a>
+    <nav class="main" aria-label="Sections"><a href="#biens">Nos biens</a><a href="#agence">L'agence</a><a href="#simulateur">Simulateur</a><a href="#proprietaires">Vendre ou louer</a></nav>
+    <a class="fav-link" href="#biens" id="favLink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.3-9.2C1.3 8.2 3.6 4.5 7.3 4.5c2 0 3.5 1.1 4.7 2.7 1.2-1.6 2.7-2.7 4.7-2.7 3.7 0 6 3.7 4.6 7.3C19.5 16.4 12 21 12 21Z"/></svg>Favoris <b id="favCount">0</b></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="bg"><img src="img/hero.jpg" alt="" width="2000" height="1100" fetchpriority="high"></div>
+    <div class="in">
+      <h1>Trouvez le logement qui vous ressemble.</h1>
+      <p>Appartements, villas et bureaux à louer ou à vendre. Chaque bien est visité par nos agents avant d'être publié, et les photos sont les vraies.</p>
+    </div>
+  </section>
+
+  <div class="in search-wrap">
+    <form class="search" id="search" role="search" aria-label="Rechercher un bien">
+      <div class="mode" role="group" aria-label="Type de recherche">
+        <button type="button" aria-pressed="true" data-mode="louer">Louer</button>
+        <button type="button" aria-pressed="false" data-mode="acheter">Acheter</button>
+      </div>
+      <div class="fields">
+        <div class="fl"><label for="ftype">Type de bien</label><select id="ftype"><option value="">Tous les types</option><option>Appartement</option><option>Villa</option><option>Maison</option><option>Bureau</option></select></div>
+        <div class="fl"><label for="fzone">Quartier</label><select id="fzone"><option value="">Tous les quartiers</option></select></div>
+        <div class="fl"><label for="fbudget">Budget maximum</label><select id="fbudget"></select></div>
+        <div class="fl"><label for="frooms">Chambres</label><select id="frooms"><option value="0">Peu importe</option><option value="1">1 et plus</option><option value="2">2 et plus</option><option value="3">3 et plus</option><option value="4">4 et plus</option></select></div>
+        <button class="btn b-brass" type="submit">Voir les biens</button>
+      </div>
+    </form>
+  </div>
+
+  <section id="biens">
+    <div class="in">
+      <div class="res-head">
+        <div><h2 id="resTitle">Biens à louer</h2><p class="count" id="count" aria-live="polite"></p></div>
+        <label class="sort">Trier par
+          <select id="sort"><option value="new">Les plus récents</option><option value="asc">Prix croissant</option><option value="desc">Prix décroissant</option><option value="size">Surface</option></select>
+        </label>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="agency" id="agence">
+    <div class="in wrap">
+      <div>
+        <h2>Une agence qui visite avant de publier</h2>
+        <p class="lead">Les annonces qui ne correspondent pas à la réalité vous font perdre des après-midis entières. Chez nous, chaque bien est vérifié sur place, mesuré et photographié par l'agence.</p>
+        <div class="pillars">
+          <div><b>Biens vérifiés</b><span>Titre de propriété contrôlé et visite par un agent avant publication.</span></div>
+          <div><b>Prix affiché</b><span>Le loyer ou le prix de vente, les charges et nos honoraires, écrits dès l'annonce.</span></div>
+          <div><b>Visite sous 48 h</b><span>Vous choisissez le créneau, un agent vous accompagne sur place.</span></div>
+          <div><b>Suivi du bail</b><span>État des lieux, contrat et remise des clés gérés par l'agence.</span></div>
+        </div>
+      </div>
+      <figure><img src="img/salon-clair.jpg" alt="Salon lumineux d'un appartement proposé par l'agence" loading="lazy" width="1200" height="800"><figcaption><span>Appartement, Les Palmeraies</span><span>Loué en 9 jours</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="simulateur">
+    <div class="in calc">
+      <div>
+        <h2>Combien paierez-vous chaque mois ?</h2>
+        <p class="intro">Faites varier le prix, votre apport et la durée du prêt : la mensualité se met à jour tout de suite. Un conseiller peut ensuite vous orienter vers nos banques partenaires.</p>
+      </div>
+      <div class="panel" id="calc">
+        <div class="range"><div class="top"><label for="cprice">Prix du bien</label><output id="oprice"></output></div><input type="range" id="cprice" min="50000" max="800000" step="5000" value="180000"></div>
+        <div class="range"><div class="top"><label for="cdown">Votre apport</label><output id="odown"></output></div><input type="range" id="cdown" min="0" max="50" step="5" value="20"></div>
+        <div class="range"><div class="top"><label for="cyears">Durée du prêt</label><output id="oyears"></output></div><input type="range" id="cyears" min="5" max="25" step="1" value="15"></div>
+        <div class="range"><div class="top"><label for="crate">Taux annuel</label><output id="orate"></output></div><input type="range" id="crate" min="3" max="12" step=".25" value="7"></div>
+        <div class="result" aria-live="polite"><span>Mensualité estimée</span><strong id="monthly">—</strong><span id="detail"></span></div>
+        <a class="btn b-night" id="calcBtn" target="_blank" rel="noopener">Parler de mon projet à un conseiller</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="owners" id="proprietaires">
+    <div class="in wrap">
+      <div>
+        <h2>Vous vendez ou louez un bien ?</h2>
+        <p class="lead">Confiez-le à l'agence : nous trouvons des locataires ou des acheteurs sérieux, et vous ne faites visiter qu'aux personnes dont le dossier a été vérifié.</p>
+        <ol class="seq">
+          <li><div><b>Estimation gratuite</b><span>Un agent visite votre bien et vous propose un prix réaliste sous 72 h.</span></div></li>
+          <li><div><b>Photos et annonce</b><span>Nous photographions, mesurons et publions votre bien ici et sur nos réseaux.</span></div></li>
+          <li><div><b>Visites filtrées</b><span>Seuls les candidats aux revenus vérifiés visitent votre bien.</span></div></li>
+          <li><div><b>Signature</b><span>Bail ou compromis rédigé par l'agence, état des lieux et remise des clés.</span></div></li>
+        </ol>
+      </div>
+      <form id="owner" novalidate>
+        <h3>Demander une estimation gratuite</h3>
+        <div class="two">
+          <div class="fl"><label for="otype">Votre bien</label><select id="otype"><option>Appartement</option><option>Villa</option><option>Maison</option><option>Terrain</option><option>Bureau</option></select></div>
+          <div class="fl"><label for="ogoal">Vous souhaitez</label><select id="ogoal"><option>Le mettre en location</option><option>Le vendre</option></select></div>
+        </div>
+        <div class="two">
+          <div class="fl"><label for="ozone">Quartier</label><input id="ozone" required></div>
+          <div class="fl"><label for="osize">Surface (m²)</label><input id="osize" type="number" inputmode="numeric" min="10"></div>
+        </div>
+        <div class="fl"><label for="oname">Votre nom</label><input id="oname" autocomplete="name" required></div>
+        <div class="fl"><label for="omsg">Précisions <span style="font-weight:500">(facultatif)</span></label><textarea id="omsg" rows="3" placeholder="Nombre de pièces, état, disponibilité…"></textarea></div>
+        <p class="fl" id="oerr" role="alert" style="color:#b42318;font-weight:600;font-size:14.5px"></p>
+        <button class="btn b-brass" type="submit">Envoyer ma demande sur WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<dialog id="sheet" aria-labelledby="dTitle">
+  <button class="close" type="button" aria-label="Fermer la fiche" id="dClose">×</button>
+  <div class="sheet">
+    <div class="gal"><img class="main" id="dImg" alt="" width="1200" height="900"><div class="thumbs" id="dThumbs"></div></div>
+    <div class="det">
+      <span class="where" id="dWhere"></span>
+      <h2 id="dTitle"></h2>
+      <div class="price" id="dPrice"></div>
+      <div class="specs" id="dSpecs"></div>
+      <p id="dDesc" style="color:var(--muted)"></p>
+      <ul class="feat" id="dFeat"></ul>
+      <div class="visit">
+        <h3>Planifier une visite</h3>
+        <div class="chips" id="dDays" role="group" aria-label="Jour de visite"></div>
+        <div class="chips" id="dHours" role="group" aria-label="Heure de visite"></div>
+        <a class="btn b-brass" id="dBtn" target="_blank" rel="noopener" aria-disabled="true">Choisissez un jour et une heure</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<footer>
+  <div class="in">
+    <div class="fg">
+      <div><h4>ADRESSE Immobilier</h4><p style="max-width:36ch">Location, vente et gestion de biens résidentiels et professionnels. Agence fictive créée pour une démonstration.</p></div>
+      <div><h4>Agence</h4><ul><li>Avenue des Palmeraies, immeuble Le Carré</li><li>Lundi au samedi, 8 h à 18 h</li><li>01 99 00 63 15</li></ul></div>
+      <div><h4>Raccourcis</h4><ul><li><a href="#biens">Biens à louer</a></li><li><a href="#simulateur">Simulateur de prêt</a></li><li><a href="#proprietaires">Faire estimer mon bien</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© ADRESSE Immobilier, entreprise fictive</span><span>Site réalisé par <a href="../../">AKPOTIN Fresnel</a></span></div>
+  </div>
+</footer>
+
+<script>
+const WA='2290153829990',wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const eur=n=>n.toLocaleString('fr-FR').replace(/\u202f/g,'\u00a0')+'\u00a0€';
+const P=[
+ {id:1,mode:'louer',type:'Appartement',zone:'Les Palmeraies',title:'Appartement 3 pièces avec balcon',price:950,size:92,rooms:2,bath:2,img:['salon-clair','cuisine','appart'],badge:'Nouveau',feat:['Balcon','Climatisation','Parking','Gardien 24 h/24','Groupe électrogène'],desc:"Au 3e étage d'une résidence calme avec ascenseur. Séjour traversant, cuisine équipée ouverte, deux chambres avec placards et salle d'eau privative pour la chambre principale.",days:2},
+ {id:2,mode:'louer',type:'Villa',zone:'Bord de lagune',title:'Villa 5 pièces avec piscine',price:2400,size:260,rooms:4,bath:4,img:['villa-blanche','salon-gris','cuisine'],badge:'Exclusivité',feat:['Piscine','Jardin 400 m²','Climatisation','Logement de gardien','Forage'],desc:"Villa contemporaine de plain-pied sur un terrain clos et arboré. Grand séjour ouvert sur la piscine, quatre chambres dont une suite parentale avec dressing.",days:5},
+ {id:3,mode:'louer',type:'Appartement',zone:'Centre-ville',title:'Studio meublé, idéal premier logement',price:420,size:34,rooms:1,bath:1,img:['appart','cuisine'],badge:'',feat:['Meublé','Wifi inclus','Climatisation','Proche commerces'],desc:"Studio entièrement meublé et équipé, à deux pas des bureaux et des commerces. Charges d'eau et internet comprises.",days:9},
+ {id:4,mode:'louer',type:'Bureau',zone:'Haut-Plateau',title:'Plateau de bureaux de 140 m²',price:1800,size:140,rooms:0,bath:2,img:['salon-gris','facade-bois'],badge:'',feat:['Open space','2 salles de réunion','Fibre optique','Parking 4 places','Accès sécurisé'],desc:"Plateau lumineux au 2e étage d'un immeuble de bureaux récent. Livré cloisonné avec deux salles de réunion et un espace pause.",days:12},
+ {id:5,mode:'louer',type:'Maison',zone:'Cité verte',title:'Maison familiale 4 pièces et jardin',price:1250,size:150,rooms:3,bath:2,img:['maison','salon-plantes','cuisine'],badge:'',feat:['Jardin','Garage','Cuisine équipée','Quartier calme'],desc:"Maison de 150 m² dans une rue résidentielle proche des écoles. Trois chambres, un bureau, garage fermé et jardin arboré.",days:15},
+ {id:6,mode:'louer',type:'Appartement',zone:'Les Jardins',title:'Duplex 4 pièces avec terrasse',price:1450,size:128,rooms:3,bath:2,img:['salon-plantes','salon-clair','cuisine'],badge:'Nouveau',feat:['Terrasse 30 m²','Climatisation','Ascenseur','Parking'],desc:"Dernier étage en duplex avec grande terrasse. Séjour double hauteur, trois chambres à l'étage et cuisine fermée équipée.",days:1},
+ {id:7,mode:'acheter',type:'Villa',zone:'Bord de lagune',title:'Villa d\'architecte avec piscine',price:620000,size:310,rooms:5,bath:5,img:['hero','salon-gris','cuisine'],badge:'Exclusivité',feat:['Piscine','Vue lagune','Domotique','Titre foncier','Studio indépendant'],desc:"Villa d'architecte de 310 m² sur un terrain de 900 m² avec vue dégagée. Matériaux haut de gamme, piscine à débordement et studio indépendant pour les invités.",days:3},
+ {id:8,mode:'acheter',type:'Maison',zone:'Cité verte',title:'Maison 5 pièces à rénover',price:145000,size:170,rooms:4,bath:2,img:['maison','salon-plantes'],badge:'',feat:['Titre foncier','Terrain 500 m²','Garage','Potentiel d\'extension'],desc:"Maison solide des années 2000 à rafraîchir, sur un grand terrain permettant une extension. Bon placement pour une famille ou un investisseur.",days:20},
+ {id:9,mode:'acheter',type:'Appartement',zone:'Les Palmeraies',title:'Appartement 4 pièces neuf',price:210000,size:115,rooms:3,bath:2,img:['salon-clair','appart','cuisine'],badge:'Nouveau',feat:['Neuf','Balcon','Parking','Piscine de la résidence'],desc:"Appartement neuf livré cette année dans une résidence avec piscine et salle de sport. Trois chambres, deux salles de bains, balcon filant.",days:4},
+ {id:10,mode:'acheter',type:'Villa',zone:'Haut-Plateau',title:'Villa contemporaine 6 pièces',price:395000,size:240,rooms:5,bath:4,img:['villa-nuit','salon-gris','cuisine'],badge:'',feat:['Jardin paysager','Climatisation','Titre foncier','Forage'],desc:"Villa récente aux grandes baies vitrées, sur un terrain paysager. Cinq chambres dont deux suites, bureau et grande cuisine ouverte.",days:8},
+ {id:11,mode:'acheter',type:'Bureau',zone:'Centre-ville',title:'Local commercial en rez-de-chaussée',price:98000,size:85,rooms:0,bath:1,img:['facade-bois','salon-gris'],badge:'',feat:['Vitrine sur rue','Réserve','Climatisation'],desc:"Local commercial avec vitrine sur une rue passante, réserve et sanitaire. Libre à la vente, idéal boutique ou agence.",days:11},
+ {id:12,mode:'acheter',type:'Maison',zone:'Les Jardins',title:'Maison de ville 4 pièces',price:178000,size:130,rooms:3,bath:2,img:['facade-bois','salon-plantes','cuisine'],badge:'',feat:['Titre foncier','Cour privative','Cuisine équipée'],desc:"Maison de ville récente sur deux niveaux avec cour privative. Trois chambres à l'étage, séjour et cuisine ouverte au rez-de-chaussée.",days:6}];
+const BUDGETS={louer:[[0,'Sans limite'],[500,'500 € / mois'],[1000,'1 000 € / mois'],[1500,'1 500 € / mois'],[2500,'2 500 € / mois']],acheter:[[0,'Sans limite'],[120000,'120 000 €'],[200000,'200 000 €'],[400000,'400 000 €'],[700000,'700 000 €']]};
+const $=id=>document.getElementById(id);
+let mode='louer';
+const zones=[...new Set(P.map(p=>p.zone))].sort();$('fzone').innerHTML+=zones.map(z=>`<option>${z}</option>`).join('');
+function budgets(){$('fbudget').innerHTML=BUDGETS[mode].map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}
+budgets();
+let favs=[];try{favs=JSON.parse(localStorage.getItem('adresse-favs')||'[]')}catch{}
+const saveFavs=()=>{try{localStorage.setItem('adresse-favs',JSON.stringify(favs))}catch{};$('favCount').textContent=favs.length};
+saveFavs();
+const ico={bed:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 18V8m0 6h18v4M3 11h7a3 3 0 0 1 3 3M21 14v-1a3 3 0 0 0-3-3h-5"/></svg>',size:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4"/></svg>',bath:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM6 12V6a2 2 0 0 1 4 0"/></svg>'};
+const priceTxt=p=>p.mode==='louer'?`${eur(p.price)} <small>/ mois</small>`:eur(p.price);
+const specs=p=>`${p.rooms?`<span>${ico.bed}${p.rooms} chambre${p.rooms>1?'s':''}</span>`:''}<span>${ico.size}${p.size} m²</span><span>${ico.bath}${p.bath} sdb</span>`;
+let onlyFavs=false;
+function render(){
+  const t=$('ftype').value,z=$('fzone').value,b=+$('fbudget').value,r=+$('frooms').value,s=$('sort').value;
+  let L=P.filter(p=>p.mode===mode&&(!t||p.type===t)&&(!z||p.zone===z)&&(!b||p.price<=b)&&p.rooms>=r&&(!onlyFavs||favs.includes(p.id)));
+  L.sort((a,c)=>s==='asc'?a.price-c.price:s==='desc'?c.price-a.price:s==='size'?c.size-a.size:a.days-c.days);
+  $('resTitle').textContent=onlyFavs?'Vos favoris':mode==='louer'?'Biens à louer':'Biens à vendre';
+  $('count').textContent=L.length?`${L.length} bien${L.length>1?'s':''} correspond${L.length>1?'ent':''} à votre recherche`:'';
+  $('grid').innerHTML=L.length?L.map(p=>`<article class="prop">
+    <div class="ph"><img src="img/${p.img[0]}.jpg" alt="${p.title}" loading="lazy" width="1200" height="800">${p.badge?`<span class="badge ${p.badge==='Exclusivité'?'ex':''}">${p.badge}</span>`:''}
+    <button class="heart" type="button" data-fav="${p.id}" aria-pressed="${favs.includes(p.id)}" aria-label="Ajouter ${p.title} aux favoris"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.3-9.2C1.3 8.2 3.6 4.5 7.3 4.5c2 0 3.5 1.1 4.7 2.7 1.2-1.6 2.7-2.7 4.7-2.7 3.7 0 6 3.7 4.6 7.3C19.5 16.4 12 21 12 21Z"/></svg></button></div>
+    <div class="price">${priceTxt(p)}</div>
+    <h3><a href="#bien-${p.id}" data-open="${p.id}">${p.title}</a></h3>
+    <div class="where">${p.type}, ${p.zone}</div>
+    <div class="specs">${specs(p)}</div></article>`).join('')
+  :`<div class="empty"><strong style="font-size:19px">Aucun bien ne correspond à ces critères.</strong><span style="color:var(--muted)">${onlyFavs?'Ajoutez des biens à vos favoris avec le cœur sur chaque annonce.':'Élargissez le budget ou le quartier, ou laissez-nous vos critères : nous vous prévenons dès qu\'un bien arrive.'}</span><a class="btn b-night" target="_blank" rel="noopener" href="${wa(`Bonjour, je cherche un bien (${mode}). Type : ${t||'peu importe'}, quartier : ${z||'peu importe'}, budget max : ${b?eur(b):'non précisé'}. Pouvez-vous me prévenir si un bien correspond ? (démo ADRESSE)`)}">Être prévenu sur WhatsApp</a></div>`;
+}
+document.querySelectorAll('.mode button').forEach(btn=>btn.onclick=()=>{mode=btn.dataset.mode;document.querySelectorAll('.mode button').forEach(x=>x.setAttribute('aria-pressed',x===btn));budgets();onlyFavs=false;render()});
+['ftype','fzone','fbudget','frooms','sort'].forEach(id=>$(id).addEventListener('change',()=>{onlyFavs=false;render()}));
+$('search').onsubmit=e=>{e.preventDefault();onlyFavs=false;render();$('biens').scrollIntoView()};
+$('favLink').onclick=e=>{e.preventDefault();onlyFavs=true;render();$('biens').scrollIntoView()};
+const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2200)};
+$('grid').addEventListener('click',e=>{const h=e.target.closest('[data-fav]');if(h){e.preventDefault();const id=+h.dataset.fav;const on=!favs.includes(id);favs=on?[...favs,id]:favs.filter(x=>x!==id);h.setAttribute('aria-pressed',on);saveFavs();toast(on?'Ajouté à vos favoris':'Retiré de vos favoris');if(onlyFavs)render();return}
+  const o=e.target.closest('[data-open]');if(o){e.preventDefault();openSheet(+o.dataset.open)}});
+
+/* fiche bien + visite */
+const dlg=$('sheet');let cur,day,hour;
+function nextDays(){const out=[],d=new Date();while(out.length<6){d.setDate(d.getDate()+1);if(d.getDay()!==0)out.push(new Date(d))}return out}
+function updVisit(){const b=$('dBtn');if(day&&hour){b.removeAttribute('aria-disabled');b.textContent=`Demander la visite du ${day} à ${hour}`;b.href=wa(`Bonjour, je souhaite visiter le bien « ${cur.title} » (${cur.zone}, ${cur.mode==='louer'?eur(cur.price)+' par mois':eur(cur.price)}) le ${day} à ${hour}. (démo ADRESSE)`)}else{b.setAttribute('aria-disabled','true');b.removeAttribute('href');b.textContent='Choisissez un jour et une heure'}}
+function openSheet(id){cur=P.find(p=>p.id===id);day=hour=null;
+  $('dTitle').textContent=cur.title;$('dWhere').textContent=`${cur.type}, ${cur.zone}`;$('dPrice').innerHTML=priceTxt(cur);$('dSpecs').innerHTML=specs(cur);$('dDesc').textContent=cur.desc;$('dFeat').innerHTML=cur.feat.map(f=>`<li>${f}</li>`).join('');
+  const setImg=i=>{$('dImg').src=`img/${cur.img[i]}.jpg`;$('dImg').alt=`${cur.title}, photo ${i+1} sur ${cur.img.length}`;[...$('dThumbs').children].forEach((t,j)=>t.setAttribute('aria-current',i===j))};
+  $('dThumbs').innerHTML=cur.img.map((m,i)=>`<button type="button" aria-label="Photo ${i+1}"><img src="img/${m}.jpg" alt="" width="1200" height="800"></button>`).join('');
+  [...$('dThumbs').children].forEach((t,i)=>t.onclick=()=>setImg(i));setImg(0);
+  $('dDays').innerHTML=nextDays().map(d=>{const l=d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});return `<button type="button" aria-pressed="false" data-v="${l}">${d.toLocaleDateString('fr-FR',{weekday:'short'})}<small>${d.getDate()} ${d.toLocaleDateString('fr-FR',{month:'short'})}</small></button>`}).join('');
+  $('dHours').innerHTML=['9 h','11 h','14 h','16 h','17 h 30'].map(h=>`<button type="button" aria-pressed="false" data-v="${h}">${h}</button>`).join('');
+  const pick=(box,set)=>box.querySelectorAll('button').forEach(b=>b.onclick=()=>{box.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));set(b.dataset.v);updVisit()});
+  pick($('dDays'),v=>day=v);pick($('dHours'),v=>hour=v);updVisit();
+  history.replaceState(null,'',`#bien-${id}`);dlg.showModal();}
+$('dClose').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+dlg.addEventListener('close',()=>history.replaceState(null,'',location.pathname));
+$('dBtn').addEventListener('click',e=>{if($('dBtn').hasAttribute('aria-disabled'))e.preventDefault()});
+render();
+const m=location.hash.match(/^#bien-(\d+)$/);if(m&&P.some(p=>p.id==m[1])){const p=P.find(x=>x.id==m[1]);if(p.mode!==mode)document.querySelector(`[data-mode=${p.mode}]`).click();openSheet(p.id)}
+
+/* simulateur de prêt */
+function calc(){const price=+$('cprice').value,down=+$('cdown').value,y=+$('cyears').value,r=+$('crate').value;
+  const loan=price*(1-down/100),i=r/100/12,n=y*12,mth=i?loan*i/(1-Math.pow(1+i,-n)):loan/n;
+  $('oprice').textContent=eur(price);$('odown').textContent=`${down} % (${eur(Math.round(price*down/100))})`;$('oyears').textContent=`${y} ans`;$('orate').textContent=`${r.toLocaleString('fr-FR')} %`;
+  $('monthly').textContent=eur(Math.round(mth));$('detail').textContent=`Pour un emprunt de ${eur(Math.round(loan))}, coût total du crédit : ${eur(Math.round(mth*n-loan))}.`;
+  $('calcBtn').href=wa(`Bonjour, j'ai un projet d'achat autour de ${eur(price)} avec un apport de ${down} %, sur ${y} ans. Mensualité estimée : ${eur(Math.round(mth))}. Pouvez-vous me conseiller ? (démo ADRESSE)`)}
+['cprice','cdown','cyears','crate'].forEach(id=>$(id).addEventListener('input',calc));calc();
+
+/* estimation propriétaire */
+$('owner').onsubmit=e=>{e.preventDefault();const zone=$('ozone').value.trim(),name=$('oname').value.trim();
+  if(!zone||!name){$('oerr').textContent='Indiquez au moins le quartier du bien et votre nom.';(zone?$('oname'):$('ozone')).focus();return}$('oerr').textContent='';
+  const t=`Bonjour, je m'appelle ${name}. Je souhaite ${$('ogoal').value.toLowerCase()} : ${$('otype').value.toLowerCase()}${$('osize').value?` de ${$('osize').value} m²`:''}, quartier ${zone}.${$('omsg').value.trim()?`\n${$('omsg').value.trim()}`:''}\nPouvez-vous passer pour une estimation ? (démo ADRESSE)`;
+  window.open(wa(t),'_blank','noopener');toast('WhatsApp s\'ouvre avec votre demande')};
+</script>
+</body>
+</html>
