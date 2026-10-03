@@ -8,8 +8,7 @@
 <meta property="og:title" content="AKPOTIN Fresnel · Développeur web">
 <meta property="og:description" content="Des sites qui font appeler, réserver et acheter vos clients. Devis gratuit en 24h.">
 <meta property="og:image" content="img/dreads.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,500;9..40,700&display=swap">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* Néo-brutalisme adouci : dégradés blanc → rose, rouge #e63946 en accent, charbon #171e19, pêche #f6d5c8, bordures 2px, ombres dures */
 :root{
@@ -145,6 +144,33 @@ header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgb(255 255
 .info .btn{justify-self:start;margin-top:6px}
 .num{font:800 15px var(--f-display);color:var(--muted)}
 
+
+/* démos par métier */
+.demos-head{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin:96px 0 36px;padding-top:56px;border-top:2px solid var(--black)}
+.h3{font-size:clamp(32px,4.2vw,56px)}
+.demos-head p{max-width:62ch;font-size:18px;margin-top:14px;color:var(--muted)}
+.dfilters{display:flex;flex-wrap:wrap;gap:10px}
+.dfilters button{appearance:none;font:700 15px var(--f-body);background:var(--white);border:2px solid var(--black);border-radius:999px;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--black);transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.dfilters button:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--black)}
+.dfilters button[aria-pressed="true"]{background:var(--black);color:var(--white)}
+.dgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px 40px}
+@media (max-width:860px){.dgrid{grid-template-columns:minmax(0,1fr)}}
+.dm{display:grid;gap:22px;align-content:start}
+.dm[hidden]{display:none}
+.dshot{position:relative;display:block;padding:0 7% 7% 0}
+.dshot .browser{box-shadow:10px 10px 0 var(--black)}
+.dm:hover .browser{transform:translate(-4px,-4px);box-shadow:14px 14px 0 var(--black)}
+.dm:hover .screen,.dm.auto .screen{background-position:50% 100%}
+.dm:hover .mob{transform:rotate(0) translateY(-8px)}
+.dshot .mob{width:22%}
+.dinfo{display:grid;gap:12px;align-content:start}
+.dinfo h3{font-size:clamp(28px,3vw,38px)}
+.dinfo p{font-size:16.5px;color:var(--muted);max-width:52ch}
+.dinfo .btn{justify-self:start;margin-top:4px}
+.custom{margin-top:64px;border:2px dashed var(--black);border-radius:20px;padding:clamp(20px,3vw,32px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;background:var(--wash2)}
+.custom strong{display:block;font:800 clamp(22px,2.4vw,28px)/1.15 var(--f-display);letter-spacing:-.02em}
+.custom span{display:block;color:var(--muted);margin-top:6px;max-width:56ch}
+
 /* problème / solution */
 .ps{border-top:2px solid var(--black)}
 .duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin-top:48px}
@@ -265,7 +291,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
           <span class="ln"><span>font <span class="swap" id="swap"><b class="cur">appeler</b><b>réserver</b><b>acheter</b><b>revenir</b></span></span></span>
           <span class="ln"><span>vos clients.</span></span>
         </h1>
-        <p class="lead">Un site clair, rapide sur téléphone, avec un bouton WhatsApp qui transforme chaque visiteur en demande de rendez-vous, de réservation ou de commande. Pour les cliniques, salons, écoles, hôtels, restaurants et agences.</p>
+        <p class="lead">Un site clair, rapide sur téléphone, avec un bouton WhatsApp qui transforme chaque visiteur en demande de rendez-vous, de réservation ou de commande. Pour les cliniques, salons, écoles, hôtels, restaurants, traiteurs et agences.</p>
         <div class="ctas">
           <a class="btn btn-dark" href="#realisations">Voir mes réalisations →</a>
           <a class="btn btn-light" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20suis%20%5Bnom%20de%20l%27entreprise%5D.%20J%27aimerais%20un%20devis%20pour%20un%20site%20web." target="_blank" rel="noopener">Demander mon devis gratuit</a>
@@ -278,8 +304,8 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
           <svg viewBox="0 0 132 132"><defs><path id="circ" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><circle cx="66" cy="66" r="64" fill="#fff" stroke="#000" stroke-width="2"/><text font-family="DM Sans, sans-serif" font-weight="700" font-size="12.5" letter-spacing="2.6"><textPath href="#circ">SITES WEB · SUR MESURE · RAPIDES · </textPath></text></svg>
           <i>AF</i>
         </div>
-        <div class="card c1"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b></div><img src="img/hotel.jpg" alt="Site de l'hôtel Lagune Bleue"></div>
-        <div class="card c2"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b></div><img src="img/vault.jpg" alt="Site Prompt Vault"></div>
+        <div class="card c1"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b></div><img src="img/beaute.jpg" alt="Démo du site de l'institut Maison Nala"></div>
+        <div class="card c2"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b></div><img src="img/immobilier.jpg" alt="Démo du site de l'agence Adresse Immobilier"></div>
         <div class="card c3"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b></div><img src="img/dreads.jpg" alt="Site du salon Dreads ET Crépus"></div>
         <div class="phone"><img src="img/dreads-m.jpg" alt="Version mobile du site Dreads ET Crépus"></div>
       </div>
@@ -288,8 +314,8 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
 
   <div class="marquee" aria-hidden="true">
     <div class="track">
-      <span>SALONS DE COIFFURE</span><span>CLINIQUES</span><span>ÉCOLES</span><span>HÔTELS</span><span>IMMOBILIER</span><span>AGENCES DE VOYAGE</span><span>RESTAURANTS</span><span>PRODUITS DIGITAUX</span>
-      <span>SALONS DE COIFFURE</span><span>CLINIQUES</span><span>ÉCOLES</span><span>HÔTELS</span><span>IMMOBILIER</span><span>AGENCES DE VOYAGE</span><span>RESTAURANTS</span><span>PRODUITS DIGITAUX</span>
+      <span>SALONS ET SPAS</span><span>CLINIQUES</span><span>ÉCOLES</span><span>HÔTELS</span><span>IMMOBILIER</span><span>AGENCES DE VOYAGE</span><span>RESTAURANTS</span><span>TRAITEURS</span>
+      <span>SALONS ET SPAS</span><span>CLINIQUES</span><span>ÉCOLES</span><span>HÔTELS</span><span>IMMOBILIER</span><span>AGENCES DE VOYAGE</span><span>RESTAURANTS</span><span>TRAITEURS</span>
     </div>
   </div>
 
@@ -304,12 +330,11 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
     <div class="in">
       <div class="head rv">
         <h2 class="h2">Réalisations</h2>
-        <p>Un site client, un produit à moi et trois démos complètes. Tout est en ligne : ouvrez, testez, cliquez. <span class="t-hover">Survolez une capture pour voir la page entière.</span><span class="t-touch">Les captures défilent toutes seules quand vous arrivez dessus.</span></p>
+        <p>Deux projets réels, puis huit démos complètes, une par métier. Tout est en ligne : ouvrez, cliquez, réservez. <span class="t-hover">Survolez une capture pour voir la page entière.</span><span class="t-touch">Les captures défilent toutes seules quand vous arrivez dessus.</span></p>
       </div>
       <div class="projects">
-
         <article class="proj rv">
-          <a class="shot" href="https://dreadsetcrepus.com/" target="_blank" rel="noopener" aria-label="Visiter dreadsetcrepus.com">
+          <a class="shot" href="https://dreadsetcrepus.com/" target="_blank" rel="noopener" aria-label="Visiter Dreads ET Crépus">
             <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">dreadsetcrepus.com</span></div><div class="screen" style="background-image:url(img/dreads-full.jpg)"></div></div>
             <div class="mob"><img src="img/dreads-m.jpg" alt="" loading="lazy"></div>
             <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
@@ -339,55 +364,131 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
             <a class="btn btn-dark" href="https://fresnel849-debug.github.io/prompt-vault/" target="_blank" rel="noopener">Visiter le site ↗</a>
           </div>
         </article>
+      </div>
 
-        <article class="proj rv">
-          <a class="shot" href="demos/clinique/" target="_blank" rel="noopener" aria-label="Visiter la démo Clinique Les Palmiers">
-            <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · clinique</span></div><div class="screen" style="background-image:url(img/clinique-full.jpg)"></div></div>
-            <div class="mob"><img src="img/clinique-m.jpg" alt="" loading="lazy"></div>
-            <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
-          </a>
-          <div class="info">
-            <span class="num">03</span>
-            <span class="kind k-demo">Démo · Santé</span>
-            <h3>Clinique Les Palmiers</h3>
-            <p>Ce qu'un patient cherche en premier, trouvé en quelques secondes : spécialités, tarifs, horaires et urgences. Il prend rendez-vous par formulaire ou sur WhatsApp, avec un bouton toujours à portée de pouce.</p>
-            <div class="feats"><span>Rendez-vous en ligne</span><span>Spécialités</span><span>Assurances</span><span>WhatsApp</span></div>
-            <a class="btn btn-dark" href="demos/clinique/" target="_blank" rel="noopener">Voir la démo ↗</a>
-          </div>
-        </article>
-
-        <article class="proj rv">
-          <a class="shot" href="demos/hotel/" target="_blank" rel="noopener" aria-label="Visiter la démo Hôtel Lagune Bleue">
-            <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · hôtel</span></div><div class="screen" style="background-image:url(img/hotel-full.jpg)"></div></div>
-            <div class="mob"><img src="img/hotel-m.jpg" alt="" loading="lazy"></div>
-            <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
-          </a>
-          <div class="info">
-            <span class="num">04</span>
-            <span class="kind k-demo">Démo · Hôtellerie</span>
-            <h3>Hôtel Lagune Bleue</h3>
-            <p>Un site d'hôtel qui donne envie de réserver : grandes photos, chambres avec leurs prix, disponibilités et réservation directe sur WhatsApp, sans commission de plateforme.</p>
-            <div class="feats"><span>Réservation</span><span>Chambres &amp; tarifs</span><span>Galerie</span><span>Services</span></div>
-            <a class="btn btn-dark" href="demos/hotel/" target="_blank" rel="noopener">Voir la démo ↗</a>
-          </div>
-        </article>
-
-        <article class="proj rv">
-          <a class="shot" href="demos/pizzeria/" target="_blank" rel="noopener" aria-label="Visiter la démo BRAISE 485">
-            <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · pizzeria</span></div><div class="screen" style="background-image:url(img/pizzeria-full.jpg)"></div></div>
-            <div class="mob"><img src="img/pizzeria-m.jpg" alt="" loading="lazy"></div>
-            <span class="hint"><span class="t-hover">↕ Survolez pour défiler</span><span class="t-touch">↕ Page entière</span></span>
-          </a>
-          <div class="info">
-            <span class="num">05</span>
-            <span class="kind k-demo">Démo · Restauration</span>
-            <h3>BRAISE 485</h3>
-            <p>Une carte qui met en appétit : pizzas en photo, choix de la taille, panier, puis commande envoyée sur WhatsApp avec le récapitulatif. Livraison, retrait et heures d'ouverture affichés en direct.</p>
-            <div class="feats"><span>Carte en ligne</span><span>Panier</span><span>Commande WhatsApp</span><span>Livraison</span></div>
-            <a class="btn btn-dark" href="demos/pizzeria/" target="_blank" rel="noopener">Voir la démo ↗</a>
-          </div>
-        </article>
-
+      <div class="demos-head rv" id="demos">
+        <div>
+          <h3 class="h3">Huit démos, une par métier</h3>
+          <p>Des entreprises fictives, mais des sites complets : chaque formulaire envoie un vrai message WhatsApp, qui arrive chez moi. Choisissez votre secteur et essayez comme le ferait votre client.</p>
+        </div>
+        <div class="dfilters" role="group" aria-label="Filtrer les démos par secteur">
+          <button type="button" aria-pressed="true" data-f="all">Toutes</button>
+          <button type="button" aria-pressed="false" data-f="sante">Santé et beauté</button>
+          <button type="button" aria-pressed="false" data-f="education">Éducation</button>
+          <button type="button" aria-pressed="false" data-f="immo">Immobilier</button>
+          <button type="button" aria-pressed="false" data-f="sejour">Hôtels et voyages</button>
+          <button type="button" aria-pressed="false" data-f="resto">Restaurants et traiteurs</button>
+        </div>
+      </div>
+      <div class="dgrid" id="dgrid">
+          <article class="dm rv" data-cat="sante">
+            <a class="dshot" href="demos/clinique/" target="_blank" rel="noopener" aria-label="Tester la démo Clinique Les Palmiers">
+              <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · clinique</span></div><div class="screen" style="background-image:url(img/clinique-full.jpg)"></div></div>
+              <div class="mob"><img src="img/clinique-m.jpg" alt="" loading="lazy"></div>
+            </a>
+            <div class="dinfo">
+              <span class="kind k-demo">Démo · Santé</span>
+              <h3>Clinique Les Palmiers</h3>
+              <p>Le patient choisit son médecin, voit les créneaux libres et réserve en quatre étapes. Les tarifs affichent ce qu'il reste à payer selon son assurance.</p>
+              <div class="feats"><span>Rendez-vous en ligne</span><span>Médecins et horaires</span><span>Tarifs et assurances</span></div>
+              <a class="btn btn-light btn-sm" href="demos/clinique/" target="_blank" rel="noopener">Tester la démo ↗</a>
+            </div>
+          </article>
+          <article class="dm rv" data-cat="sante">
+            <a class="dshot" href="demos/beaute/" target="_blank" rel="noopener" aria-label="Tester la démo Maison Nala">
+              <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · beaute</span></div><div class="screen" style="background-image:url(img/beaute-full.jpg)"></div></div>
+              <div class="mob"><img src="img/beaute-m.jpg" alt="" loading="lazy"></div>
+            </a>
+            <div class="dinfo">
+              <span class="kind k-demo">Démo · Beauté</span>
+              <h3>Maison Nala</h3>
+              <p>La cliente compose son rendez-vous avec plusieurs soins : durée, prix total et créneaux libres se calculent tout seuls. Elle peut aussi offrir une carte cadeau.</p>
+              <div class="feats"><span>Réservation multi-soins</span><span>Créneaux libres</span><span>Carte cadeau</span></div>
+              <a class="btn btn-light btn-sm" href="demos/beaute/" target="_blank" rel="noopener">Tester la démo ↗</a>
+            </div>
+          </article>
+          <article class="dm rv" data-cat="education">
+            <a class="dshot" href="demos/ecole/" target="_blank" rel="noopener" aria-label="Tester la démo École Les Lucioles">
+              <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · ecole</span></div><div class="screen" style="background-image:url(img/ecole-full.jpg)"></div></div>
+              <div class="mob"><img src="img/ecole-m.jpg" alt="" loading="lazy"></div>
+            </a>
+            <div class="dinfo">
+              <span class="kind k-demo">Démo · Éducation</span>
+              <h3>École Les Lucioles</h3>
+              <p>Les parents découvrent les cycles, la journée type et le menu de la cantine, puis pré-inscrivent leur enfant. La classe est suggérée selon son âge.</p>
+              <div class="feats"><span>Pré-inscription</span><span>Classe selon l'âge</span><span>Visite de l'école</span></div>
+              <a class="btn btn-light btn-sm" href="demos/ecole/" target="_blank" rel="noopener">Tester la démo ↗</a>
+            </div>
+          </article>
+          <article class="dm rv" data-cat="immo">
+            <a class="dshot" href="demos/immobilier/" target="_blank" rel="noopener" aria-label="Tester la démo Adresse Immobilier">
+              <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · immobilier</span></div><div class="screen" style="background-image:url(img/immobilier-full.jpg)"></div></div>
+              <div class="mob"><img src="img/immobilier-m.jpg" alt="" loading="lazy"></div>
+            </a>
+            <div class="dinfo">
+              <span class="kind k-demo">Démo · Immobilier</span>
+              <h3>Adresse Immobilier</h3>
+              <p>Recherche par budget, quartier et nombre de chambres, fiches avec photos, favoris et demande de visite. Les acheteurs simulent leur mensualité.</p>
+              <div class="feats"><span>Recherche filtrée</span><span>Demande de visite</span><span>Simulateur de prêt</span></div>
+              <a class="btn btn-light btn-sm" href="demos/immobilier/" target="_blank" rel="noopener">Tester la démo ↗</a>
+            </div>
+          </article>
+          <article class="dm rv" data-cat="sejour">
+            <a class="dshot" href="demos/hotel/" target="_blank" rel="noopener" aria-label="Tester la démo Hôtel Lagune Bleue">
+              <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · hotel</span></div><div class="screen" style="background-image:url(img/hotel-full.jpg)"></div></div>
+              <div class="mob"><img src="img/hotel-m.jpg" alt="" loading="lazy"></div>
+            </a>
+            <div class="dinfo">
+              <span class="kind k-demo">Démo · Hôtellerie</span>
+              <h3>Hôtel Lagune Bleue</h3>
+              <p>Le voyageur choisit ses dates sur le calendrier : le prix du séjour, les disponibilités et les chambres adaptées au nombre de personnes s'affichent aussitôt.</p>
+              <div class="feats"><span>Calendrier de séjour</span><span>Prix en direct</span><span>Réservation directe</span></div>
+              <a class="btn btn-light btn-sm" href="demos/hotel/" target="_blank" rel="noopener">Tester la démo ↗</a>
+            </div>
+          </article>
+          <article class="dm rv" data-cat="sejour">
+            <a class="dshot" href="demos/voyage/" target="_blank" rel="noopener" aria-label="Tester la démo Escale Voyages">
+              <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · voyage</span></div><div class="screen" style="background-image:url(img/voyage-full.jpg)"></div></div>
+              <div class="mob"><img src="img/voyage-m.jpg" alt="" loading="lazy"></div>
+            </a>
+            <div class="dinfo">
+              <span class="kind k-demo">Démo · Agence de voyage</span>
+              <h3>Escale Voyages</h3>
+              <p>Une carte d'embarquement qui se remplit pendant la demande de billet, des destinations filtrables et un assistant visa qui liste les documents à fournir.</p>
+              <div class="feats"><span>Demande de billet</span><span>Destinations</span><span>Assistant visa</span></div>
+              <a class="btn btn-light btn-sm" href="demos/voyage/" target="_blank" rel="noopener">Tester la démo ↗</a>
+            </div>
+          </article>
+          <article class="dm rv" data-cat="resto">
+            <a class="dshot" href="demos/pizzeria/" target="_blank" rel="noopener" aria-label="Tester la démo BRAISE 485">
+              <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · pizzeria</span></div><div class="screen" style="background-image:url(img/pizzeria-full.jpg)"></div></div>
+              <div class="mob"><img src="img/pizzeria-m.jpg" alt="" loading="lazy"></div>
+            </a>
+            <div class="dinfo">
+              <span class="kind k-demo">Démo · Restauration</span>
+              <h3>BRAISE 485</h3>
+              <p>Une carte qui met en appétit : pizzas en photo, choix de la taille, panier, puis commande envoyée sur WhatsApp avec le récapitulatif.</p>
+              <div class="feats"><span>Carte en ligne</span><span>Panier</span><span>Commande WhatsApp</span></div>
+              <a class="btn btn-light btn-sm" href="demos/pizzeria/" target="_blank" rel="noopener">Tester la démo ↗</a>
+            </div>
+          </article>
+          <article class="dm rv" data-cat="resto">
+            <a class="dshot" href="demos/traiteur/" target="_blank" rel="noopener" aria-label="Tester la démo Mosaïque Traiteur">
+              <div class="browser"><div class="bar"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><span class="url">démo · traiteur</span></div><div class="screen" style="background-image:url(img/traiteur-full.jpg)"></div></div>
+              <div class="mob"><img src="img/traiteur-m.jpg" alt="" loading="lazy"></div>
+            </a>
+            <div class="dinfo">
+              <span class="kind k-demo">Démo · Traiteur et événements</span>
+              <h3>Mosaïque Traiteur</h3>
+              <p>Le client choisit l'événement, le nombre d'invités, la formule et les options : le devis se calcule en direct et part sur WhatsApp.</p>
+              <div class="feats"><span>Devis en direct</span><span>Menus par formule</span><span>Galerie</span></div>
+              <a class="btn btn-light btn-sm" href="demos/traiteur/" target="_blank" rel="noopener">Tester la démo ↗</a>
+            </div>
+          </article>
+      </div>
+      <div class="custom rv">
+        <div><strong>Votre métier n'est pas dans la liste ?</strong><span>Dites-moi ce que vous faites : je vous montre à quoi ressemblerait votre site avant que vous ne payiez quoi que ce soit.</span></div>
+        <a class="btn btn-dark" href="https://wa.me/2290153829990?text=Bonjour%20Fresnel%2C%20je%20suis%20%5Bnom%20de%20l%27entreprise%5D%2C%20je%20travaille%20dans%20%5Bsecteur%5D.%20J%27aimerais%20voir%20%C3%A0%20quoi%20ressemblerait%20mon%20site." target="_blank" rel="noopener">En parler sur WhatsApp</a>
       </div>
     </div>
   </section>
@@ -462,6 +563,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
         <details class="rv"><summary>Je dois m'occuper du nom de domaine ou de la technique ?</summary><p>Non. Je gère le nom de domaine, la mise en ligne et la fiche Google. Vous n'avez rien de technique à faire.</p></details>
         <details class="rv"><summary>Et si je veux changer quelque chose après ?</summary><p>Je vous montre comment vous servir de votre site. Pour les mises à jour régulières, je peux aussi m'en charger avec une formule de maintenance.</p></details>
         <details class="rv"><summary>J'ai déjà un site. Vous pouvez l'améliorer ?</summary><p>Oui, c'est une refonte : je garde ce qui fonctionne et je refais ce qui fait fuir les visiteurs, surtout sur téléphone.</p></details>
+        <details class="rv"><summary>Les démos, ce sont de vrais sites ?</summary><p>Oui : ce sont des sites complets, seules les entreprises sont fictives. Réservez une chambre ou un soin, demandez un devis : le message part vraiment sur WhatsApp et arrive chez moi. Votre site fonctionnera de la même façon, avec vos services, vos prix et votre numéro.</p></details>
         <details class="rv"><summary>On peut travailler à distance ?</summary><p>Oui. Tout se fait sur WhatsApp, par téléphone ou par email : échange, maquette, validation et mise en ligne.</p></details>
       </div>
     </div>
@@ -493,7 +595,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--main)}
           <a href="https://github.com/fresnel849-debug" target="_blank" rel="noopener" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
         </div>
       </div>
-      <div><h4>Réalisations</h4><ul><li><a href="https://dreadsetcrepus.com/" target="_blank" rel="noopener">Dreads ET Crépus</a></li><li><a href="https://fresnel849-debug.github.io/prompt-vault/" target="_blank" rel="noopener">Prompt Vault</a></li><li><a href="demos/clinique/">Démo clinique</a></li><li><a href="demos/hotel/">Démo hôtel</a></li><li><a href="demos/pizzeria/">Démo pizzeria</a></li></ul></div>
+      <div><h4>Réalisations</h4><ul><li><a href="https://dreadsetcrepus.com/" target="_blank" rel="noopener">Dreads ET Crépus</a></li><li><a href="https://fresnel849-debug.github.io/prompt-vault/" target="_blank" rel="noopener">Prompt Vault</a></li><li><a href="#demos">Les huit démos</a></li><li><a href="demos/clinique/">Clinique</a> et <a href="demos/beaute/">institut</a></li><li><a href="demos/ecole/">École</a> et <a href="demos/immobilier/">immobilier</a></li><li><a href="demos/hotel/">Hôtel</a> et <a href="demos/voyage/">voyage</a></li><li><a href="demos/pizzeria/">Pizzeria</a> et <a href="demos/traiteur/">traiteur</a></li></ul></div>
       <div><h4>Services</h4><ul><li>Site vitrine</li><li>Refonte de site</li><li>Fiche Google</li><li>Maintenance</li></ul></div>
       <div><h4>Contact</h4><ul><li>01 53 82 99 90</li><li style="overflow-wrap:anywhere">fresnel849@gmail.com</li><li>Devis gratuit en 24h</li><li>Projets à distance</li></ul></div>
     </div>
@@ -519,8 +621,11 @@ const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.targ
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 if(matchMedia('(hover:none)').matches){
   const io2=new IntersectionObserver(es=>es.forEach(x=>x.target.classList.toggle('auto',x.isIntersecting)),{threshold:.6});
-  document.querySelectorAll('.proj').forEach(p=>io2.observe(p));
+  document.querySelectorAll('.proj,.dm').forEach(p=>io2.observe(p));
 }
+// filtres des démos
+const dbtn=[...document.querySelectorAll('.dfilters button')];
+dbtn.forEach(b=>b.onclick=()=>{dbtn.forEach(x=>x.setAttribute('aria-pressed',x===b));document.querySelectorAll('.dm').forEach(c=>{c.hidden=b.dataset.f!=='all'&&c.dataset.cat!==b.dataset.f;if(!c.hidden)c.classList.add('on')})});
 // barre de progression
 const pg=document.getElementById('progress');
 addEventListener('scroll',()=>{const h=document.documentElement;pg.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
